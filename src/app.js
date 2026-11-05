@@ -184,12 +184,15 @@ function renderApp() {
   if (!root) return;
 
   if (state.currentScreen === 'home') {
+    root.classList.remove('screen-quiz-mode');
     root.innerHTML = getHomeScreenHTML();
     bindHomeScreenEvents();
   } else if (state.currentScreen === 'quiz') {
+    root.classList.add('screen-quiz-mode');
     root.innerHTML = getQuizScreenHTML();
     bindQuizScreenEvents();
   } else if (state.currentScreen === 'results') {
+    root.classList.remove('screen-quiz-mode');
     root.innerHTML = getResultsScreenHTML();
     bindResultsScreenEvents();
   }
@@ -490,8 +493,9 @@ function getQuizScreenHTML() {
   const secs = String(state.elapsedSeconds % 60).padStart(2, '0');
 
   return `
-    <!-- Top Sticky Header -->
-    <header class="app-header">
+    <div class="quiz-view-wrapper">
+      <!-- Top Sticky Header -->
+      <header class="app-header">
       <div class="header-left">
         <button class="icon-btn" id="hdr-back-btn" title="Vissza a főmenübe">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -608,28 +612,29 @@ function getQuizScreenHTML() {
       ` : ''}
     </div>
 
-    <!-- Sticky Bottom Action Bar -->
-    <div class="bottom-action-bar">
-      ${state.currentIndex > 0 ? `
-        <button class="btn-secondary" id="btn-prev-question" title="Előző kérdés">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-          </svg>
-        </button>
-      ` : ''}
+      <!-- Sticky Bottom Action Bar -->
+      <div class="bottom-action-bar">
+        ${state.currentIndex > 0 ? `
+          <button class="btn-secondary" id="btn-prev-question" title="Előző kérdés">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+        ` : ''}
 
-      ${isAnswered ? `
-        <button class="btn-primary" id="btn-next-question">
-          <span>${currentNum === total ? 'Kvíz Befejezése' : 'Következő Kérdés'}</span>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-          </svg>
-        </button>
-      ` : `
-        <button class="btn-primary" disabled style="opacity: 0.6;">
-          <span>Válassz egy választ</span>
-        </button>
-      `}
+        ${isAnswered ? `
+          <button class="btn-primary" id="btn-next-question">
+            <span>${currentNum === total ? 'Kvíz Befejezése' : 'Következő Kérdés'}</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+        ` : `
+          <button class="btn-primary" disabled style="opacity: 0.6;">
+            <span>Válassz egy választ</span>
+          </button>
+        `}
+      </div>
     </div>
   `;
 }
@@ -762,6 +767,14 @@ function selectOption(question, answerText) {
   // Re-render and persist
   persistActiveSession();
   renderApp();
+
+  // Smoothly scroll the explanation into view so it is fully visible immediately
+  setTimeout(() => {
+    const expl = document.querySelector('.explanation-card');
+    if (expl) {
+      expl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, 60);
 }
 
 function goToNextQuestion() {

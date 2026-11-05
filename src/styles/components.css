@@ -129,9 +129,24 @@
 /* ==========================================================================
    Question Content Area
    ========================================================================== */
+.quiz-view-wrapper {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
 .quiz-screen-content {
   flex: 1;
-  padding: 14px 18px 90px 18px;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 14px 18px 24px 18px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -369,14 +384,13 @@
 }
 
 /* ==========================================================================
-   Bottom Action Bar (Sticky in Mobile View)
+   Bottom Action Bar (Docked at Bottom)
    ========================================================================== */
 .bottom-action-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  flex: none;
+  position: relative;
   width: 100%;
-  padding: 14px 18px calc(14px + var(--safe-bottom)) 18px;
+  padding: 12px 18px calc(12px + var(--safe-bottom)) 18px;
   background: var(--bg-frame);
   backdrop-filter: blur(16px);
   border-top: 1px solid var(--border-subtle);
