@@ -37,13 +37,79 @@ const state = {
   settings: initialSettings
 };
 
+// Active Session Persistence & Timer Helpers
+function persistActiveSession() {
+  if (state.currentScreen === 'quiz' || state.currentScreen === 'results') {
+    storage.saveActiveSession({
+      currentScreen: state.currentScreen,
+      quizMode: state.quizMode,
+      selectedCategory: state.selectedCategory,
+      questionCount: state.questionCount,
+      activeQuestions: state.activeQuestions,
+      currentIndex: state.currentIndex,
+      userAnswers: state.userAnswers,
+      currentStreak: state.currentStreak,
+      maxStreak: state.maxStreak,
+      elapsedSeconds: state.elapsedSeconds,
+      resultsFilter: state.resultsFilter
+    });
+  } else {
+    storage.clearActiveSession();
+  }
+}
+
+function restoreActiveSessionIfExists() {
+  const session = storage.getActiveSession();
+  if (session && session.activeQuestions && session.activeQuestions.length > 0) {
+    state.currentScreen = session.currentScreen || 'quiz';
+    state.quizMode = session.quizMode || 'practice';
+    state.selectedCategory = session.selectedCategory || 'Összes témakör';
+    state.questionCount = session.questionCount || session.activeQuestions.length;
+    state.activeQuestions = session.activeQuestions;
+    state.currentIndex = session.currentIndex || 0;
+    state.userAnswers = session.userAnswers || {};
+    state.currentStreak = session.currentStreak || 0;
+    state.maxStreak = session.maxStreak || 0;
+    state.elapsedSeconds = session.elapsedSeconds || 0;
+    state.resultsFilter = session.resultsFilter || 'all';
+
+    if (state.currentScreen === 'quiz') {
+      startTimer();
+    }
+  }
+}
+
+function startTimer() {
+  if (state.timerInterval) clearInterval(state.timerInterval);
+  state.timerInterval = setInterval(() => {
+    state.elapsedSeconds++;
+    const timerDisplay = document.getElementById('quiz-timer-display');
+    if (timerDisplay) {
+      const mins = String(Math.floor(state.elapsedSeconds / 60)).padStart(2, '0');
+      const secs = String(state.elapsedSeconds % 60).padStart(2, '0');
+      timerDisplay.textContent = `${mins}:${secs}`;
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  if (state.timerInterval) {
+    clearInterval(state.timerInterval);
+    state.timerInterval = null;
+  }
+}
+
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
+  restoreActiveSessionIfExists();
   initThemeAndLayout();
   initDesktopToolbar();
   initClockSimulation();
   renderApp();
   initKeyboardNav();
+  window.addEventListener('beforeunload', () => {
+    persistActiveSession();
+  });
 });
 
 // Setup Theme & Device Frame
@@ -395,19 +461,10 @@ function startQuizSession() {
   state.elapsedSeconds = 0;
   state.startTime = Date.now();
 
-  // Start timer
-  if (state.timerInterval) clearInterval(state.timerInterval);
-  state.timerInterval = setInterval(() => {
-    state.elapsedSeconds++;
-    const timerDisplay = document.getElementById('quiz-timer-display');
-    if (timerDisplay) {
-      const mins = String(Math.floor(state.elapsedSeconds / 60)).padStart(2, '0');
-      const secs = String(state.elapsedSeconds % 60).padStart(2, '0');
-      timerDisplay.textContent = `${mins}:${secs}`;
-    }
-  }, 1000);
-
+  // Start timer & persist
+  startTimer();
   state.currentScreen = 'quiz';
+  persistActiveSession();
   renderApp();
 }
 
@@ -593,7 +650,8 @@ function bindQuizScreenEvents() {
     backBtn.addEventListener('click', () => {
       sounds.playTap();
       if (confirm('Biztosan megszakítod a tesztet? Az eddigi válaszaid elveszhetnek.')) {
-        if (state.timerInterval) clearInterval(state.timerInterval);
+        stopTimer();
+        storage.clearActiveSession();
         state.currentScreen = 'home';
         renderApp();
       }
@@ -661,6 +719,7 @@ function bindQuizScreenEvents() {
       sounds.playTap();
       if (state.currentIndex > 0) {
         state.currentIndex--;
+        persistActiveSession();
         renderApp();
       }
     });
@@ -703,13 +762,15 @@ function selectOption(question, answerText) {
     sounds.playTap();
   }
 
-  // Re-render to show feedback
+  // Re-render and persist
+  persistActiveSession();
   renderApp();
 }
 
 function goToNextQuestion() {
   if (state.currentIndex < state.activeQuestions.length - 1) {
     state.currentIndex++;
+    persistActiveSession();
     renderApp();
   } else {
     finishQuizSession();
@@ -718,7 +779,7 @@ function goToNextQuestion() {
 
 // Finish & Evaluate Quiz
 function finishQuizSession() {
-  if (state.timerInterval) clearInterval(state.timerInterval);
+  stopTimer();
 
   let correctCount = 0;
   let wrongCount = 0;
@@ -756,6 +817,7 @@ function finishQuizSession() {
   }
 
   state.currentScreen = 'results';
+  persistActiveSession();
   renderApp();
 }
 
@@ -946,6 +1008,8 @@ function bindResultsScreenEvents() {
       state.elapsedSeconds = 0;
       state.startTime = Date.now();
       state.currentScreen = 'quiz';
+      startTimer();
+      persistActiveSession();
       renderApp();
     });
   }
@@ -955,6 +1019,8 @@ function bindResultsScreenEvents() {
   if (homeBtn) {
     homeBtn.addEventListener('click', () => {
       sounds.playTap();
+      stopTimer();
+      storage.clearActiveSession();
       state.currentScreen = 'home';
       renderApp();
     });
@@ -965,6 +1031,7 @@ function bindResultsScreenEvents() {
     btn.addEventListener('click', () => {
       sounds.playTap();
       state.resultsFilter = btn.getAttribute('data-filter');
+      persistActiveSession();
       renderApp();
     });
   });
@@ -1050,6 +1117,7 @@ function renderQuestionGridModal() {
       state.currentIndex = jumpIdx;
       state.isGridOpen = false;
       modal.classList.remove('open');
+      persistActiveSession();
       renderApp();
     });
   });
@@ -1093,6 +1161,7 @@ function initKeyboardNav() {
       if (state.currentIndex > 0) {
         e.preventDefault();
         state.currentIndex--;
+        persistActiveSession();
         renderApp();
       }
     }

@@ -106,5 +106,31 @@ export const storage = {
     const merged = { ...current, ...newSettings };
     localStorage.setItem(KEYS.SETTINGS, JSON.stringify(merged));
     return merged;
+  },
+
+  // Active Session Persistence
+  saveActiveSession(sessionData) {
+    try {
+      localStorage.setItem(KEYS.ACTIVE_SESSION, JSON.stringify(sessionData));
+    } catch {
+      // ignore
+    }
+  },
+
+  getActiveSession() {
+    try {
+      const data = localStorage.getItem(KEYS.ACTIVE_SESSION);
+      return data ? JSON.parse(data) : null;
+    } catch {
+      return null;
+    }
+  },
+
+  clearActiveSession() {
+    try {
+      localStorage.removeItem(KEYS.ACTIVE_SESSION);
+    } catch {
+      // ignore
+    }
   }
 };
