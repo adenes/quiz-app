@@ -11,19 +11,15 @@ A modern, mobile-first interactive quiz and exam preparation web application bui
 - **Desktop Simulator Frame**: When viewed on desktop screens, the app renders inside a realistic flagship smartphone mockup (featuring a dynamic island, simulated status bar, and clock).
 - **One-Click View Mode Toggle**: Easily switch between the mobile phone frame and full-width layout using the desktop toolbar button (`📱 Mobil Keret` / `🖥️ Teljes Nézet`).
 
-### 🎓 2. Four Interactive Quiz Modes
+### 🎓 2. Three Interactive Quiz Modes
 1. **Practice Mode (Tanulás)**:
    - Instant visual feedback (emerald green for correct answers, rose red for mistakes).
    - In-depth anatomical explanation cards revealed immediately after answering.
    - Consecutive correct streak counter (🔥 *Streak* badge).
-2. **Exam Simulation (Vizsga)**:
-   - Live elapsed timer for realistic test conditions.
-   - Answers are recorded without spoiling results during the test.
-   - Comprehensive end-of-test evaluation featuring an animated circular score chart, time statistics, and detailed review.
-3. **Weak Spots / Mistakes Practice (Tévesztett kérdések)**:
+2. **Weak Spots / Mistakes Practice (Tévesztett kérdések)**:
    - Automatically tracks incorrectly answered questions in `localStorage`.
    - Practice only your mistakes until you achieve 100% mastery.
-4. **Bookmarked Questions (Csillagozott kérdések)**:
+3. **Bookmarked Questions (Csillagozott kérdések)**:
    - Star any challenging question anytime using the top-right star icon to review in a dedicated test session later.
 
 ### 📑 3. Topic & Chapter Categories

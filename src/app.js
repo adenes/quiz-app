@@ -15,7 +15,7 @@ const initialSettings = storage.getSettings();
 
 const state = {
   currentScreen: 'home', // 'home' | 'quiz' | 'results'
-  quizMode: 'practice', // 'practice' | 'exam' | 'mistakes' | 'bookmarks'
+  quizMode: 'practice', // 'practice' | 'mistakes' | 'bookmarks'
   selectedCategory: 'Összes témakör',
   questionCount: 20, // 10, 20, 50, 100
   shuffleQuestions: initialSettings.shuffleQuestions !== undefined ? initialSettings.shuffleQuestions : true,
@@ -267,17 +267,6 @@ function getHomeScreenHTML() {
             <div class="mode-badge">Ajánlott</div>
           </div>
 
-          <!-- Exam Mode -->
-          <div class="mode-card ${state.quizMode === 'exam' ? 'selected' : ''}" data-mode="exam">
-            <div class="mode-icon" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6;">
-              ⏱️
-            </div>
-            <div class="mode-info">
-              <h3>Vizsga Szimuláció</h3>
-              <p>Időmérős éles teszt, teljes körű kiértékeléssel a végén</p>
-            </div>
-          </div>
-
           <!-- Mistakes / Weak Points -->
           <div class="mode-card ${state.quizMode === 'mistakes' ? 'selected' : ''}" data-mode="mistakes">
             <div class="mode-icon" style="background: rgba(244, 63, 94, 0.15); color: #f43f5e;">
@@ -304,8 +293,8 @@ function getHomeScreenHTML() {
         </div>
       </div>
 
-      <!-- Categories Selector (Visible when Practice or Exam mode) -->
-      ${['practice', 'exam'].includes(state.quizMode) ? `
+      <!-- Categories Selector (Visible when Practice mode) -->
+      ${state.quizMode === 'practice' ? `
         <div>
           <div class="section-title">Témakör / Fejezet</div>
           <div class="category-chips-scroll">
@@ -509,7 +498,7 @@ function getQuizScreenHTML() {
       </div>
 
       <div class="header-title">
-        ${state.quizMode === 'exam' ? `⏱️ <span id="quiz-timer-display">${mins}:${secs}</span>` : `${currentNum} / ${total}`}
+        ${currentNum} / ${total}
       </div>
 
       <div class="header-right">
@@ -569,18 +558,12 @@ function getQuizScreenHTML() {
             const isUserSelected = answeredInfo.answer === answerText;
             const isCorrectAnswer = answerText === q.correct_answer;
 
-            if (state.quizMode === 'exam') {
-              // In exam mode, simply show selected state without revealing correct/wrong until the end
-              if (isUserSelected) stateClass = 'selected';
+            if (isCorrectAnswer) {
+              stateClass = 'correct';
+            } else if (isUserSelected && !answeredInfo.isCorrect) {
+              stateClass = 'wrong';
             } else {
-              // In practice/mistakes/bookmarks mode: instant rich feedback
-              if (isCorrectAnswer) {
-                stateClass = 'correct';
-              } else if (isUserSelected && !answeredInfo.isCorrect) {
-                stateClass = 'wrong';
-              } else {
-                stateClass = 'dimmed';
-              }
+              stateClass = 'dimmed';
             }
           }
 
@@ -600,8 +583,8 @@ function getQuizScreenHTML() {
         }).join('')}
       </div>
 
-      <!-- Explanation Panel (Visible in practice mode once answered) -->
-      ${(isAnswered && state.quizMode !== 'exam') ? `
+      <!-- Explanation Panel (Visible once answered) -->
+      ${isAnswered ? `
         <div class="explanation-card">
           <svg class="explanation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -694,8 +677,8 @@ function bindQuizScreenEvents() {
   const isAnswered = !!state.userAnswers[q.id];
   document.querySelectorAll('.option-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      // If already answered in practice mode, ignore clicks
-      if (isAnswered && state.quizMode !== 'exam') return;
+      // If already answered, ignore clicks
+      if (isAnswered) return;
 
       const rawAnswer = btn.getAttribute('data-answer');
       const selectedAnswer = decodeURIComponent(rawAnswer);
@@ -740,26 +723,22 @@ function selectOption(question, answerText) {
   storage.recordAnswerResult(question.id, isCorrect);
 
   // Audio & Streak feedback
-  if (state.quizMode !== 'exam') {
-    if (isCorrect) {
-      state.currentStreak++;
-      if (state.currentStreak > state.maxStreak) {
-        state.maxStreak = state.currentStreak;
-      }
-      if (state.currentStreak >= 3 && state.currentStreak % 3 === 0) {
-        sounds.playStreak();
-      } else {
-        sounds.playCorrect();
-      }
-      // Gentle vibration on supported mobile devices
-      if ('vibrate' in navigator) navigator.vibrate([25]);
-    } else {
-      state.currentStreak = 0;
-      sounds.playIncorrect();
-      if ('vibrate' in navigator) navigator.vibrate([60, 40, 60]);
+  if (isCorrect) {
+    state.currentStreak++;
+    if (state.currentStreak > state.maxStreak) {
+      state.maxStreak = state.currentStreak;
     }
+    if (state.currentStreak >= 3 && state.currentStreak % 3 === 0) {
+      sounds.playStreak();
+    } else {
+      sounds.playCorrect();
+    }
+    // Gentle vibration on supported mobile devices
+    if ('vibrate' in navigator) navigator.vibrate([25]);
   } else {
-    sounds.playTap();
+    state.currentStreak = 0;
+    sounds.playIncorrect();
+    if ('vibrate' in navigator) navigator.vibrate([60, 40, 60]);
   }
 
   // Re-render and persist
@@ -1142,7 +1121,7 @@ function initKeyboardNav() {
 
     if (optionIdx >= 0 && optionIdx < q.answers.length) {
       const isAnswered = !!state.userAnswers[q.id];
-      if (!isAnswered || state.quizMode === 'exam') {
+      if (!isAnswered) {
         selectOption(q, q.answers[optionIdx]);
       }
     }
