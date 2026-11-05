@@ -95,6 +95,27 @@ npm run preview
 
 ---
 
+## 🌐 GitHub Pages Deployment
+
+This repository is configured with an automated GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds and deploys the static web app on every push to the `main` branch.
+
+### Live URL:
+👉 **[https://adenes.github.io/quiz-app/](https://adenes.github.io/quiz-app/)**
+
+### Enabling GitHub Pages in Repository Settings:
+1. Go to your repository on GitHub: `https://github.com/adenes/quiz-app`
+2. Click **Settings** ⚙️ → **Pages** (under "Code and automation" on the left sidebar).
+3. Under **Build and deployment** → **Source**, select **GitHub Actions**.
+4. Push your commits to `main`:
+   ```bash
+   git add .
+   git commit -m "Deploy Quiz App to GitHub Pages"
+   git push origin main
+   ```
+5. GitHub Actions will automatically run the build and publish the website!
+
+---
+
 ## 📁 Project Structure
 
 ```text
