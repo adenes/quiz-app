@@ -1,0 +1,263 @@
+/* Base Layout, Simulator & Global Resets */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Background Ambient Lighting */
+.ambient-glow {
+  position: fixed;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(37, 99, 235, 0.05) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Outer Desktop Wrapper */
+.app-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 1;
+}
+
+/* Desktop Floating Control Bar */
+.desktop-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  margin: 14px 0 10px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
+  z-index: 100;
+  transition: opacity var(--trans-fast);
+}
+
+.desktop-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-main);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--trans-fast);
+}
+
+.desktop-toolbar button:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-focus);
+}
+
+.desktop-toolbar button.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+/* Phone Mockup Container (Desktop View) */
+.device-container {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 890px;
+  max-height: calc(100vh - 80px);
+  margin-bottom: 24px;
+  background-color: var(--bg-frame);
+  border-radius: 46px;
+  box-shadow: var(--shadow-phone);
+  border: 8px solid #1e2638;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all var(--trans-smooth);
+}
+
+[data-theme="light"] .device-container {
+  border: 8px solid #cbd5e1;
+}
+
+/* Simulated Mobile Dynamic Island & Status Bar */
+.phone-notch-bar {
+  position: relative;
+  width: 100%;
+  height: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  background: transparent;
+  user-select: none;
+  z-index: 50;
+}
+
+.phone-time {
+  letter-spacing: -0.2px;
+}
+
+.phone-island {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 108px;
+  height: 26px;
+  background: #000000;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.island-camera {
+  width: 10px;
+  height: 10px;
+  background: #111a2e;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.island-sensor {
+  width: 6px;
+  height: 6px;
+  background: #0d121c;
+  border-radius: 50%;
+}
+
+.phone-status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.9;
+}
+
+.phone-status-icons svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Inner Mobile App Screen */
+.mobile-app-screen {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-frame);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Simulated Home Bar at Bottom of Mockup */
+.phone-home-indicator {
+  width: 130px;
+  height: 4px;
+  background-color: var(--text-dim);
+  opacity: 0.4;
+  border-radius: 4px;
+  margin: 6px auto 8px auto;
+  flex-shrink: 0;
+  z-index: 50;
+}
+
+/* Responsive: Native Mobile View (Screens <= 640px) or Fullscreen Mode */
+@media (max-width: 640px), (max-height: 720px) {
+  .desktop-toolbar {
+    display: none;
+  }
+
+  .device-container {
+    max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .phone-notch-bar {
+    display: none; /* Let native mobile OS status bar take over */
+  }
+
+  .phone-home-indicator {
+    display: none;
+  }
+
+  .mobile-app-screen {
+    padding-top: var(--safe-top);
+    padding-bottom: var(--safe-bottom);
+  }
+}
+
+/* If user explicitly toggles Fullscreen Mode on Desktop */
+.device-container.mode-fullscreen {
+  max-width: 680px;
+  height: 94vh;
+  max-height: 94vh;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-lg);
+}
+
+.device-container.mode-fullscreen .phone-notch-bar {
+  display: none;
+}
+
+.device-container.mode-fullscreen .phone-home-indicator {
+  display: none;
+}
+
+/* Custom Slim Scrollbars */
+.mobile-app-screen::-webkit-scrollbar {
+  width: 5px;
+}
+.mobile-app-screen::-webkit-scrollbar-track {
+  background: transparent;
+}
+.mobile-app-screen::-webkit-scrollbar-thumb {
+  background: var(--border-card);
+  border-radius: 10px;
+}
+.mobile-app-screen::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dim);
+}

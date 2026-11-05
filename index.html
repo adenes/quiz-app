@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Quiz App</title>
+  <meta name="description" content="Quiz App - Interactive anatomy and physiology quiz web application with modern mobile view, instant explanations, and 100 questions.">
+  <meta name="theme-color" content="#090d16">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- App Stylesheets -->
+  <link rel="stylesheet" href="./src/styles/variables.css">
+  <link rel="stylesheet" href="./src/styles/main.css">
+  <link rel="stylesheet" href="./src/styles/components.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230284c7'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/></svg>">
+</head>
+<body>
+  <!-- Ambient background glow for visual depth -->
+  <div class="ambient-glow"></div>
+
+  <div class="app-wrapper">
+    <!-- Desktop Simulator Control Bar (visible on desktop displays) -->
+    <header class="desktop-toolbar" id="desktop-toolbar" aria-label="Nézet beállítások">
+      <button id="btn-toggle-frame" type="button" title="Váltás a telefonkeret és a teljes szélesség között">
+        📱 Mobil Keret
+      </button>
+      <button id="btn-toggle-theme" type="button" title="Sötét / Világos téma">
+        🌙 Sötét Mód
+      </button>
+      <button id="btn-toggle-sound" type="button" title="Hangeffektek ki/be">
+        🔊 Hang: Be
+      </button>
+    </header>
+
+    <!-- Main Container: Renders as iPhone / Android Flagship Device frame on desktop, 100% full edge-to-edge on mobile -->
+    <main class="device-container" id="device-container">
+      <!-- Simulated Phone Status Bar with Dynamic Island -->
+      <div class="phone-notch-bar" id="phone-notch-bar">
+        <span class="phone-time" id="phone-clock">21:30</span>
+        <div class="phone-island">
+          <div class="island-camera"></div>
+          <div class="island-sensor"></div>
+        </div>
+        <div class="phone-status-icons">
+          <!-- Signal Icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M2 17h3v4H2v-4zm5-4h3v8H7v-8zm5-4h3v12h-3V9zm5-4h3v16h-3V5z"/>
+          </svg>
+          <!-- Wifi Icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4zm0 3.5c3.67 0 7.02 1.34 9.61 3.56L12 19.4 2.39 11.06C4.98 8.84 8.33 7.5 12 7.5z"/>
+          </svg>
+          <!-- Battery Icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Inner Mobile Screen Application Area -->
+      <section class="mobile-app-screen" id="mobile-app-root" aria-live="polite">
+        <!-- Dynamic content injected by app.js -->
+      </section>
+
+      <!-- Simulated Home Bar Indicator -->
+      <div class="phone-home-indicator"></div>
+    </main>
+  </div>
+
+  <!-- Main JavaScript App Entrypoint -->
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
