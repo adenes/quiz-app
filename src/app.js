@@ -9,6 +9,7 @@ import {
 import { sounds } from './utils/audio.js';
 import { storage } from './utils/storage.js';
 import { triggerConfetti } from './utils/confetti.js';
+import { dialog } from './utils/dialog.js';
 
 // Global Application State
 const initialSettings = storage.getSettings();
@@ -423,14 +424,24 @@ function startQuizSession() {
     const wrongIds = storage.getWrongQuestions();
     pool = allQuestions.filter(q => wrongIds.includes(q.id));
     if (pool.length === 0) {
-      alert('Nincsenek rögzített hibás kérdések! Válassz egy másik módot vagy témakört.');
+      dialog.alert({
+        title: 'Nincsenek hibás kérdések',
+        message: 'Jelenleg nincs rögzített hibás kérdésed! Gyakorolj a többi témakörrel.',
+        confirmText: 'Rendben',
+        type: 'info'
+      });
       return;
     }
   } else if (state.quizMode === 'bookmarks') {
     const starIds = storage.getBookmarks();
     pool = allQuestions.filter(q => starIds.includes(q.id));
     if (pool.length === 0) {
-      alert('Még nem csillagoztál kérdéseket! A kvíz közben a jobb felső csillag ikonnal menthetsz kérdéseket.');
+      dialog.alert({
+        title: 'Nincsenek csillagozott kérdések',
+        message: 'Még nem mentettél el kérdéseket! A kvíz során a jobb felső csillag ikonnal jelölhetsz meg kérdéseket.',
+        confirmText: 'Rendben',
+        type: 'warning'
+      });
       return;
     }
   } else {
@@ -630,9 +641,16 @@ function bindQuizScreenEvents() {
   // Header Back Button
   const backBtn = document.getElementById('hdr-back-btn');
   if (backBtn) {
-    backBtn.addEventListener('click', () => {
-      sounds.playTap();
-      if (confirm('Biztosan megszakítod a tesztet? Az eddigi válaszaid elveszhetnek.')) {
+    backBtn.addEventListener('click', async () => {
+      const confirmed = await dialog.confirm({
+        title: 'Teszt megszakítása',
+        message: 'Biztosan vissza szeretnél térni a főmenübe? A teszt jelenlegi haladása elvész.',
+        confirmText: 'Igen, kilépek',
+        cancelText: 'Folytatás',
+        type: 'danger'
+      });
+
+      if (confirmed) {
         stopTimer();
         storage.clearActiveSession();
         state.currentScreen = 'home';
