@@ -13,7 +13,9 @@
         "Transversalis sík"
       ],
       "correct_answer": "Median sagittalis sík (nyílirányú középsík)",
-      "explanation": "A median sagittalis sík a testet szimmetrikusan jobb és bal félre osztja."
+      "explanation": "A median sagittalis sík a testet szimmetrikusan jobb és bal félre osztja.",
+      "image": "./images/body_planes.jpg",
+      "image_title": "Anatómiai síkok és irányok (Plana et directiones)"
     },
     {
       "id": 2,
@@ -26,7 +28,9 @@
         "A testet felső és alsó félre osztja"
       ],
       "correct_answer": "Merőleges a sagittalis síkra és párhuzamos a test hossztengelyével",
-      "explanation": "A frontális sík elölről határolt, merőleges a nyílirányú síkra és párhuzamos a hossztengellyel."
+      "explanation": "A frontális sík elölről határolt, merőleges a nyílirányú síkra és párhuzamos a hossztengellyel.",
+      "image": "./images/body_planes.jpg",
+      "image_title": "Anatómiai síkok és irányok (Plana et directiones)"
     },
     {
       "id": 3,
@@ -39,7 +43,9 @@
         "Paramedian sík"
       ],
       "correct_answer": "Horizontális (transversalis) sík",
-      "explanation": "A horizontális (transversalis) sík vízszintes és mindkét függőleges síkra merőleges."
+      "explanation": "A horizontális (transversalis) sík vízszintes és mindkét függőleges síkra merőleges.",
+      "image": "./images/body_planes.jpg",
+      "image_title": "Anatómiai síkok és irányok (Plana et directiones)"
     },
     {
       "id": 4,
@@ -52,7 +58,9 @@
         "Jobb és bal oldali irányt"
       ],
       "correct_answer": "Felső és alsó irányt",
-      "explanation": "Superior = felső (feji/cranialis), inferior = alsó (farki/caudalis)."
+      "explanation": "Superior = felső (feji/cranialis), inferior = alsó (farki/caudalis).",
+      "image": "./images/body_planes.jpg",
+      "image_title": "Anatómiai síkok és irányok (Plana et directiones)"
     },
     {
       "id": 5,
@@ -65,7 +73,9 @@
         "Medialis és lateralis"
       ],
       "correct_answer": "Ventralis és dorsalis",
-      "explanation": "Ventralis = hasoldali (elülső), dorsalis = hátoldali (hátulsó)."
+      "explanation": "Ventralis = hasoldali (elülső), dorsalis = hátoldali (hátulsó).",
+      "image": "./images/body_planes.jpg",
+      "image_title": "Anatómiai síkok és irányok (Plana et directiones)"
     },
     {
       "id": 6,
@@ -78,7 +88,9 @@
         "A felső és alsó pólust"
       ],
       "correct_answer": "A sagittalis középsíkhoz közelebbi, illetve attól távolabbi helyzetet",
-      "explanation": "Medialis = belső/középvonalhoz közelebb eső, lateralis = külső/középvonaltól távolabbi."
+      "explanation": "Medialis = belső/középvonalhoz közelebb eső, lateralis = külső/középvonaltól távolabbi.",
+      "image": "./images/body_planes.jpg",
+      "image_title": "Anatómiai síkok és irányok (Plana et directiones)"
     },
     {
       "id": 7,
@@ -91,7 +103,9 @@
         "Izommal fedett, illetve fedetlen csontfelszín"
       ],
       "correct_answer": "Törzshöz közelebb eső, illetve a törzstől távolabb eső rész",
-      "explanation": "Proximalis = a végtag törzshöz közelebbi része, distalis = távolabbi (pl. kézfej a vállhoz képest)."
+      "explanation": "Proximalis = a végtag törzshöz közelebbi része, distalis = távolabbi (pl. kézfej a vállhoz képest).",
+      "image": "./images/body_planes.jpg",
+      "image_title": "Anatómiai síkok és irányok (Plana et directiones)"
     },
     {
       "id": 8,
@@ -104,7 +118,9 @@
         "Tibialis és fibularis"
       ],
       "correct_answer": "Palmaris és plantaris",
-      "explanation": "Palmaris = tenyéri, plantaris = talpi irány."
+      "explanation": "Palmaris = tenyéri, plantaris = talpi irány.",
+      "image": "./images/body_planes.jpg",
+      "image_title": "Anatómiai síkok és irányok (Plana et directiones)"
     },
     {
       "id": 9,
@@ -117,7 +133,9 @@
         "Hosszanti és harántirányú"
       ],
       "correct_answer": "Felületes és mély",
-      "explanation": "Superficialis = testfelszínhez közelebbi/felületes, profundus = mélyebben fekvő."
+      "explanation": "Superficialis = testfelszínhez közelebbi/felületes, profundus = mélyebben fekvő.",
+      "image": "./images/body_planes.jpg",
+      "image_title": "Anatómiai síkok és irányok (Plana et directiones)"
     },
     {
       "id": 10,
@@ -130,7 +148,9 @@
         "Agyvelő, gerincvelő, perifériás idegek"
       ],
       "correct_answer": "Fej, nyak, törzs, alsó és felső végtagok",
-      "explanation": "A test fő régiói: fej, nyak, törzs (hát, has), felső és alsó végtagok."
+      "explanation": "A test fő régiói: fej, nyak, törzs (hát, has), felső és alsó végtagok.",
+      "image": "./images/body_planes.jpg",
+      "image_title": "Anatómiai síkok és irányok (Plana et directiones)"
     },
     {
       "id": 11,
@@ -143,7 +163,9 @@
         "300"
       ],
       "correct_answer": "206",
-      "explanation": "A felnőtt emberi csontváz 206 különálló csontból épül fel."
+      "explanation": "A felnőtt emberi csontváz 206 különálló csontból épül fel.",
+      "image": "./images/synovial_joint.jpg",
+      "image_title": "Szinoviális ízület anatómiája (Articulatio synovialis)"
     },
     {
       "id": 12,
@@ -156,7 +178,9 @@
         "Csontos, porcos és rostos vázrészek"
       ],
       "correct_answer": "Csöves, lapos, köbös és labyrinthusos csontok",
-      "explanation": "A diasor szerint a csontok formája: csöves, lapos, köbös, labyrinthusos."
+      "explanation": "A diasor szerint a csontok formája: csöves, lapos, köbös, labyrinthusos.",
+      "image": "./images/synovial_joint.jpg",
+      "image_title": "Szinoviális ízület anatómiája (Articulatio synovialis)"
     },
     {
       "id": 13,
@@ -169,7 +193,9 @@
         "Belső és külső ízületek"
       ],
       "correct_answer": "Folyamatos (pl. összecsontosodás) és félbeszakított (ízületes)",
-      "explanation": "A csontok kapcsolata lehet folytonos (synarthrosis) vagy megszakított, üreggel rendelkező ízület (diarthrosis)."
+      "explanation": "A csontok kapcsolata lehet folytonos (synarthrosis) vagy megszakított, üreggel rendelkező ízület (diarthrosis).",
+      "image": "./images/synovial_joint.jpg",
+      "image_title": "Szinoviális ízület anatómiája (Articulatio synovialis)"
     },
     {
       "id": 14,
@@ -182,7 +208,9 @@
         "Bármennyi csont"
       ],
       "correct_answer": "Két csont",
-      "explanation": "Egyszerű ízületet pontosan két csont alkot."
+      "explanation": "Egyszerű ízületet pontosan két csont alkot.",
+      "image": "./images/synovial_joint.jpg",
+      "image_title": "Szinoviális ízület anatómiája (Articulatio synovialis)"
     },
     {
       "id": 15,
@@ -195,7 +223,9 @@
         "Szabad gömbízület"
       ],
       "correct_answer": "Egytengelyű ízület",
-      "explanation": "Az ujjpercek ízületei egy tengely körül (hajlítás-nyújtás) mozognak."
+      "explanation": "Az ujjpercek ízületei egy tengely körül (hajlítás-nyújtás) mozognak.",
+      "image": "./images/synovial_joint.jpg",
+      "image_title": "Szinoviális ízület anatómiája (Articulatio synovialis)"
     },
     {
       "id": 16,
@@ -208,7 +238,9 @@
         "Korlátozott feszes ízület"
       ],
       "correct_answer": "Soktengelyű szabad ízület (gömbízület)",
-      "explanation": "A csípő- és vállízület három fő tengely mentén minden irányba szabad mozgást enged."
+      "explanation": "A csípő- és vállízület három fő tengely mentén minden irányba szabad mozgást enged.",
+      "image": "./images/synovial_joint.jpg",
+      "image_title": "Szinoviális ízület anatómiája (Articulatio synovialis)"
     },
     {
       "id": 17,
@@ -221,7 +253,9 @@
         "Csigolyatest és tövisnyúlvány"
       ],
       "correct_answer": "Ízületi felszínek (fej és vápa) porccal fedve, ízületi rés, ízületi tok, ízületi nedv, szalagok",
-      "explanation": "Az ízületek alapképletei: ízületi porccal fedett felszínek, tok, nedv, üreg és stabilizáló szalagok."
+      "explanation": "Az ízületek alapképletei: ízületi porccal fedett felszínek, tok, nedv, üreg és stabilizáló szalagok.",
+      "image": "./images/synovial_joint.jpg",
+      "image_title": "Szinoviális ízület anatómiája (Articulatio synovialis)"
     },
     {
       "id": 18,
@@ -234,7 +268,9 @@
         "Porcos gyűrű és kocsonyás mag"
       ],
       "correct_answer": "Külső rostos réteg (membrana fibrosa) és belső szinoviális hártya (membrana synovialis)",
-      "explanation": "A külső mechanikai védelmet adó stratum fibrosumból és a belső, synoviát termelő stratum synovialéból áll."
+      "explanation": "A külső mechanikai védelmet adó stratum fibrosumból és a belső, synoviát termelő stratum synovialéból áll.",
+      "image": "./images/synovial_joint.jpg",
+      "image_title": "Szinoviális ízület anatómiája (Articulatio synovialis)"
     },
     {
       "id": 19,
@@ -247,7 +283,9 @@
         "Körzés előre és hátra"
       ],
       "correct_answer": "Hajlítás és feszítés/nyújtás",
-      "explanation": "A flexio a hajlító mozgás, az extensio a feszítő/nyújtó mozgás."
+      "explanation": "A flexio a hajlító mozgás, az extensio a feszítő/nyújtó mozgás.",
+      "image": "./images/synovial_joint.jpg",
+      "image_title": "Szinoviális ízület anatómiája (Articulatio synovialis)"
     },
     {
       "id": 20,
@@ -260,7 +298,9 @@
         "Távolítás és közelítés"
       ],
       "correct_answer": "Borintás (lefelé/befelé fordulás) és hanyintás (felfelé/kifelé fordulás)",
-      "explanation": "Pronatio = borintás (pl. tenyér lefelé/hátra), supinatio = hanyintás (pl. tenyér felfelé/előre)."
+      "explanation": "Pronatio = borintás (pl. tenyér lefelé/hátra), supinatio = hanyintás (pl. tenyér felfelé/előre).",
+      "image": "./images/synovial_joint.jpg",
+      "image_title": "Szinoviális ízület anatómiája (Articulatio synovialis)"
     },
     {
       "id": 21,
@@ -273,7 +313,9 @@
         "12-14 csigolyából"
       ],
       "correct_answer": "33-35 csigolyából (24 valódi és 9-11 álcsigolya)",
-      "explanation": "A gerincoszlopot 33-35 csigolya alkotja, ebből 24 valódi, a többi összecsontosodott álcsigolya."
+      "explanation": "A gerincoszlopot 33-35 csigolya alkotja, ebből 24 valódi, a többi összecsontosodott álcsigolya.",
+      "image": "./images/spine_vertebrae.jpg",
+      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
     },
     {
       "id": 22,
@@ -286,7 +328,9 @@
         "8 nyaki, 12 háti, 4 ágyéki"
       ],
       "correct_answer": "7 nyaki, 12 háti, 5 ágyéki",
-      "explanation": "C1-C7 (7 nyakcsigolya), Th1-Th12 (12 hátcsigolya), L1-L5 (5 ágyékcsigolya)."
+      "explanation": "C1-C7 (7 nyakcsigolya), Th1-Th12 (12 hátcsigolya), L1-L5 (5 ágyékcsigolya).",
+      "image": "./images/spine_vertebrae.jpg",
+      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
     },
     {
       "id": 23,
@@ -299,7 +343,9 @@
         "12 csigolyából"
       ],
       "correct_answer": "5 csigolyából",
-      "explanation": "A keresztcsontot 5 keresztcsonti csigolya összecsontosodása hozza létre."
+      "explanation": "A keresztcsontot 5 keresztcsonti csigolya összecsontosodása hozza létre.",
+      "image": "./images/spine_vertebrae.jpg",
+      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
     },
     {
       "id": 24,
@@ -312,7 +358,9 @@
         "Csak ágyéki kyphosis és nyaki lordosis"
       ],
       "correct_answer": "Nyaki lordosis, háti kyphosis, ágyéki lordosis",
-      "explanation": "Élettani görbületek: nyaki lordosis (előre domború), háti kyphosis (hátra domború), ágyéki lordosis (előre domború)."
+      "explanation": "Élettani görbületek: nyaki lordosis (előre domború), háti kyphosis (hátra domború), ágyéki lordosis (előre domború).",
+      "image": "./images/spine_vertebrae.jpg",
+      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
     },
     {
       "id": 25,
@@ -325,7 +373,9 @@
         "Sacrum és Coccyx"
       ],
       "correct_answer": "Atlas és Axis",
-      "explanation": "C1 = atlas (fejgyám), C2 = axis (forgócsigolya)."
+      "explanation": "C1 = atlas (fejgyám), C2 = axis (forgócsigolya).",
+      "image": "./images/spine_vertebrae.jpg",
+      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
     },
     {
       "id": 26,
@@ -338,7 +388,9 @@
         ">65 év"
       ],
       "correct_answer": ">30 év",
-      "explanation": "A bemutató szerint 30 éves kor felett a porckorongok fokozatosan veszítenek víztartalmukból és rugalmasságukból."
+      "explanation": "A bemutató szerint 30 éves kor felett a porckorongok fokozatosan veszítenek víztartalmukból és rugalmasságukból.",
+      "image": "./images/spine_vertebrae.jpg",
+      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
     },
     {
       "id": 27,
@@ -351,7 +403,9 @@
         "Kardió evezőpadon laza tempóban"
       ],
       "correct_answer": "Nehéz súllyal történő előrehajlás, rossz technikájú felhúzás és guggolás",
-      "explanation": "A nagy terheléssel végzett hajlítás és a rossz biomechanikájú guggolás/felhúzás kiemelt rizikófaktor."
+      "explanation": "A nagy terheléssel végzett hajlítás és a rossz biomechanikájú guggolás/felhúzás kiemelt rizikófaktor.",
+      "image": "./images/spine_vertebrae.jpg",
+      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
     },
     {
       "id": 28,
@@ -364,7 +418,9 @@
         "Sequestratio"
       ],
       "correct_answer": "Sequestratio",
-      "explanation": "Sequestratio esetén a sérvesedett porckorong-részlet teljesen leszakad és a gerinccsatornába vándorolhat."
+      "explanation": "Sequestratio esetén a sérvesedett porckorong-részlet teljesen leszakad és a gerinccsatornába vándorolhat.",
+      "image": "./images/spine_vertebrae.jpg",
+      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
     },
     {
       "id": 29,
@@ -377,7 +433,9 @@
         "8 pár"
       ],
       "correct_answer": "12 pár",
-      "explanation": "Az embernek 12 pár bordája van: valódi bordák (I-VII), ál bordák (VIII-X), és lengőbordák (XI-XII)."
+      "explanation": "Az embernek 12 pár bordája van: valódi bordák (I-VII), ál bordák (VIII-X), és lengőbordák (XI-XII).",
+      "image": "./images/spine_vertebrae.jpg",
+      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
     },
     {
       "id": 30,
@@ -390,7 +448,9 @@
         "Az ágyékcsigolyákkal"
       ],
       "correct_answer": "A 12 háti csigolyával (vertebrae thoracicae)",
-      "explanation": "A bordák a háti csigolyák testéhez és harántnyúlványaihoz ízesülnek."
+      "explanation": "A bordák a háti csigolyák testéhez és harántnyúlványaihoz ízesülnek.",
+      "image": "./images/spine_vertebrae.jpg",
+      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
     },
     {
       "id": 31,
@@ -403,7 +463,9 @@
         "Keresztcsont, combcsont és csípőlapát"
       ],
       "correct_answer": "Csípőcsont (os ilium), ülőcsont (os ischii) és szeméremcsont (os pubis)",
-      "explanation": "Az os coxae a csípőcsont, ülőcsont és szeméremcsont csontos egyesülése."
+      "explanation": "Az os coxae a csípőcsont, ülőcsont és szeméremcsont csontos egyesülése.",
+      "image": "./images/pelvis_hip.jpg",
+      "image_title": "A medence és csípőízületek (Pelvis et articulationes coxae)"
     },
     {
       "id": 32,
@@ -416,7 +478,9 @@
         "Szabad gömbízület"
       ],
       "correct_answer": "Symphysis pubica (szeméremcsonti rostporcos összeköttetés)",
-      "explanation": "Elöl a középvonalban a rostporcos symphysis pubica köti össze a két szeméremcsontot."
+      "explanation": "Elöl a középvonalban a rostporcos symphysis pubica köti össze a két szeméremcsontot.",
+      "image": "./images/pelvis_hip.jpg",
+      "image_title": "A medence és csípőízületek (Pelvis et articulationes coxae)"
     },
     {
       "id": 33,
@@ -429,7 +493,9 @@
         "Az izmot borító kötőszövetes pólyát"
       ],
       "correct_answer": "A törzs középvonalához közelebb eső izomvéget, végtag esetén a proximalisabb véget",
-      "explanation": "Az eredés a fixebb, a törzs középvonalához közelebbi (vagy végtagon proximalisabb) vég."
+      "explanation": "Az eredés a fixebb, a törzs középvonalához közelebbi (vagy végtagon proximalisabb) vég.",
+      "image": "./images/pelvis_hip.jpg",
+      "image_title": "A medence és csípőízületek (Pelvis et articulationes coxae)"
     },
     {
       "id": 34,
@@ -442,7 +508,9 @@
         "Perichondrium"
       ],
       "correct_answer": "Fascia (izompólya)",
-      "explanation": "Az izmokat az izompólya (fascia) borítja és határolja el egymástól."
+      "explanation": "Az izmokat az izompólya (fascia) borítja és határolja el egymástól.",
+      "image": "./images/pelvis_hip.jpg",
+      "image_title": "A medence és csípőízületek (Pelvis et articulationes coxae)"
     },
     {
       "id": 35,
@@ -455,7 +523,9 @@
         "Fixátor"
       ],
       "correct_answer": "Agonista (fő mozgató)",
-      "explanation": "Az agonista izom felelős közvetlenül az adott mozgás létrejöttéért."
+      "explanation": "Az agonista izom felelős közvetlenül az adott mozgás létrejöttéért.",
+      "image": "./images/pelvis_hip.jpg",
+      "image_title": "A medence és csípőízületek (Pelvis et articulationes coxae)"
     },
     {
       "id": 36,
@@ -468,7 +538,9 @@
         "Csak a kötőszövet regenerációjáért felel"
       ],
       "correct_answer": "Az agonista izom működésével ellentétes hatású mozgást végez",
-      "explanation": "Az antagonista az ellenoldali/ellentétes hatású izom (pl. hajlításnál a feszítő)."
+      "explanation": "Az antagonista az ellenoldali/ellentétes hatású izom (pl. hajlításnál a feszítő).",
+      "image": "./images/pelvis_hip.jpg",
+      "image_title": "A medence és csípőízületek (Pelvis et articulationes coxae)"
     },
     {
       "id": 37,
@@ -481,7 +553,9 @@
         "Az izomrostot gátló reflexív"
       ],
       "correct_answer": "Az agonista izommal azonos irányú mozgást támogató, segítő izom",
-      "explanation": "A szinergisták a fő mozgató munkáját segítő, vele egy irányban ható izmok."
+      "explanation": "A szinergisták a fő mozgató munkáját segítő, vele egy irányban ható izmok.",
+      "image": "./images/pelvis_hip.jpg",
+      "image_title": "A medence és csípőízületek (Pelvis et articulationes coxae)"
     },
     {
       "id": 38,
@@ -494,7 +568,9 @@
         "Az inak csontosodnak el"
       ],
       "correct_answer": "A rendszeresen működtetett izom rostjai vastagságukban megnőnek, de számukban nem szaporodnak",
-      "explanation": "A hypertrophia a meglévő rostok keresztmetszet-növekedése, nem hyperplasia."
+      "explanation": "A hypertrophia a meglévő rostok keresztmetszet-növekedése, nem hyperplasia.",
+      "image": "./images/pelvis_hip.jpg",
+      "image_title": "A medence és csípőízületek (Pelvis et articulationes coxae)"
     },
     {
       "id": 39,
@@ -507,7 +583,9 @@
         "Az idegsejtek regenerációját"
       ],
       "correct_answer": "A használaton kívüli izom tömegének, keresztmetszetének csökkenését, elsorvadását",
-      "explanation": "A mozgáshiány vagy rögzítés miatt lecsökkent izomtömeg az inaktivitási sorvadás."
+      "explanation": "A mozgáshiány vagy rögzítés miatt lecsökkent izomtömeg az inaktivitási sorvadás.",
+      "image": "./images/pelvis_hip.jpg",
+      "image_title": "A medence és csípőízületek (Pelvis et articulationes coxae)"
     },
     {
       "id": 40,
@@ -520,7 +598,9 @@
         "kb. 75%-át"
       ],
       "correct_answer": "kb. 40%-át",
-      "explanation": "Általános esetben az izomtömeg a teljes testtömeg körülbelül 40%-a."
+      "explanation": "Általános esetben az izomtömeg a teljes testtömeg körülbelül 40%-a.",
+      "image": "./images/pelvis_hip.jpg",
+      "image_title": "A medence és csípőízületek (Pelvis et articulationes coxae)"
     },
     {
       "id": 41,
@@ -533,7 +613,9 @@
         "m. deltoideus, m. pectoralis major, m. subscapularis, m. teres major"
       ],
       "correct_answer": "m. trapezius, m. levator scapulae, m. rhomboideus, m. latissimus dorsi",
-      "explanation": "A felületes hátizmok a csuklyásizom, a lapockaemelő izom, a rombuszizom és a széles hátizom."
+      "explanation": "A felületes hátizmok a csuklyásizom, a lapockaemelő izom, a rombuszizom és a széles hátizom.",
+      "image": "./images/back_muscles.jpg",
+      "image_title": "A hátizmok anatómiája (Musculi dorsi)"
     },
     {
       "id": 42,
@@ -546,7 +628,9 @@
         "A felkaron ered és az alkaron tapad"
       ],
       "correct_answer": "A tarkótól és a csigolyák tövisnyúlványairól a 12. hátcsigolyáig ered, és a kulcscsont külső harmadán, valamint a lapockán tapad",
-      "explanation": "A m. trapezius szélesen fentről a Th12-ig ered a tövisnyúlványokról, és a vállövön (kulcscsont, acromion, spina scapulae) tapad."
+      "explanation": "A m. trapezius szélesen fentről a Th12-ig ered a tövisnyúlványokról, és a vállövön (kulcscsont, acromion, spina scapulae) tapad.",
+      "image": "./images/back_muscles.jpg",
+      "image_title": "A hátizmok anatómiája (Musculi dorsi)"
     },
     {
       "id": 43,
@@ -559,7 +643,9 @@
         "A medencét feszíti"
       ],
       "correct_answer": "A vállövet és a lapockát emeli, a fejet hátra/oldalra billenti",
-      "explanation": "A pars descendens emeli a lapockát és a vállat."
+      "explanation": "A pars descendens emeli a lapockát és a vállat.",
+      "image": "./images/back_muscles.jpg",
+      "image_title": "A hátizmok anatómiája (Musculi dorsi)"
     },
     {
       "id": 44,
@@ -572,7 +658,9 @@
         "m. serratus anterior"
       ],
       "correct_answer": "m. levator scapulae (lapockaemelő izom)",
-      "explanation": "A felső 4 nyakcsigolyáról a lapocka felső szögletére futó izom emeli a lapockát (vállvonás)."
+      "explanation": "A felső 4 nyakcsigolyáról a lapocka felső szögletére futó izom emeli a lapockát (vállvonás).",
+      "image": "./images/back_muscles.jpg",
+      "image_title": "A hátizmok anatómiája (Musculi dorsi)"
     },
     {
       "id": 45,
@@ -585,7 +673,9 @@
         "A nyakat előrehajlítja"
       ],
       "correct_answer": "A lapockát hátra és felfelé húzza a gerinc felé, és a törzshöz rögzíti",
-      "explanation": "A rombuszizom a lapockát mediodorsalis irányba húzza és rögzíti."
+      "explanation": "A rombuszizom a lapockát mediodorsalis irányba húzza és rögzíti.",
+      "image": "./images/back_muscles.jpg",
+      "image_title": "A hátizmok anatómiája (Musculi dorsi)"
     },
     {
       "id": 46,
@@ -598,7 +688,9 @@
         "A bordakosár elülső felén"
       ],
       "correct_answer": "A karcsonton (humerus)",
-      "explanation": "A törzs hátsó-alsó felszínéről eredve a rostok a felkarcsont elülső részén lévő tarajon tapadnak."
+      "explanation": "A törzs hátsó-alsó felszínéről eredve a rostok a felkarcsont elülső részén lévő tarajon tapadnak.",
+      "image": "./images/back_muscles.jpg",
+      "image_title": "A hátizmok anatómiája (Musculi dorsi)"
     },
     {
       "id": 47,
@@ -611,7 +703,9 @@
         "A csuklót feszíti"
       ],
       "correct_answer": "A felemelt kart adducálja (közelíti), retroflectálja (hátrahúzza) és befelé rotálja",
-      "explanation": "A latissimus a kar erős közelítője, hátrahúzója és beforgatója."
+      "explanation": "A latissimus a kar erős közelítője, hátrahúzója és beforgatója.",
+      "image": "./images/back_muscles.jpg",
+      "image_title": "A hátizmok anatómiája (Musculi dorsi)"
     },
     {
       "id": 48,
@@ -624,7 +718,9 @@
         "Musculus pectoralis major"
       ],
       "correct_answer": "Musculus erector spinae (gerincfeszítő izomzat)",
-      "explanation": "A gerinc mentén függőlegesen futó mély hátizomzat (erector spinae) tartja egyenesen a gerincet."
+      "explanation": "A gerinc mentén függőlegesen futó mély hátizomzat (erector spinae) tartja egyenesen a gerincet.",
+      "image": "./images/back_muscles.jpg",
+      "image_title": "A hátizmok anatómiája (Musculi dorsi)"
     },
     {
       "id": 49,
@@ -637,7 +733,9 @@
         "m. psoas major, m. iliacus, m. piriformis"
       ],
       "correct_answer": "m. spinalis, m. longissimus, m. iliocostalis",
-      "explanation": "Belülről kifelé: m. spinalis, m. longissimus és m. iliocostalis alkotja a rendszert."
+      "explanation": "Belülről kifelé: m. spinalis, m. longissimus és m. iliocostalis alkotja a rendszert.",
+      "image": "./images/back_muscles.jpg",
+      "image_title": "A hátizmok anatómiája (Musculi dorsi)"
     },
     {
       "id": 50,
@@ -650,7 +748,9 @@
         "A fejbiccentő izom inas tapadása"
       ],
       "correct_answer": "A széles hátizom alsó rostjai és a gerincfeszítő izomzat alsó ágyéki traktusa a thoracolumbalis pólyával",
-      "explanation": "A jól definiált alsó hátizomzat (latissimus dorsi, erector spinae és a fascia thoracolumbalis) rajzolja ki a karácsonyfa mintát."
+      "explanation": "A jól definiált alsó hátizomzat (latissimus dorsi, erector spinae és a fascia thoracolumbalis) rajzolja ki a karácsonyfa mintát.",
+      "image": "./images/back_muscles.jpg",
+      "image_title": "A hátizmok anatómiája (Musculi dorsi)"
     },
     {
       "id": 51,
@@ -663,7 +763,9 @@
         "m. gluteus maximus, m. tensor fasciae latae, m. gracilis"
       ],
       "correct_answer": "m. obliquus externus abdominis, m. obliquus internus abdominis, m. transversus abdominis, m. rectus abdominis, m. quadratus lumborum",
-      "explanation": "A hasfalat az egyenes, külső és belső ferde, haránt hasizmok, valamint hátul a négyszögletű ágyékizom alkotja."
+      "explanation": "A hasfalat az egyenes, külső és belső ferde, haránt hasizmok, valamint hátul a négyszögletű ágyékizom alkotja.",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és hasizmok (Musculi abdominis)"
     },
     {
       "id": 52,
@@ -676,7 +778,9 @@
         "A kulcscsonton ered és a bordákon tapad"
       ],
       "correct_answer": "Az 5-7. bordaporcon és a szegycsont alsó részén ered, és a szeméremcsonton tapad",
-      "explanation": "Az egyenes hasizom az 5-7. bordaporctól húzódik lefelé a szeméremcsontig."
+      "explanation": "Az egyenes hasizom az 5-7. bordaporctól húzódik lefelé a szeméremcsontig.",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és hasizmok (Musculi abdominis)"
     },
     {
       "id": 53,
@@ -689,7 +793,9 @@
         "A fej forgatása"
       ],
       "correct_answer": "A törzs hajlítása (gerinc flexio), a bordakosár és a medence egymáshoz közelítése",
-      "explanation": "Összehúzódása a mellkast a medencéhez (hasprés, törzshajlítás) közelíti."
+      "explanation": "Összehúzódása a mellkast a medencéhez (hasprés, törzshajlítás) közelíti.",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és hasizmok (Musculi abdominis)"
     },
     {
       "id": 54,
@@ -702,7 +808,9 @@
         "Csak a térdet emeli"
       ],
       "correct_answer": "Az ellenkező oldal felé fordítja a törzset",
-      "explanation": "A külső ferde hasizom rostjai ferdén lefelé és befelé futnak, így az ellenkező oldalra rotálnak."
+      "explanation": "A külső ferde hasizom rostjai ferdén lefelé és befelé futnak, így az ellenkező oldalra rotálnak.",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és hasizmok (Musculi abdominis)"
     },
     {
       "id": 55,
@@ -715,7 +823,9 @@
         "Kizárólag hátrafelé hajlít"
       ],
       "correct_answer": "Az azonos oldal felé fordítja a törzset",
-      "explanation": "A belső ferde hasizom rostlefutása révén az azonos oldal felé fordítja a törzset."
+      "explanation": "A belső ferde hasizom rostlefutása révén az azonos oldal felé fordítja a törzset.",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és hasizmok (Musculi abdominis)"
     },
     {
       "id": 56,
@@ -728,7 +838,9 @@
         "A lábfej hátrahajlítása"
       ],
       "correct_answer": "A hasfal behúzása, a hasűri nyomás fenntartása és a belső szervek rögzítése",
-      "explanation": "A haránt hasizom fűzőként tartja a hasfalat és fenntartja a hasűri nyomást."
+      "explanation": "A haránt hasizom fűzőként tartja a hasfalat és fenntartja a hasűri nyomást.",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és hasizmok (Musculi abdominis)"
     },
     {
       "id": 57,
@@ -741,7 +853,9 @@
         "A sarok talajra nyomása"
       ],
       "correct_answer": "A törzs azonos oldalra hajlítása (lateral flexio) és a 12. borda rögzítése",
-      "explanation": "A 12. borda és a csípőtaraj között feszülve azonos oldalra billenti a törzset."
+      "explanation": "A 12. borda és a csípőtaraj között feszülve azonos oldalra billenti a törzset.",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és hasizmok (Musculi abdominis)"
     },
     {
       "id": 58,
@@ -754,7 +868,9 @@
         "Semmilyen hatást nem gyakorol a testtartásra"
       ],
       "correct_answer": "A hasfal megereszkedik, és a túlműködő gerincfeszítők miatt fokozódik az ágyéki lordózis",
-      "explanation": "A gyenge hasfal nem tart ellent a háti feszítőknek, így a medence előrebillen és a lumbalis lordosis fokozódik."
+      "explanation": "A gyenge hasfal nem tart ellent a háti feszítőknek, így a medence előrebillen és a lumbalis lordosis fokozódik.",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és hasizmok (Musculi abdominis)"
     },
     {
       "id": 59,
@@ -767,7 +883,9 @@
         "m. biceps brachii, m. brachialis, m. coracobrachialis"
       ],
       "correct_answer": "m. pectoralis major, m. pectoralis minor, m. subclavius, m. serratus anterior",
-      "explanation": "Nagy mellizom, kis mellizom, kulccsont alatti izom és elülső fűrészizom."
+      "explanation": "Nagy mellizom, kis mellizom, kulccsont alatti izom és elülső fűrészizom.",
+      "image": "./images/chest_pectoral.jpg",
+      "image_title": "A mellkas és mellizmok (Musculi pectorales)"
     },
     {
       "id": 60,
@@ -780,7 +898,9 @@
         "A singcsont kampóján"
       ],
       "correct_answer": "A felkarcsonton (humerus)",
-      "explanation": "A kulcscsontról, szegycsontról és rectus-hüvelyről eredő rostok a karcsonton rögzülnek."
+      "explanation": "A kulcscsontról, szegycsontról és rectus-hüvelyről eredő rostok a karcsonton rögzülnek.",
+      "image": "./images/chest_pectoral.jpg",
+      "image_title": "A mellkas és mellizmok (Musculi pectorales)"
     },
     {
       "id": 61,
@@ -793,7 +913,9 @@
         "A lapockát hátra és felfelé rántja"
       ],
       "correct_answer": "A felemelt kart erőteljesen adducálja (közelíti), befelé rotálja és előrehúzza; légzési segédizom",
-      "explanation": "A nagy mellizom a kar adductora, belső forgatója és előrehúzója, valamint belégzési segédizom."
+      "explanation": "A nagy mellizom a kar adductora, belső forgatója és előrehúzója, valamint belégzési segédizom.",
+      "image": "./images/chest_pectoral.jpg",
+      "image_title": "A mellkas és mellizmok (Musculi pectorales)"
     },
     {
       "id": 62,
@@ -806,7 +928,9 @@
         "A gerincen ered és a bordákon tapad"
       ],
       "correct_answer": "A 3-5. borda elülső végén ered és a lapocka hollócsőrnyúlványán tapad",
-      "explanation": "A kis mellizom a bordákról a processus coracoideusra fut, előre-lefelé húzza a lapockát."
+      "explanation": "A kis mellizom a bordákról a processus coracoideusra fut, előre-lefelé húzza a lapockát.",
+      "image": "./images/chest_pectoral.jpg",
+      "image_title": "A mellkas és mellizmok (Musculi pectorales)"
     },
     {
       "id": 63,
@@ -819,7 +943,9 @@
         "A kulcscsont külső végén"
       ],
       "correct_answer": "A lapockacsont belső élén (margo medialis)",
-      "explanation": "Az 1-9. bordáról eredve a lapocka belső élén és alsó szögletén tapad."
+      "explanation": "Az 1-9. bordáról eredve a lapocka belső élén és alsó szögletén tapad.",
+      "image": "./images/chest_pectoral.jpg",
+      "image_title": "A mellkas és mellizmok (Musculi pectorales)"
     },
     {
       "id": 64,
@@ -832,7 +958,9 @@
         "Kizárólag a csukló merevítését szolgálja fekvőtámaszban"
       ],
       "correct_answer": "A lapocka alsó szögletét előrehúzza, ezáltal lehetővé teszi a kar vízszintes fölé emelését, és rögzíti a lapockát a mellkashoz",
-      "explanation": "A lapockát a mellkashoz simítja és elforgatja a vápát felfelé, lehetővé téve a kar teljes felemelését."
+      "explanation": "A lapockát a mellkashoz simítja és elforgatja a vápát felfelé, lehetővé téve a kar teljes felemelését.",
+      "image": "./images/chest_pectoral.jpg",
+      "image_title": "A mellkas és mellizmok (Musculi pectorales)"
     },
     {
       "id": 65,
@@ -845,7 +973,9 @@
         "Musculus trapezius"
       ],
       "correct_answer": "Musculus pectoralis major",
-      "explanation": "A fekvenyomás fő mozgatója a m. pectoralis major (segítői az elülső deltoideus és a triceps)."
+      "explanation": "A fekvenyomás fő mozgatója a m. pectoralis major (segítői az elülső deltoideus és a triceps).",
+      "image": "./images/chest_pectoral.jpg",
+      "image_title": "A mellkas és mellizmok (Musculi pectorales)"
     },
     {
       "id": 66,
@@ -858,7 +988,9 @@
         "m. pectoralis major, m. serratus anterior, m. subclavius"
       ],
       "correct_answer": "m. deltoideus, m. supraspinatus, m. infraspinatus, m. teres minor, m. teres major, m. subscapularis",
-      "explanation": "A váll izmai a deltaizom és az 5 lapocka-karcsont izom."
+      "explanation": "A váll izmai a deltaizom és az 5 lapocka-karcsont izom.",
+      "image": "./images/rotator_cuff.jpg",
+      "image_title": "A vállízület és rotátorköpeny (Articulatio humeri & musculi)"
     },
     {
       "id": 67,
@@ -871,7 +1003,9 @@
         "m. teres minor"
       ],
       "correct_answer": "m. deltoideus (deltaizom)",
-      "explanation": "A deltaizom borítja sapkaszerűen a vállízületet kívülről."
+      "explanation": "A deltaizom borítja sapkaszerűen a vállízületet kívülről.",
+      "image": "./images/rotator_cuff.jpg",
+      "image_title": "A vállízület és rotátorköpeny (Articulatio humeri & musculi)"
     },
     {
       "id": 68,
@@ -884,7 +1018,9 @@
         "A csuklót hátrahúzza"
       ],
       "correct_answer": "A kart oldalra emeli / távolítja (abductio) a vízszintes síkig",
-      "explanation": "A m. deltoideus akromiális része a kar legerősebb távolítója 90 fokig."
+      "explanation": "A m. deltoideus akromiális része a kar legerősebb távolítója 90 fokig.",
+      "image": "./images/rotator_cuff.jpg",
+      "image_title": "A vállízület és rotátorköpeny (Articulatio humeri & musculi)"
     },
     {
       "id": 69,
@@ -897,7 +1033,9 @@
         "m. rhomboideus, m. levator scapulae, m. serratus anterior, m. deltoideus"
       ],
       "correct_answer": "m. supraspinatus, m. infraspinatus, m. teres minor, m. subscapularis",
-      "explanation": "A rotátorköpeny izmai a lapockáról a felkarcsont fejére tapadó négy stabilizáló izom (SITS)."
+      "explanation": "A rotátorköpeny izmai a lapockáról a felkarcsont fejére tapadó négy stabilizáló izom (SITS).",
+      "image": "./images/rotator_cuff.jpg",
+      "image_title": "A vállízület és rotátorköpeny (Articulatio humeri & musculi)"
     },
     {
       "id": 70,
@@ -910,7 +1048,9 @@
         "A lapocka lefelé húzása"
       ],
       "correct_answer": "A felkarcsont fejét a lapocka sekély ízületi árkában tartja és dinamikusan rögzíti elmozdulás közben",
-      "explanation": "Mivel a váll sekély vápa, a rotátorköpeny izmai húzzák a helyére a humerusfejet elmozdulásokkor."
+      "explanation": "Mivel a váll sekély vápa, a rotátorköpeny izmai húzzák a helyére a humerusfejet elmozdulásokkor.",
+      "image": "./images/rotator_cuff.jpg",
+      "image_title": "A vállízület és rotátorköpeny (Articulatio humeri & musculi)"
     },
     {
       "id": 71,
@@ -923,7 +1063,9 @@
         "A könyököt behajlítja"
       ],
       "correct_answer": "A kar abdukcióját kezdi meg és segít a kart kifelé forgatni",
-      "explanation": "A supraspinatus indítja el a kar abdukcióját (első 15 fok), és kirotálja a kart."
+      "explanation": "A supraspinatus indítja el a kar abdukcióját (első 15 fok), és kirotálja a kart.",
+      "image": "./images/rotator_cuff.jpg",
+      "image_title": "A vállízület és rotátorköpeny (Articulatio humeri & musculi)"
     },
     {
       "id": 72,
@@ -936,7 +1078,9 @@
         "m. pectoralis major"
       ],
       "correct_answer": "m. infraspinatus és m. teres minor",
-      "explanation": "A m. infraspinatus és a m. teres minor a felkar fő kirotátorai."
+      "explanation": "A m. infraspinatus és a m. teres minor a felkar fő kirotátorai.",
+      "image": "./images/rotator_cuff.jpg",
+      "image_title": "A vállízület és rotátorköpeny (Articulatio humeri & musculi)"
     },
     {
       "id": 73,
@@ -949,7 +1093,9 @@
         "A szegycsonton ered; előrehúzza a mellkast"
       ],
       "correct_answer": "A lapocka bordai felszínén ered; befelé forgatja a kart és addukál",
-      "explanation": "A fossa subscapularisból indulva a kis gumón tapad, legerősebb funkciója a kar berotációja."
+      "explanation": "A fossa subscapularisból indulva a kis gumón tapad, legerősebb funkciója a kar berotációja.",
+      "image": "./images/rotator_cuff.jpg",
+      "image_title": "A vállízület és rotátorköpeny (Articulatio humeri & musculi)"
     },
     {
       "id": 74,
@@ -962,7 +1108,9 @@
         "m. pronator teres és m. supinator"
       ],
       "correct_answer": "m. biceps brachii, m. coracobrachialis, m. brachialis",
-      "explanation": "A kar flexorai a kétfejű karizom, a hollócsőr-karizom és a karizom."
+      "explanation": "A kar flexorai a kétfejű karizom, a hollócsőr-karizom és a karizom.",
+      "image": "./images/arm_muscles.jpg",
+      "image_title": "A felkar és könyök izomzata (Musculi brachii)"
     },
     {
       "id": 75,
@@ -975,7 +1123,9 @@
         "A kulcscsont belső végéről"
       ],
       "correct_answer": "Hosszú fej: a lapocka ízületi vápája feletti gumóról; rövid fej: a hollócsőrnyúlványról",
-      "explanation": "Caput longum: tuberculum supraglenoidale; caput breve: processus coracoideus."
+      "explanation": "Caput longum: tuberculum supraglenoidale; caput breve: processus coracoideus.",
+      "image": "./images/arm_muscles.jpg",
+      "image_title": "A felkar és könyök izomzata (Musculi brachii)"
     },
     {
       "id": 76,
@@ -988,7 +1138,9 @@
         "Kizárólag a kézujjak nyújtását"
       ],
       "correct_answer": "Könyökhajlítást és hajlított könyök mellett az alkar hanyintását (supinatio)",
-      "explanation": "A biceps az alkaron az orsócsonton tapadva hajlító és a legerősebb szupináló izom."
+      "explanation": "A biceps az alkaron az orsócsonton tapadva hajlító és a legerősebb szupináló izom.",
+      "image": "./images/arm_muscles.jpg",
+      "image_title": "A felkar és könyök izomzata (Musculi brachii)"
     },
     {
       "id": 77,
@@ -1001,7 +1153,9 @@
         "m. anconeus"
       ],
       "correct_answer": "m. brachialis (karizom)",
-      "explanation": "A m. brachialis az ulnán tapad, így az alkar forgatásától függetlenül hatékony tiszta könyökhajlító."
+      "explanation": "A m. brachialis az ulnán tapad, így az alkar forgatásától függetlenül hatékony tiszta könyökhajlító.",
+      "image": "./images/arm_muscles.jpg",
+      "image_title": "A felkar és könyök izomzata (Musculi brachii)"
     },
     {
       "id": 78,
@@ -1014,7 +1168,9 @@
         "A kéztőcsontokon"
       ],
       "correct_answer": "A könyökcsúcson (singcsont könyökkampóján - olecranon)",
-      "explanation": "A triceps ina az olecranonon tapad, ezzel a könyökízület fő feszítője."
+      "explanation": "A triceps ina az olecranonon tapad, ezzel a könyökízület fő feszítője.",
+      "image": "./images/arm_muscles.jpg",
+      "image_title": "A felkar és könyök izomzata (Musculi brachii)"
     },
     {
       "id": 79,
@@ -1027,7 +1183,9 @@
         "Mindhárom fej"
       ],
       "correct_answer": "Hosszú fej (caput longum)",
-      "explanation": "A hosszú fej a tuberculum infraglenoidalén ered a lapockán, így a kart hátra is húzza (retroflectálja)."
+      "explanation": "A hosszú fej a tuberculum infraglenoidalén ered a lapockán, így a kart hátra is húzza (retroflectálja).",
+      "image": "./images/arm_muscles.jpg",
+      "image_title": "A felkar és könyök izomzata (Musculi brachii)"
     },
     {
       "id": 80,
@@ -1040,7 +1198,9 @@
         "Statikus és dinamikus izmok"
       ],
       "correct_answer": "Flexorok (hajlítók) és extensorok (feszítők)",
-      "explanation": "Az alkar izmai feloszthatók hajlítókra (flexorok) és feszítőkre (extensorok)."
+      "explanation": "Az alkar izmai feloszthatók hajlítókra (flexorok) és feszítőkre (extensorok).",
+      "image": "./images/arm_muscles.jpg",
+      "image_title": "A felkar és könyök izomzata (Musculi brachii)"
     },
     {
       "id": 81,
@@ -1053,7 +1213,9 @@
         "Musculus biceps femoris"
       ],
       "correct_answer": "Musculus iliopsoas (csípőhorpaszizom)",
-      "explanation": "A m. iliopsoas (m. psoas major + m. iliacus) a csípőízület legfőbb hajlítója."
+      "explanation": "A m. iliopsoas (m. psoas major + m. iliacus) a csípőízület legfőbb hajlítója.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 82,
@@ -1066,7 +1228,9 @@
         "A sípcsonti érdességen"
       ],
       "correct_answer": "A kistomporon (trochanter minor femoris)",
-      "explanation": "A csípőhorpaszizom ina a trochanter minoron rögzül."
+      "explanation": "A csípőhorpaszizom ina a trochanter minoron rögzül.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 83,
@@ -1079,7 +1243,9 @@
         "Nincs hatással a gerincre"
       ],
       "correct_answer": "Fokozza az ágyéki lordózist (a medence előrebillentésével)",
-      "explanation": "Az ágyéki csigolyákról a combra húzódva túlfeszülése az ágyéki gerinc előreívelését növeli."
+      "explanation": "Az ágyéki csigolyákról a combra húzódva túlfeszülése az ágyéki gerinc előreívelését növeli.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 84,
@@ -1092,7 +1258,9 @@
         "A térd hajlítása"
       ],
       "correct_answer": "A csípőízület feszítője (extensio) és az egyenes testtartás legfőbb biztosítéka; lépcsőzéskor, emelkedőn erőteljesen működik",
-      "explanation": "A nagy farizom a csípő feszítője, felállásnál és lépcsőzésnél domináns."
+      "explanation": "A nagy farizom a csípő feszítője, felállásnál és lépcsőzésnél domináns.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 85,
@@ -1105,7 +1273,9 @@
         "A törzs előrehajlítását"
       ],
       "correct_answer": "Combtávolítást (abductio) és a comb befelé forgatását",
-      "explanation": "A külső csípőtányérról a nagytomporra futva távolítják a combot és stabilizálják a medencét."
+      "explanation": "A külső csípőtányérról a nagytomporra futva távolítják a combot és stabilizálják a medencét.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 86,
@@ -1118,7 +1288,9 @@
         "m. gluteus maximus, m. gluteus medius, m. gluteus minimus"
       ],
       "correct_answer": "m. pectineus, m. adductor longus, m. adductor brevis, m. adductor magnus, m. gracilis",
-      "explanation": "Fésűizom, hosszú-, rövid-, nagy combközelítő és a karcsúizom."
+      "explanation": "Fésűizom, hosszú-, rövid-, nagy combközelítő és a karcsúizom.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 87,
@@ -1131,7 +1303,9 @@
         "m. adductor brevis"
       ],
       "correct_answer": "m. adductor magnus (nagy combközelítő izom)",
-      "explanation": "A musculus adductor magnus fejti ki a legnagyobb addukciós erőt."
+      "explanation": "A musculus adductor magnus fejti ki a legnagyobb addukciós erőt.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 88,
@@ -1144,7 +1318,9 @@
         "m. semitendinosus"
       ],
       "correct_answer": "m. sartorius (szabóizom)",
-      "explanation": "A m. sartorius az elülső felső csípőtövisről a sípcsont belső bütykére húzódó leghosszabb izom."
+      "explanation": "A m. sartorius az elülső felső csípőtövisről a sípcsont belső bütykére húzódó leghosszabb izom.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 89,
@@ -1157,7 +1333,9 @@
         "m. psoas major, m. iliacus, m. pectineus, m. sartorius"
       ],
       "correct_answer": "m. rectus femoris, m. vastus medialis, m. vastus intermedius, m. vastus lateralis",
-      "explanation": "Az egyenes combizom és a három vaskosizom (belső, középső, külső) alkotja a quadricepset."
+      "explanation": "Az egyenes combizom és a három vaskosizom (belső, középső, külső) alkotja a quadricepset.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 90,
@@ -1170,7 +1348,9 @@
         "m. vastus intermedius"
       ],
       "correct_answer": "m. rectus femoris (egyenes combizom)",
-      "explanation": "A m. rectus femoris a spina iliaca anterior inferiorról ered, így feszíti a térdet és hajlítja a csípőt."
+      "explanation": "A m. rectus femoris a spina iliaca anterior inferiorról ered, így feszíti a térdet és hajlítja a csípőt.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 91,
@@ -1183,7 +1363,9 @@
         "m. tibialis anterior, m. gastrocnemius, m. soleus"
       ],
       "correct_answer": "m. semitendinosus, m. semimembranosus, m. biceps femoris",
-      "explanation": "A comb hátulsó részén a féliginas izom, félighártyás izom és kétfejű combizom alkotja a térdhajlítókat."
+      "explanation": "A comb hátulsó részén a féliginas izom, félighártyás izom és kétfejű combizom alkotja a térdhajlítókat.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 92,
@@ -1196,7 +1378,9 @@
         "A térdkalácsról"
       ],
       "correct_answer": "A medencecsont ülőgumójáról (tuber ischiadicum / ülőcsont)",
-      "explanation": "A térdhajlítók az ülőgumóról indulva futnak le a lábszár csontjaira."
+      "explanation": "A térdhajlítók az ülőgumóról indulva futnak le a lábszár csontjaira.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 93,
@@ -1209,7 +1393,9 @@
         "A talpat felfelé fordítja"
       ],
       "correct_answer": "Kifelé forgatja a lábszárat",
-      "explanation": "A biceps femoris a laterális szárkapocscsonton tapad, így behajlított térdnél kifelé rotál."
+      "explanation": "A biceps femoris a laterális szárkapocscsonton tapad, így behajlított térdnél kifelé rotál.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 94,
@@ -1222,7 +1408,9 @@
         "A combcsont forgatása"
       ],
       "correct_answer": "A láb(fej) hátrahajlítása (dorsalflexio) és hanyintása (supinatio)",
-      "explanation": "A m. tibialis anterior emeli a lábfejet és a belső lábélt emeli (szupináció)."
+      "explanation": "A m. tibialis anterior emeli a lábfejet és a belső lábélt emeli (szupináció).",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 95,
@@ -1235,7 +1423,9 @@
         "m. plantaris, m. popliteus, m. soleus"
       ],
       "correct_answer": "m. gastrocnemius medialis, m. gastrocnemius lateralis és m. soleus (gázlóizom)",
-      "explanation": "A vádli izma a két gastrocnemius fejből és a mélyebben fekvő soleusból áll."
+      "explanation": "A vádli izma a két gastrocnemius fejből és a mélyebben fekvő soleusból áll.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 96,
@@ -1248,7 +1438,9 @@
         "A szárkapocscsont fejecsén"
       ],
       "correct_answer": "Az Achilles-ínban a sarokcsont gumóján (tuber calcanei)",
-      "explanation": "A triceps surae az Achilles-ín közvetítésével a sarokcsont gumóján tapad."
+      "explanation": "A triceps surae az Achilles-ín közvetítésével a sarokcsont gumóján tapad.",
+      "image": "./images/leg_muscles.jpg",
+      "image_title": "Az alsó végtag izomzata (Musculi membri inferioris)"
     },
     {
       "id": 97,
@@ -1261,7 +1453,9 @@
         "A szív- és tüdőkapacitás mérőszáma"
       ],
       "correct_answer": "Jelentése 'mag'; elsődleges funkciója a törzs stabilizálása végtagmozgáskor és a helyes testtartás biztosítása",
-      "explanation": "A core a test központi magja, mely stabilitást ad a gerincnek és közvetíti az erőt a végtagok felé."
+      "explanation": "A core a test központi magja, mely stabilitást ad a gerincnek és közvetíti az erőt a végtagok felé.",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és core izomzat (Musculi abdominis et core)"
     },
     {
       "id": 98,
@@ -1274,7 +1468,9 @@
         "m. biceps brachii, m. triceps brachii, m. brachialis, m. brachioradialis, m. pronator teres"
       ],
       "correct_answer": "m. transversus abdominis, m. obliquus internus abdominis, m. multifidus, lágyéki/medencefenék izmok, diaphragma (rekeszizom)",
-      "explanation": "A prezentáció 170. oldalán rögzített stabilizáló rendszer: haránt hasizom, belső ferde hasizom, sokbahasadt izom, medencefenék izmai és a rekeszizom."
+      "explanation": "A prezentáció 170. oldalán rögzített stabilizáló rendszer: haránt hasizom, belső ferde hasizom, sokbahasadt izom, medencefenék izmai és a rekeszizom.",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és core izomzat (Musculi abdominis et core)"
     },
     {
       "id": 99,
@@ -1287,7 +1483,9 @@
         "A nyelvizmok és a rágóizmok"
       ],
       "correct_answer": "m. latissimus dorsi, m. erector spinae, m. iliopsoas, combhajlítók, combközelítók, farizmok, m. rectus abdominis, m. obliquus externus abdominis",
-      "explanation": "A törzs nagy felületes és mobilizáló izmai tartoznak ide: széles hátizom, gerincmerevítő, csípőhorpasz, combhajlítók/közelítők, farizmok, rectus és externus abdominis."
+      "explanation": "A törzs nagy felületes és mobilizáló izmai tartoznak ide: széles hátizom, gerincmerevítő, csípőhorpasz, combhajlítók/közelítők, farizmok, rectus és externus abdominis.",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és core izomzat (Musculi abdominis et core)"
     },
     {
       "id": 100,
@@ -1300,7 +1498,9 @@
         "Csak maratoni futással"
       ],
       "correct_answer": "Kezdőknél/korrekcióként statikus izolált gyakorlatokkal, dinamikus stabilitáshoz funkcionális erőgyakorlatokkal, sportágspecifikusan robbanékony mozgásokkal",
-      "explanation": "A 169. dia szerint: statikus izolált gyakorlatok (kezdők, korrekció) -> funkcionális erőgyakorlatok -> robbanékony gyors mozgások (sportágspecifikus)."
+      "explanation": "A 169. dia szerint: statikus izolált gyakorlatok (kezdők, korrekció) -> funkcionális erőgyakorlatok -> robbanékony gyors mozgások (sportágspecifikus).",
+      "image": "./images/abdominal_muscles.jpg",
+      "image_title": "A hasfal és core izomzat (Musculi abdominis et core)"
     }
   ]
 }

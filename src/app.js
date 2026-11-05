@@ -66,7 +66,13 @@ function restoreActiveSessionIfExists() {
     state.quizMode = session.quizMode || 'practice';
     state.selectedCategory = session.selectedCategory || 'Összes témakör';
     state.questionCount = session.questionCount || session.activeQuestions.length;
-    state.activeQuestions = session.activeQuestions;
+    state.activeQuestions = session.activeQuestions.map(q => {
+      const full = allQuestions.find(item => item.id === q.id);
+      if (full && full.image) {
+        return { ...q, image: full.image, image_title: full.image_title };
+      }
+      return q;
+    });
     state.currentIndex = session.currentIndex || 0;
     state.userAnswers = session.userAnswers || {};
     state.currentStreak = session.currentStreak || 0;
@@ -601,13 +607,29 @@ function getQuizScreenHTML() {
       <!-- Explanation Panel (Visible once answered) -->
       ${isAnswered ? `
         <div class="explanation-card">
-          <svg class="explanation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-          </svg>
-          <div class="explanation-content">
-            <h4>Anatómiai Magyarázat</h4>
-            <p>${q.explanation}</p>
+          <div class="explanation-header">
+            <svg class="explanation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            <div class="explanation-content">
+              <h4>Anatómiai Magyarázat</h4>
+              <p>${q.explanation}</p>
+            </div>
           </div>
+          ${q.image ? `
+            <div class="explanation-image-box" id="explanation-image-trigger" data-img="${q.image}" data-title="${encodeURIComponent(q.image_title || 'Anatómiai ábra')}">
+              <div class="image-wrapper">
+                <img src="${q.image}" alt="${q.image_title || 'Anatómiai ábra'}" class="explanation-thumb" loading="lazy" />
+                <div class="image-zoom-badge">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
+                  </svg>
+                  <span>Nagyítás</span>
+                </div>
+              </div>
+              ${q.image_title ? `<div class="explanation-img-caption">${q.image_title}</div>` : ''}
+            </div>
+          ` : ''}
         </div>
       ` : ''}
     </div>
@@ -728,6 +750,17 @@ function bindQuizScreenEvents() {
         persistActiveSession();
         renderApp();
       }
+    });
+  }
+
+  // Diagram Image Click to Lightbox
+  const imgTrigger = document.getElementById('explanation-image-trigger');
+  if (imgTrigger) {
+    imgTrigger.addEventListener('click', () => {
+      sounds.playTap();
+      const src = imgTrigger.getAttribute('data-img');
+      const title = decodeURIComponent(imgTrigger.getAttribute('data-title') || '');
+      openDiagramLightbox(src, title);
     });
   }
 }
@@ -989,6 +1022,14 @@ function getResultsScreenHTML() {
                 </div>
                 <div class="review-explanation">
                   💡 <strong>Magyarázat:</strong> ${q.explanation}
+                  ${q.image ? `
+                    <div style="margin-top: 6px;">
+                      <div class="review-image-row" data-img="${q.image}" data-title="${encodeURIComponent(q.image_title || 'Anatómiai ábra')}">
+                        <img src="${q.image}" alt="${q.image_title || 'Anatómiai ábra'}" class="review-thumb" loading="lazy" />
+                        <span>Ábra megtekintése (nagyítás) 🔍</span>
+                      </div>
+                    </div>
+                  ` : ''}
                 </div>
               </div>
             `;
@@ -1043,6 +1084,16 @@ function bindResultsScreenEvents() {
       state.resultsFilter = btn.getAttribute('data-filter');
       persistActiveSession();
       renderApp();
+    });
+  });
+
+  // Review Diagram Clicks
+  document.querySelectorAll('.review-image-row').forEach(row => {
+    row.addEventListener('click', () => {
+      sounds.playTap();
+      const src = row.getAttribute('data-img');
+      const title = decodeURIComponent(row.getAttribute('data-title') || '');
+      openDiagramLightbox(src, title);
     });
   });
 }
@@ -1188,4 +1239,63 @@ function initKeyboardNav() {
       renderHeaderQuickIcons();
     }
   });
+}
+
+/* ==========================================================================
+   5. ANATOMICAL DIAGRAM LIGHTBOX MODAL
+   ========================================================================== */
+function openDiagramLightbox(imageSrc, title) {
+  let lightbox = document.getElementById('diagram-lightbox-modal');
+  if (!lightbox) {
+    lightbox = document.createElement('div');
+    lightbox.id = 'diagram-lightbox-modal';
+    lightbox.className = 'lightbox-overlay';
+    const parent = document.getElementById('device-container') || document.body;
+    parent.appendChild(lightbox);
+  }
+
+  lightbox.innerHTML = `
+    <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="${title}">
+      <header class="lightbox-header">
+        <div class="lightbox-title-box">
+          <span class="lightbox-badge">Anatómiai Illusztráció</span>
+          <h3 class="lightbox-title">${title}</h3>
+        </div>
+        <button class="lightbox-close-btn" id="lightbox-close-btn" title="Bezárás">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </header>
+      <div class="lightbox-body">
+        <img src="${imageSrc}" alt="${title}" class="lightbox-img" />
+      </div>
+      <footer class="lightbox-footer">
+        <span>Koppints a háttérre vagy a bezárás gombra a kilépéshez (ESC)</span>
+      </footer>
+    </div>
+  `;
+
+  requestAnimationFrame(() => {
+    lightbox.classList.add('open');
+  });
+
+  const closeLightbox = () => {
+    sounds.playTap();
+    lightbox.classList.remove('open');
+    window.removeEventListener('keydown', handleKey);
+  };
+
+  const handleKey = (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  };
+
+  window.addEventListener('keydown', handleKey);
+
+  const closeBtn = document.getElementById('lightbox-close-btn');
+  if (closeBtn) closeBtn.onclick = closeLightbox;
+
+  lightbox.onclick = (e) => {
+    if (e.target === lightbox) closeLightbox();
+  };
 }

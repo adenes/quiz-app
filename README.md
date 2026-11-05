@@ -48,6 +48,11 @@ The 100 questions are categorized into 11 distinct anatomical chapters:
   - `S`: Toggle Star / Bookmark
   - `M`: Toggle Sound Mute
 
+### 🖼️ 5. Anatomical Illustrations & Diagrams (Latin & Hungarian)
+- **High-Resolution Medical Diagrams**: Visual explanations featuring tailored, high-clarity medical anatomical illustrations across all 11 body categories.
+- **Bilingual Terminology**: All diagram structures are systematically labeled in both **Latin** (*Nomina Anatomica*) and **Hungarian** (e.g. *M. supraspinatus / Tövis feletti izom*, *Planum medianum sagittale / Nyílirányú középsík*, *Columna vertebralis / Gerincoszlop*).
+- **Interactive Full-Screen Lightbox**: Tap any diagram card in practice mode or during test review to open an edge-to-edge lightbox modal for detailed study and zooming.
+
 ---
 
 ## 🛠️ Technology Stack
