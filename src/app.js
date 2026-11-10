@@ -1,8 +1,9 @@
 import {
-  quizTitle,
-  allQuestions,
-  categories,
-  getQuestionsByCategory,
+  AVAILABLE_TESTS,
+  TESTS,
+  getTest,
+  getCategoriesForTest,
+  getQuestionsForTest,
   prepareQuizQuestions,
   shuffleArray
 } from './data/questions.js';
@@ -15,6 +16,7 @@ import { dialog } from './utils/dialog.js';
 const initialSettings = storage.getSettings();
 
 const state = {
+  currentTestId: initialSettings.selectedTestId || 'anatomia',
   currentScreen: 'home', // 'home' | 'quiz' | 'results'
   quizMode: 'practice', // 'practice' | 'mistakes' | 'bookmarks'
   selectedCategory: 'Összes témakör',
@@ -42,6 +44,7 @@ const state = {
 function persistActiveSession() {
   if (state.currentScreen === 'quiz' || state.currentScreen === 'results') {
     storage.saveActiveSession({
+      testId: state.currentTestId,
       currentScreen: state.currentScreen,
       quizMode: state.quizMode,
       selectedCategory: state.selectedCategory,
@@ -62,12 +65,14 @@ function persistActiveSession() {
 function restoreActiveSessionIfExists() {
   const session = storage.getActiveSession();
   if (session && session.activeQuestions && session.activeQuestions.length > 0) {
+    state.currentTestId = session.testId || session.currentTestId || 'anatomia';
     state.currentScreen = session.currentScreen || 'quiz';
     state.quizMode = session.quizMode || 'practice';
     state.selectedCategory = session.selectedCategory || 'Összes témakör';
     state.questionCount = session.questionCount || session.activeQuestions.length;
+    const testConfig = getTest(state.currentTestId);
     state.activeQuestions = session.activeQuestions.map(q => {
-      const full = allQuestions.find(item => item.id === q.id);
+      const full = testConfig.questions.find(item => item.id === q.id);
       if (full && full.image) {
         return { ...q, image: full.image, image_title: full.image_title };
       }
@@ -218,7 +223,7 @@ function renderHeaderQuickIcons() {
   const currentQ = state.activeQuestions[state.currentIndex];
   const starBtn = document.getElementById('hdr-star-btn');
   if (starBtn && currentQ) {
-    const isBookmarked = storage.isBookmarked(currentQ.id);
+    const isBookmarked = storage.isBookmarked(currentQ.id, state.currentTestId);
     starBtn.classList.toggle('bookmarked', isBookmarked);
   }
 }
@@ -227,28 +232,54 @@ function renderHeaderQuickIcons() {
    1. HOME SCREEN
    ========================================================================== */
 function getHomeScreenHTML() {
-  const wrongCount = storage.getWrongQuestions().length;
-  const bookmarksCount = storage.getBookmarks().length;
-  const history = storage.getHistory();
+  const currentTest = getTest(state.currentTestId);
+  const wrongCount = storage.getWrongQuestions(state.currentTestId).length;
+  const bookmarksCount = storage.getBookmarks(state.currentTestId).length;
+  const history = storage.getHistory(state.currentTestId);
   const lastScore = history.length > 0 ? `${history[0].percentage}%` : 'N/A';
+  const testCategories = getCategoriesForTest(state.currentTestId);
+  const countOptions = currentTest.defaultCounts;
 
   return `
     <div class="home-screen">
       <!-- Hero -->
       <div class="home-hero">
         <div class="hero-icon-box">
-          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-          </svg>
+          <span style="font-size: 32px;">${currentTest.icon}</span>
         </div>
-        <h1>Quiz App</h1>
-        <p>Anatómia & Élettan – 100 Kérdéses Gyakorló & Vizsgafelkészítő Rendszer</p>
+        <h1>${currentTest.title}</h1>
+        <p>${currentTest.description}</p>
+      </div>
+
+      <!-- Test Dataset Selector Cards -->
+      <div>
+        <div class="section-title">Válassz Tesztsort</div>
+        <div class="test-selector-grid">
+          ${AVAILABLE_TESTS.map(t => {
+            const isSelected = state.currentTestId === t.id;
+            return `
+              <div class="test-card ${isSelected ? 'selected' : ''}" data-testid="${t.id}">
+                <div class="test-icon">${t.icon}</div>
+                <div class="test-info">
+                  <div class="test-title-row">
+                    <h3>${t.title}</h3>
+                    <span class="test-count-badge">${t.badge}</span>
+                  </div>
+                  <p>${t.description}</p>
+                </div>
+                <div class="test-radio">
+                  <div class="test-radio-inner"></div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
       </div>
 
       <!-- Quick Stats Banner -->
       <div class="stats-banner">
         <div class="stat-item">
-          <span class="stat-value">100</span>
+          <span class="stat-value">${currentTest.totalQuestions}</span>
           <span class="stat-label">Összes kérdés</span>
         </div>
         <div class="stat-item">
@@ -272,7 +303,7 @@ function getHomeScreenHTML() {
             </div>
             <div class="mode-info">
               <h3>Gyakorló Mód</h3>
-              <p>Azonnali magyarázatok és tanácsok minden válasz után</p>
+              <p>Azonnali magyarázatok és ábrák minden válasz után</p>
             </div>
             <div class="mode-badge">Ajánlott</div>
           </div>
@@ -308,7 +339,7 @@ function getHomeScreenHTML() {
         <div>
           <div class="section-title">Témakör / Fejezet</div>
           <div class="category-chips-scroll">
-            ${categories.map(cat => `
+            ${testCategories.map(cat => `
               <button class="category-chip-btn ${state.selectedCategory === cat ? 'active' : ''}" data-cat="${cat}">
                 ${cat}
               </button>
@@ -326,9 +357,9 @@ function getHomeScreenHTML() {
           </div>
         </div>
         <div class="count-chips">
-          ${[10, 20, 50, 100].map(cnt => `
+          ${countOptions.map(cnt => `
             <button class="count-chip ${state.questionCount === cnt ? 'active' : ''}" data-count="${cnt}">
-              ${cnt === 100 ? 'Mind (100)' : `${cnt} db`}
+              ${cnt === currentTest.totalQuestions ? `Mind (${cnt})` : `${cnt} db`}
             </button>
           `).join('')}
         </div>
@@ -368,6 +399,24 @@ function getHomeScreenHTML() {
 }
 
 function bindHomeScreenEvents() {
+  // Test selection cards
+  document.querySelectorAll('.test-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const testId = card.getAttribute('data-testid');
+      if (testId && testId !== state.currentTestId) {
+        sounds.playTap();
+        state.currentTestId = testId;
+        state.selectedCategory = 'Összes témakör';
+        const newTest = getTest(testId);
+        if (!newTest.defaultCounts.includes(state.questionCount)) {
+          state.questionCount = newTest.defaultCounts[1] || newTest.totalQuestions;
+        }
+        storage.updateSettings({ selectedTestId: testId });
+        renderApp();
+      }
+    });
+  });
+
   // Mode selection cards
   document.querySelectorAll('.mode-card').forEach(card => {
     card.addEventListener('click', () => {
@@ -427,34 +476,35 @@ function bindHomeScreenEvents() {
 
 // Start Quiz Session
 function startQuizSession() {
+  const currentTest = getTest(state.currentTestId);
   let pool = [];
 
   if (state.quizMode === 'mistakes') {
-    const wrongIds = storage.getWrongQuestions();
-    pool = allQuestions.filter(q => wrongIds.includes(q.id));
+    const wrongIds = storage.getWrongQuestions(state.currentTestId);
+    pool = currentTest.questions.filter(q => wrongIds.includes(q.id));
     if (pool.length === 0) {
       dialog.alert({
         title: 'Nincsenek hibás kérdések',
-        message: 'Jelenleg nincs rögzített hibás kérdésed! Gyakorolj a többi témakörrel.',
+        message: 'Ebben a tesztsorban jelenleg nincs rögzített hibás kérdésed! Gyakorolj a témakörökkel.',
         confirmText: 'Rendben',
         type: 'info'
       });
       return;
     }
   } else if (state.quizMode === 'bookmarks') {
-    const starIds = storage.getBookmarks();
-    pool = allQuestions.filter(q => starIds.includes(q.id));
+    const starIds = storage.getBookmarks(state.currentTestId);
+    pool = currentTest.questions.filter(q => starIds.includes(q.id));
     if (pool.length === 0) {
       dialog.alert({
         title: 'Nincsenek csillagozott kérdések',
-        message: 'Még nem mentettél el kérdéseket! A kvíz során a jobb felső csillag ikonnal jelölhetsz meg kérdéseket.',
+        message: 'Ebben a tesztsorban még nem jelöltél meg kérdést! A kvíz során a jobb felső csillag ikonnal menthetsz el nehéz kérdéseket.',
         confirmText: 'Rendben',
         type: 'warning'
       });
       return;
     }
   } else {
-    pool = getQuestionsByCategory(state.selectedCategory);
+    pool = getQuestionsForTest(state.currentTestId, state.selectedCategory);
   }
 
   // Prepare with shuffling
@@ -490,7 +540,7 @@ function getQuizScreenHTML() {
 
   const answeredInfo = state.userAnswers[q.id];
   const isAnswered = !!answeredInfo;
-  const isBookmarked = storage.isBookmarked(q.id);
+  const isBookmarked = storage.isBookmarked(q.id, state.currentTestId);
 
   // Sound active class
   const soundActive = sounds.isSoundEnabled();
@@ -519,7 +569,7 @@ function getQuizScreenHTML() {
       </div>
 
       <div class="header-title">
-        ${currentNum} / ${total}
+        ${getTest(state.currentTestId).shortTitle} • ${currentNum} / ${total}
       </div>
 
       <div class="header-right">
@@ -559,7 +609,7 @@ function getQuizScreenHTML() {
           <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          ${q.category || 'Anatómia'}
+          ${q.category || getTest(state.currentTestId).shortTitle}
         </span>
         <span style="font-size: 12px; color: var(--text-dim); font-weight: 600;">ID #${q.id}</span>
       </div>
@@ -701,7 +751,7 @@ function bindQuizScreenEvents() {
   if (starBtn) {
     starBtn.addEventListener('click', () => {
       sounds.playTap();
-      const isNowStarred = storage.toggleBookmark(q.id);
+      const isNowStarred = storage.toggleBookmark(q.id, state.currentTestId);
       starBtn.classList.toggle('bookmarked', isNowStarred);
       if (isNowStarred) {
         sounds.playStreak();
@@ -776,7 +826,7 @@ function selectOption(question, answerText) {
   };
 
   // Update Mistake Tracker in Storage
-  storage.recordAnswerResult(question.id, isCorrect);
+  storage.recordAnswerResult(question.id, isCorrect, state.currentTestId);
 
   // Audio & Streak feedback
   if (isCorrect) {
@@ -838,9 +888,12 @@ function finishQuizSession() {
 
   const total = state.activeQuestions.length;
   const percentage = Math.round((correctCount / total) * 100);
+  const currentTest = getTest(state.currentTestId);
 
   // Save to history
   storage.saveQuizResult({
+    testId: state.currentTestId,
+    testTitle: currentTest.title,
     mode: state.quizMode,
     category: state.selectedCategory,
     total: total,
@@ -882,13 +935,14 @@ function getResultsScreenHTML() {
 
   const total = state.activeQuestions.length;
   const percentage = Math.round((correctCount / total) * 100);
+  const currentTest = getTest(state.currentTestId);
 
   // Verdict text
   let verdictTitle = '';
   let verdictDesc = '';
   if (percentage >= 90) {
     verdictTitle = '🏆 Kiváló Eredmény!';
-    verdictDesc = 'Fantasztikus tudás! Készen állsz a legnehezebb anatómia vizsgára is!';
+    verdictDesc = `Fantasztikus tudás! Készen állsz a legnehezebb ${currentTest.shortTitle.toLowerCase()} vizsgára is!`;
   } else if (percentage >= 75) {
     verdictTitle = '🎉 Sikeres Vizsga!';
     verdictDesc = 'Nagyszerű felkészültség! Néhány apró részletet még csiszolj.';
@@ -897,7 +951,7 @@ function getResultsScreenHTML() {
     verdictDesc = 'Az alapok megvannak, de érdemes átismételned a tévesztett kérdéseket.';
   } else {
     verdictTitle = '💪 Gyakorolj Még!';
-    verdictDesc = 'Az anatómia komoly precizitást igényel. Ismételd át a fejezeteket!';
+    verdictDesc = `A(z) ${currentTest.shortTitle} komoly precizitást igényel. Ismételd át a fejezeteket!`;
   }
 
   const mins = Math.floor(state.elapsedSeconds / 60);
@@ -920,6 +974,13 @@ function getResultsScreenHTML() {
 
   return `
     <div class="results-screen">
+      <!-- Test Badge Chip -->
+      <div style="text-align: center; margin-bottom: 6px;">
+        <span class="category-chip" style="font-size: 12px; padding: 5px 14px; background: rgba(56, 189, 248, 0.12); color: var(--primary-light); border: 1px solid rgba(56, 189, 248, 0.25);">
+          ${currentTest.icon} ${currentTest.title}
+        </span>
+      </div>
+
       <!-- Animated Circular Score -->
       <div class="score-circle-wrapper">
         <svg class="score-circle-svg" viewBox="0 0 160 160">
@@ -1117,14 +1178,15 @@ function renderQuestionGridModal() {
 
   modal.classList.add('open');
 
-  const questions = state.activeQuestions.length > 0 ? state.activeQuestions : allQuestions;
+  const testObj = getTest(state.currentTestId);
+  const questions = state.activeQuestions.length > 0 ? state.activeQuestions : testObj.questions;
 
   modal.innerHTML = `
     <div class="bottom-sheet" id="sheet-content">
       <div class="sheet-header">
         <div class="sheet-handle"></div>
         <div class="sheet-title-row">
-          <div class="sheet-title">Kérdésválasztó Rács (${questions.length} db)</div>
+          <div class="sheet-title">${testObj.shortTitle} Rács (${questions.length} db)</div>
           <button class="icon-btn" id="btn-close-grid" style="width: 32px; height: 32px;">✕</button>
         </div>
         <div class="sheet-legend">
@@ -1140,7 +1202,7 @@ function renderQuestionGridModal() {
           ${questions.map((q, idx) => {
             const isCurrent = state.currentScreen === 'quiz' && state.currentIndex === idx;
             const ans = state.userAnswers[q.id];
-            const isBookmarked = storage.isBookmarked(q.id);
+            const isBookmarked = storage.isBookmarked(q.id, state.currentTestId);
 
             let statusClass = '';
             if (isCurrent) statusClass = 'active-current';
@@ -1229,7 +1291,7 @@ function initKeyboardNav() {
 
     // Key 'S' for Star / Bookmark
     if (key === 'S') {
-      storage.toggleBookmark(q.id);
+      storage.toggleBookmark(q.id, state.currentTestId);
       renderApp();
     }
 

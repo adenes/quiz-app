@@ -1,70 +1,101 @@
-// LocalStorage State Manager
+// LocalStorage State Manager with Multi-Test Support
 
 const KEYS = {
-  BOOKMARKS: 'anatomy_quiz_bookmarks',
-  WRONG_QUESTIONS: 'anatomy_quiz_wrong_questions',
+  BOOKMARKS_PREFIX: 'quiz_bookmarks_',
+  WRONG_PREFIX: 'quiz_wrong_questions_',
+  LEGACY_BOOKMARKS: 'anatomy_quiz_bookmarks',
+  LEGACY_WRONG: 'anatomy_quiz_wrong_questions',
   HISTORY: 'anatomy_quiz_history',
   SETTINGS: 'anatomy_quiz_settings',
   ACTIVE_SESSION: 'anatomy_quiz_active_session'
 };
 
+function getBookmarkKey(testId = 'anatomia') {
+  return `${KEYS.BOOKMARKS_PREFIX}${testId}`;
+}
+
+function getWrongKey(testId = 'anatomia') {
+  return `${KEYS.WRONG_PREFIX}${testId}`;
+}
+
 export const storage = {
   // Bookmarks
-  getBookmarks() {
+  getBookmarks(testId = 'anatomia') {
     try {
-      return JSON.parse(localStorage.getItem(KEYS.BOOKMARKS)) || [];
+      const key = getBookmarkKey(testId);
+      const data = localStorage.getItem(key);
+      if (data) return JSON.parse(data);
+
+      // Fallback to legacy key for anatomia
+      if (testId === 'anatomia') {
+        const legacy = localStorage.getItem(KEYS.LEGACY_BOOKMARKS);
+        if (legacy) return JSON.parse(legacy);
+      }
+      return [];
     } catch {
       return [];
     }
   },
 
-  isBookmarked(id) {
-    const list = this.getBookmarks();
+  isBookmarked(id, testId = 'anatomia') {
+    const list = this.getBookmarks(testId);
     return list.includes(id);
   },
 
-  toggleBookmark(id) {
-    let list = this.getBookmarks();
+  toggleBookmark(id, testId = 'anatomia') {
+    let list = this.getBookmarks(testId);
     if (list.includes(id)) {
       list = list.filter(item => item !== id);
     } else {
       list.push(id);
     }
-    localStorage.setItem(KEYS.BOOKMARKS, JSON.stringify(list));
+    const key = getBookmarkKey(testId);
+    localStorage.setItem(key, JSON.stringify(list));
     return list.includes(id);
   },
 
   // Wrong Questions (Mistakes tracker)
-  getWrongQuestions() {
+  getWrongQuestions(testId = 'anatomia') {
     try {
-      return JSON.parse(localStorage.getItem(KEYS.WRONG_QUESTIONS)) || [];
+      const key = getWrongKey(testId);
+      const data = localStorage.getItem(key);
+      if (data) return JSON.parse(data);
+
+      // Fallback to legacy key for anatomia
+      if (testId === 'anatomia') {
+        const legacy = localStorage.getItem(KEYS.LEGACY_WRONG);
+        if (legacy) return JSON.parse(legacy);
+      }
+      return [];
     } catch {
       return [];
     }
   },
 
-  recordAnswerResult(id, isCorrect) {
-    let wrongList = this.getWrongQuestions();
+  recordAnswerResult(id, isCorrect, testId = 'anatomia') {
+    let wrongList = this.getWrongQuestions(testId);
     if (isCorrect) {
-      // Remove from wrong list if user got it right
       wrongList = wrongList.filter(item => item !== id);
     } else {
-      // Add to wrong list if not already there
       if (!wrongList.includes(id)) {
         wrongList.push(id);
       }
     }
-    localStorage.setItem(KEYS.WRONG_QUESTIONS, JSON.stringify(wrongList));
+    const key = getWrongKey(testId);
+    localStorage.setItem(key, JSON.stringify(wrongList));
   },
 
-  clearWrongQuestions() {
-    localStorage.setItem(KEYS.WRONG_QUESTIONS, JSON.stringify([]));
+  clearWrongQuestions(testId = 'anatomia') {
+    const key = getWrongKey(testId);
+    localStorage.setItem(key, JSON.stringify([]));
   },
 
   // Quiz History
-  getHistory() {
+  getHistory(testId = null) {
     try {
-      return JSON.parse(localStorage.getItem(KEYS.HISTORY)) || [];
+      const all = JSON.parse(localStorage.getItem(KEYS.HISTORY)) || [];
+      if (!testId) return all;
+      return all.filter(item => (item.testId || 'anatomia') === testId);
     } catch {
       return [];
     }
@@ -75,11 +106,12 @@ export const storage = {
     const entry = {
       id: Date.now(),
       date: new Date().toISOString(),
+      testId: result.testId || 'anatomia',
       ...result
     };
     history.unshift(entry);
-    // Keep last 30 tests
-    if (history.length > 30) history.pop();
+    // Keep last 40 tests
+    if (history.length > 40) history.pop();
     localStorage.setItem(KEYS.HISTORY, JSON.stringify(history));
     return entry;
   },
@@ -91,7 +123,8 @@ export const storage = {
       mobileFrameOnDesktop: true,
       shuffleQuestions: true,
       shuffleOptions: true,
-      instantFeedback: true
+      instantFeedback: true,
+      selectedTestId: 'anatomia'
     };
     try {
       const stored = JSON.parse(localStorage.getItem(KEYS.SETTINGS));
