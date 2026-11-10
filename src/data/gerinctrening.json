@@ -29,8 +29,8 @@
       "correct_answer": "Stabilitás és mobilitás",
       "explanation": "A gerinc két kulcsfontosságú mechanikai tulajdonsága a stabilitás és a mobilitás.",
       "category": "Gerinc anatómia és csigolyák",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image": "./images/spine_movements.jpg",
+      "image_title": "A gerinc stabilitása és mobilitása (Spinal Biomechanics)"
     },
     {
       "id": 3,
@@ -45,7 +45,7 @@
       "explanation": "A gerinc stabilitását a csigolyák anatómiai szerkezete, illetve a vállövvel és medenceövvel való biomechanikai összeköttetése garantálja.",
       "category": "Gerinc anatómia és csigolyák",
       "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image_title": "A gerincoszlop és a medenceöv kapcsolata"
     },
     {
       "id": 4,
@@ -59,8 +59,8 @@
       "correct_answer": "A fiziológiás görbületek, a csigolyák közti porckorongok és a kisízületek",
       "explanation": "A gerinc mobilitását a fiziológiás görbületek, a csigolyaközti porckorongok és a csigolyák közötti kisízületek együttesen biztosítják.",
       "category": "Gerinc anatómia és csigolyák",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image": "./images/intervertebral_disc.jpg",
+      "image_title": "Porckorongok és kisízületek a mozgékonyságért"
     },
     {
       "id": 5,
@@ -73,9 +73,7 @@
       ],
       "correct_answer": "Az emésztőenzimek közvetlen termelése és raktározása",
       "explanation": "A gerinc tartó, mozgató, védelmi (gerincvelő) és erőcsillapító funkciókat lát el, belső elválasztású vagy emésztési funkciója nincs.",
-      "category": "Gerinc anatómia és csigolyák",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "category": "Gerinc anatómia és csigolyák"
     },
     {
       "id": 6,
@@ -89,8 +87,8 @@
       "correct_answer": "Stabil alapot biztosít az azokat mozgató izmok számára",
       "explanation": "A gerinc stabil tengelyt és alapot nyújt az izomzatnak, lehetővé téve a végtagok és a fej szabad és koordinált térbeli mozgását.",
       "category": "Gerinc anatómia és csigolyák",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image": "./images/spine_movements.jpg",
+      "image_title": "A gerinc tengelye és a mozgástartományok"
     },
     {
       "id": 7,
@@ -104,8 +102,8 @@
       "correct_answer": "A gerincvelőt",
       "explanation": "Az egymás alatt fekvő csigolyalyukak által alkotott canalis vertebralisban fut és élvez mechanikai védelmet a gerincvelő.",
       "category": "Gerinc anatómia és csigolyák",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image": "./images/vertebra_structure.jpg",
+      "image_title": "Csigolyalyuk és gerinccsatorna a gerincvelővel (Foramen vertebrale)"
     },
     {
       "id": 8,
@@ -120,7 +118,7 @@
       "explanation": "Mivel lefelé haladva a testsúlyból adódó terhelés nő, a csigolyatestek felülről lefelé fokozatosan nagyobbá és masszívabbá válnak.",
       "category": "Gerinc anatómia és csigolyák",
       "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image_title": "Csigolyatestek méretváltozása (C1–C7, Th1–Th12, L1–L5)"
     },
     {
       "id": 9,
@@ -134,8 +132,8 @@
       "correct_answer": "A csigolyatest és a csigolyaív",
       "explanation": "A csigolyatest (elöl) és a csigolyaív (hátul) együttesen határolja és zárja közre a foramen vertebralét.",
       "category": "Gerinc anatómia és csigolyák",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image": "./images/vertebra_structure.jpg",
+      "image_title": "Csigolyatest és csigolyaív (Corpus et arcus vertebrae)"
     },
     {
       "id": 10,
@@ -149,8 +147,8 @@
       "correct_answer": "Az egymás alatt fekvő csigolyalyukak oszlopszerű összessége",
       "explanation": "Az egymás alatti csigolyák foramen vertebraléi függőleges csatornát, a gerinccsatornát alkotják.",
       "category": "Gerinc anatómia és csigolyák",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image": "./images/vertebra_structure.jpg",
+      "image_title": "A gerinccsatorna bemenete (Foramen vertebrale)"
     },
     {
       "id": 11,
@@ -164,8 +162,8 @@
       "correct_answer": "Középen hátrafelé és többségében lefelé irányuló páratlan nyúlvány",
       "explanation": "A processus spinosus a csigolyaív közepéből hátra- és lefelé tekintő, háton jól tapintható páratlan nyúlvány.",
       "category": "Gerinc anatómia és csigolyák",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image": "./images/vertebra_structure.jpg",
+      "image_title": "Tövisnyúlvány felépítése és iránya (Processus spinosus)"
     },
     {
       "id": 12,
@@ -179,8 +177,8 @@
       "correct_answer": "Oldalt, kissé hátrafelé irányuló páros nyúlvány",
       "explanation": "A processus transversus kétoldalt, enyhén hátrafelé irányuló páros csontnyúlvány, izmok és bordák kapcsolódási helye.",
       "category": "Gerinc anatómia és csigolyák",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image": "./images/vertebra_structure.jpg",
+      "image_title": "Harántnyúlványok (Processus transversus)"
     },
     {
       "id": 13,
@@ -195,7 +193,7 @@
       "explanation": "A diasor alapján az emberi gerincoszlop 32-34 csigolyából épül fel.",
       "category": "Gerinc anatómia és csigolyák",
       "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image_title": "A gerinc 32–34 csigolyájának összessége"
     },
     {
       "id": 14,
@@ -210,7 +208,7 @@
       "explanation": "A nyaki gerincszakaszon 7 csigolya (C1-C7) található.",
       "category": "Gerinc anatómia és csigolyák",
       "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image_title": "Nyaki gerincszakasz (Pars cervicalis, C1–C7, 7 csigolya)"
     },
     {
       "id": 15,
@@ -225,7 +223,7 @@
       "explanation": "A háti szakasz 12 csigolyából (Th1-Th12), az ágyéki szakasz 5 csigolyából (L1-L5) áll.",
       "category": "Gerinc anatómia és csigolyák",
       "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image_title": "Háti (Th1–Th12, 12 csigolya) és ágyéki (L1–L5, 5 csigolya) szakaszok"
     },
     {
       "id": 16,
@@ -240,7 +238,7 @@
       "explanation": "A keresztcsont 5 összecsontosodott csigolyából áll, míg a farkcsonti szakaszt 3-6 csökevényes csigolya alkotja.",
       "category": "Gerinc anatómia és csigolyák",
       "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerincoszlop felépítése (Columna vertebralis)"
+      "image_title": "Keresztcsont (Os sacrum) és farkcsont (Os coccygis)"
     },
     {
       "id": 17,
@@ -254,8 +252,8 @@
       "correct_answer": "A csigolyatestek között",
       "explanation": "A discusok a szomszédos csigolyatestek zárólemezei között helyezkednek el.",
       "category": "Porckorongok és szalagok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Csigolyák és porckorongok (Discus intervertebralis)"
+      "image": "./images/intervertebral_disc.jpg",
+      "image_title": "Porckorong elhelyezkedése a csigolyatestek között (Discus intervertebralis)"
     },
     {
       "id": 18,
@@ -269,8 +267,8 @@
       "correct_answer": "Rugalmasságot adnak a gerincnek és csökkentik a testet érő hosszanti irányú erőbehatásokat",
       "explanation": "A porckorongok hidroelasztikus párnaként tompítják az axiális terhelést és biztosítják a szomszédos csigolyák közötti elmozdulást.",
       "category": "Porckorongok és szalagok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Csigolyák és porckorongok (Discus intervertebralis)"
+      "image": "./images/intervertebral_disc.jpg",
+      "image_title": "Porckorong mint hidroelasztikus lökéstompító párna"
     },
     {
       "id": 19,
@@ -284,8 +282,8 @@
       "correct_answer": "Anulus fibrosus (körkörös rostos gyűrű) és Nucleus pulposus (kocsonyás mag)",
       "explanation": "A discus külső része a koncentrikus lamellákból álló anulus fibrosus, belső magja a nagy vízkötő képességű nucleus pulposus.",
       "category": "Porckorongok és szalagok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Csigolyák és porckorongok (Discus intervertebralis)"
+      "image": "./images/intervertebral_disc.jpg",
+      "image_title": "Anulus fibrosus (rostos gyűrű) és Nucleus pulposus (kocsonyás mag)"
     },
     {
       "id": 20,
@@ -299,8 +297,8 @@
       "correct_answer": "A porckorong központi, kocsonyás, nagy folyadéktartalmú része",
       "explanation": "A nucleus pulposus egy zselészerű, kocsonyás központi mag, amely nyomás alatt elmozdulva egyenletesen osztja el a terhelést.",
       "category": "Porckorongok és szalagok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Csigolyák és porckorongok (Discus intervertebralis)"
+      "image": "./images/intervertebral_disc.jpg",
+      "image_title": "A Nucleus pulposus kocsonyás, folyadékgazdag magja"
     },
     {
       "id": 21,
@@ -314,8 +312,8 @@
       "correct_answer": "2/5",
       "explanation": "A bemutató 8. diáján található ábra szerint a nyaki (cervicalis) szakaszon a porckorong/csigolyatest magassági aránya 2/5.",
       "category": "Porckorongok és szalagok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Csigolyák és porckorongok (Discus intervertebralis)"
+      "image": "./images/intervertebral_disc.jpg",
+      "image_title": "Porckorong / csigolyatest magassági arány a nyaki szakaszon (2/5)"
     },
     {
       "id": 22,
@@ -329,8 +327,8 @@
       "correct_answer": "Háti szakaszon 1/5, ágyéki szakaszon 1/3",
       "explanation": "A 8. oldali diagram szerint a relatív magassági arány a háti szakaszon 1/5, míg az ágyéki gerincen 1/3.",
       "category": "Porckorongok és szalagok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Csigolyák és porckorongok (Discus intervertebralis)"
+      "image": "./images/intervertebral_disc.jpg",
+      "image_title": "Porckorong / csigolyatest magassági arány: Hát (1/5) és Derék (1/3)"
     },
     {
       "id": 23,
@@ -344,8 +342,8 @@
       "correct_answer": "Az elülső és a hátsó hosszanti szalag",
       "explanation": "A csigolyatestek elülső és hátsó felszínén futó ligamentum longitudinale anterius és posterius rögzíti a porckorongokat és stabilizálja a gerincoszlopot.",
       "category": "Porckorongok és szalagok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Csigolyák és porckorongok (Discus intervertebralis)"
+      "image": "./images/intervertebral_disc.jpg",
+      "image_title": "Elülső és hátsó hosszanti szalag (Lig. longitudinale anterius & posterius)"
     },
     {
       "id": 24,
@@ -359,8 +357,8 @@
       "correct_answer": "A csigolyák összekötése, rögzítése és a gerinc STABILIZÁLÁSA",
       "explanation": "A szalagrendszer elsődleges biomechanikai szerepe a csigolyák anatómiai helyzetben tartása és a stabilitás fenntartása.",
       "category": "Porckorongok és szalagok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Csigolyák és porckorongok (Discus intervertebralis)"
+      "image": "./images/intervertebral_disc.jpg",
+      "image_title": "A gerincet stabilizáló szalagrendszer"
     },
     {
       "id": 25,
@@ -374,8 +372,8 @@
       "correct_answer": "Egy függőleges egyenest",
       "explanation": "Frontális síkban tekintve az egészséges gerincoszlopnak egyenesnek, szimmetrikusnak kell lennie.",
       "category": "Görbületek és mozgások",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerinc görbületei és síkjai (Lordosis & Kyphosis)"
+      "image": "./images/spine_movements.jpg",
+      "image_title": "Frontális sík: Függőleges, szimmetrikus gerincoszlop"
     },
     {
       "id": 26,
@@ -389,8 +387,8 @@
       "correct_answer": "Kétszeres „S” alakban görbült, egymást harmonikusan kiegyenlítő rendszert",
       "explanation": "Sagittalis síkban a gerinc kettős S-görbületet mutat, ami rugószerűen tompítja a függőleges erőhatásokat.",
       "category": "Görbületek és mozgások",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerinc görbületei és síkjai (Lordosis & Kyphosis)"
+      "image": "./images/spine_movements.jpg",
+      "image_title": "Sagittalis sík: Kettős S-alakú fiziológiás görbületek"
     },
     {
       "id": 27,
@@ -404,8 +402,8 @@
       "correct_answer": "Cervicalis (nyaki), thoracalis (háti), lumbalis (ágyéki) és sacralis (keresztcsonti)",
       "explanation": "A négy sagittalis görbület: nyaki lordosis, háti kyphosis, ágyéki lordosis és keresztcsonti kyphosis.",
       "category": "Görbületek és mozgások",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerinc görbületei és síkjai (Lordosis & Kyphosis)"
+      "image": "./images/spine_movements.jpg",
+      "image_title": "Cervicalis és Lumbalis lordosis, Thoracalis és Sacralis kyphosis"
     },
     {
       "id": 28,
@@ -419,8 +417,8 @@
       "correct_answer": "Lumbalis: konkáv (előre homorú/lordosis), Thoracalis: konvex (hátra domború/kyphosis)",
       "explanation": "A prezentáció 12. diájának megfelelően: lumbalis görbület konkáv, thoracalis görbület konvex (hátrafelé domborodó).",
       "category": "Görbületek és mozgások",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerinc görbületei és síkjai (Lordosis & Kyphosis)"
+      "image": "./images/spine_movements.jpg",
+      "image_title": "Konkáv lordosis (lumbalis) és konvex kyphosis (thoracalis)"
     },
     {
       "id": 29,
@@ -434,8 +432,8 @@
       "correct_answer": "A fej hátsó részének, a hátnak és a fenéknek",
       "explanation": "Helyes állásban a nyakszirt, a háti domborulat és a farizmok egyaránt érintik a mögöttünk lévő függőleges falsíkot.",
       "category": "Görbületek és mozgások",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerinc görbületei és síkjai (Lordosis & Kyphosis)"
+      "image": "./images/spine_movements.jpg",
+      "image_title": "Függőleges referenciasík falhoz állva: Nyakszirt, hát és fenék"
     },
     {
       "id": 30,
@@ -449,8 +447,8 @@
       "correct_answer": "A nyaki és az ágyéki szakaszon",
       "explanation": "A gerinc sagittalis síkú hajlítása (flexio) főként a mozgékony nyaki és lumbalis szakaszon valósul meg harmonikus ívben.",
       "category": "Görbületek és mozgások",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerinc görbületei és síkjai (Lordosis & Kyphosis)"
+      "image": "./images/spine_movements.jpg",
+      "image_title": "Előrehajlás (Flexio) mozgástartománya és íve"
     },
     {
       "id": 31,
@@ -464,8 +462,8 @@
       "correct_answer": "A tövisnyúlványok torlódnak (közelednek, ütközhetnek)",
       "explanation": "Hátrahajláskor a csigolyák hátsó ívei és processus spinosusai egymáshoz torlódnak, mechanikusan gátolva a túlzott extensiót.",
       "category": "Görbületek és mozgások",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerinc görbületei és síkjai (Lordosis & Kyphosis)"
+      "image": "./images/spine_movements.jpg",
+      "image_title": "Hátrahajlás (Extensio): Tövisnyúlványok torlódása / ütközése"
     },
     {
       "id": 32,
@@ -479,8 +477,8 @@
       "correct_answer": "A bordakosár jelenléte és a bordák anatómiai kapcsolódása miatt",
       "explanation": "Oldalra hajlásban minden szakasz részt vesz, ám a háti szakaszt a bordák és a mellkas csontos-porcos váza jelentősen korlátozza.",
       "category": "Görbületek és mozgások",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerinc görbületei és síkjai (Lordosis & Kyphosis)"
+      "image": "./images/spine_movements.jpg",
+      "image_title": "Oldalra hajlás (Lateroflexio) és a bordakosár korlátozó szerepe"
     },
     {
       "id": 33,
@@ -494,8 +492,8 @@
       "correct_answer": "Legnagyobb a felső nyaki szakaszon, kisebb a háti szakaszon, és a derékszakaszon (ágyéki gerinc) hiányzik",
       "explanation": "A rotáció a felső nyaki szakaszon (atlas-axis) a legszabadabb, a háti szakaszon mérsékelt, míg az ágyéki ízületi felszínek állása miatt a derékszakaszon szinte teljesen hiányzik.",
       "category": "Görbületek és mozgások",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "A gerinc görbületei és síkjai (Lordosis & Kyphosis)"
+      "image": "./images/spine_movements.jpg",
+      "image_title": "Rotáció: Felső nyaki atlas-axis forgás és lumbalis gátlás"
     },
     {
       "id": 34,
@@ -508,9 +506,7 @@
       ],
       "correct_answer": "A nyújtás (stretching) és az erősítés (strengthening) egyensúlyával, összehangolásával",
       "explanation": "Az optimális izomműködéshez és ízületi funkcióhoz elengedhetetlen a strengthening (erősítés) és stretching (nyújtás) párhuzamos alkalmazása.",
-      "category": "Mély stabilizáció és izmok",
-      "image": "./images/abdominal_muscles.jpg",
-      "image_title": "Mély stabilizáló izomzat és core (Musculi abdominis et core)"
+      "category": "Mély stabilizáció és izmok"
     },
     {
       "id": 35,
@@ -523,9 +519,7 @@
       ],
       "correct_answer": "A fázisos izmokat szelektíven erősíteni kell, míg a zsugorodásra hajlamos tónusos izmokat nyújtani kell",
       "explanation": "A megrövidülésre, spazmusra hajlamos tónusos izmok nyújtást, a megnyúlásra és gyengülésre hajlamos fázisos izmok erősítést igényelnek.",
-      "category": "Mély stabilizáció és izmok",
-      "image": "./images/abdominal_muscles.jpg",
-      "image_title": "Mély stabilizáló izomzat és core (Musculi abdominis et core)"
+      "category": "Mély stabilizáció és izmok"
     },
     {
       "id": 36,
@@ -539,8 +533,8 @@
       "correct_answer": "Mély hasizmok (transversus abdominis), mély gerincizmok (multifidus) és a farizmok",
       "explanation": "A prezentáció kiemeli a test belsejében lévő mély hasizmokat (m. transversus abdominis), mély gerincizmokat (m. multifidus) és a medencét stabilizáló farizmokat.",
       "category": "Mély stabilizáció és izmok",
-      "image": "./images/abdominal_muscles.jpg",
-      "image_title": "Mély stabilizáló izomzat és core (Musculi abdominis et core)"
+      "image": "./images/core_inner_unit.jpg",
+      "image_title": "A mély stabilizáló rendszer (Transversus abdominis, Multifidus, Farizmok)"
     },
     {
       "id": 37,
@@ -554,8 +548,8 @@
       "correct_answer": "Sok lassú rostot tartalmaznak, minimálisan húzódnak össze, és a kontrakciót hosszú ideig képesek fenntartani",
       "explanation": "A stabilizátorok tonikus, fáradásálló I-es típusú lassú rostokban gazdagok, kis elmozdulással hosszan tartó tónust biztosítanak.",
       "category": "Mély stabilizáció és izmok",
-      "image": "./images/abdominal_muscles.jpg",
-      "image_title": "Mély stabilizáló izomzat és core (Musculi abdominis et core)"
+      "image": "./images/core_inner_unit.jpg",
+      "image_title": "Lassú (I-es típusú) tonikus mély stabilizátorok és intraabdominális nyomás (IAP)"
     },
     {
       "id": 38,
@@ -569,8 +563,8 @@
       "correct_answer": "Feszes izmok nyújtása, meggyengült izmok erősítése, testtartás javítása és a stabilizáló izomzat felépítése",
       "explanation": "A 18. dia szerint a cél: feszes izmok nyújtása, gyengült izmok erősítése, tartáskorrekció és a gerinc stabilizátorainak felépítése.",
       "category": "Mély stabilizáció és izmok",
-      "image": "./images/abdominal_muscles.jpg",
-      "image_title": "Mély stabilizáló izomzat és core (Musculi abdominis et core)"
+      "image": "./images/core_inner_unit.jpg",
+      "image_title": "A gerinc mély izomfűzőjének felépítése és funkciója"
     },
     {
       "id": 39,
@@ -583,9 +577,7 @@
       ],
       "correct_answer": "Az izmok gyengeségének és spaszticitásának (feszességének, merevségének) pontos felismerésére",
       "explanation": "A funkcionális tesztek segítenek azonosítani az aszimmetriákat, gyengült és merev izomcsoportokat.",
-      "category": "Mély stabilizáció és izmok",
-      "image": "./images/abdominal_muscles.jpg",
-      "image_title": "Mély stabilizáló izomzat és core (Musculi abdominis et core)"
+      "category": "Mély stabilizáció és izmok"
     },
     {
       "id": 40,
@@ -599,8 +591,8 @@
       "correct_answer": "Állás, ülés, hasonfekvés, hátonfekvés, térdelés, négykézláb helyzet és támaszpozíciók (hover, plank)",
       "explanation": "A 20. dián felsorolt alap kiinduló pozíciók: állás, ülés, hasonfekvés, hátonfekvés, térdelés, négykézláb és támaszhelyzetek.",
       "category": "Helyes tartás és gyakorlatok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Fiziológiás testtartás és gerinctorna"
+      "image": "./images/posture_ergonomics.jpg",
+      "image_title": "Gerinctréning alaphelyzetek (Ülés, állás, négykézláb, plank)"
     },
     {
       "id": 41,
@@ -614,8 +606,8 @@
       "correct_answer": "10-20 fokkal alacsonyabban legyen a csípőízületnél (a medenceöv stabilitása érdekében)",
       "explanation": "A comb enyhe (10-20 fokos) lejtése a vízszinteshez képest elősegíti a medence semleges helyzetét és a lumbalis lordosis megőrzését.",
       "category": "Helyes tartás és gyakorlatok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Fiziológiás testtartás és gerinctorna"
+      "image": "./images/posture_ergonomics.jpg",
+      "image_title": "Helyes ülés: Combok 10°–20°-os lejtése a csípőhöz képest"
     },
     {
       "id": 42,
@@ -629,8 +621,8 @@
       "correct_answer": "100-110 fok",
       "explanation": "A 100-110 fokos enyhén nyitott szög jelentősen csökkenti a porckorongokra nehezedő nyomást ülés közben.",
       "category": "Helyes tartás és gyakorlatok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Fiziológiás testtartás és gerinctorna"
+      "image": "./images/posture_ergonomics.jpg",
+      "image_title": "Ergonómikus ülés: Széktámla 100°–110°-os dőlésszöge"
     },
     {
       "id": 43,
@@ -644,8 +636,8 @@
       "correct_answer": "Fejtetővel nyújtózni felfelé, fej a nyaki gerinc folytatásában, lapockák enyhén zárva, vállak leengedve és lazák",
       "explanation": "A helyes ülés alapja a hosszirányú axiális nyújtózás a fejtetővel, leengedett laza vállak és semleges fejpozíció.",
       "category": "Helyes tartás és gyakorlatok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Fiziológiás testtartás és gerinctorna"
+      "image": "./images/posture_ergonomics.jpg",
+      "image_title": "Fej- és válltartás üléskor: Axiális nyújtózás és laza leengedett vállak"
     },
     {
       "id": 44,
@@ -659,8 +651,8 @@
       "correct_answer": "A talpak alátámasztva a talajon, a lábak csípőszélességű terpeszben, a lábszárak függőlegesen helyezkednek el",
       "explanation": "A talajon stabilan támaszkodó talpak és függőleges lábszárak biztosítják a combcsont és medence szilárd alátámasztását.",
       "category": "Helyes tartás és gyakorlatok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Fiziológiás testtartás és gerinctorna"
+      "image": "./images/posture_ergonomics.jpg",
+      "image_title": "Láb- és talpalátámasztás ülés közben (Függőleges lábszárak)"
     },
     {
       "id": 45,
@@ -674,8 +666,8 @@
       "correct_answer": "A comb- és fenékizmoknak enyhén feszesnek, a hasnak behúzva kell lennie",
       "explanation": "A medence középhelyzetét a feszített comb- és fenékizmok, valamint a tónusba hozott alsó hasfal tartja meg álláskor.",
       "category": "Helyes tartás és gyakorlatok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Fiziológiás testtartás és gerinctorna"
+      "image": "./images/posture_ergonomics.jpg",
+      "image_title": "Helyes állás: Tónusos farizmok, hasfal és neutrális medence"
     },
     {
       "id": 46,
@@ -689,8 +681,8 @@
       "correct_answer": "A mellkas nincs előretolva, a lengőbordák zárva vannak",
       "explanation": "A túlpréselt katonás mellkas kitolja a lengőbordákat és megtöri az ágyéki szakaszt; helyesen a bordák zártak maradnak.",
       "category": "Helyes tartás és gyakorlatok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Fiziológiás testtartás és gerinctorna"
+      "image": "./images/posture_ergonomics.jpg",
+      "image_title": "Mellkas- és bordakosártartás álláskor: Zárt lengőbordák"
     },
     {
       "id": 47,
@@ -704,8 +696,8 @@
       "correct_answer": "Ülőgumó széles terpeszben vannak a térdek",
       "explanation": "A helyes térdelő kiinduló helyzetben a térdek ülőgumó széles terpeszt vesznek fel.",
       "category": "Helyes tartás és gyakorlatok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Fiziológiás testtartás és gerinctorna"
+      "image": "./images/posture_ergonomics.jpg",
+      "image_title": "Kiinduló helyzet: Térdek ülőgumó-széles terpeszben"
     },
     {
       "id": 48,
@@ -719,8 +711,8 @@
       "correct_answer": "Tenyerek a vállak alatt, térdek a csípő alatt, gerinc egyenes",
       "explanation": "A stabil alátámasztási négyszöghöz a csuklók a vállízületek, a térdek a csípőízületek függőleges vonala alá kerülnek.",
       "category": "Helyes tartás és gyakorlatok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Fiziológiás testtartás és gerinctorna"
+      "image": "./images/posture_ergonomics.jpg",
+      "image_title": "Helyes négykézláb helyzet (Térdelőtámasz csukló- és térdbeállítással)"
     },
     {
       "id": 49,
@@ -734,8 +726,8 @@
       "correct_answer": "Tenyerek/alkarok a vállak alatt, gerinc egy egyenesben, fej a törzs folytatásában, sarkak hátratolva, lapockák bordakosárra fektetve",
       "explanation": "A plank lényege a teljes test egyenes vonala: aktív lapockastabilizáció, hátrahúzott sarkak és feszes has-farizmok.",
       "category": "Helyes tartás és gyakorlatok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Fiziológiás testtartás és gerinctorna"
+      "image": "./images/posture_ergonomics.jpg",
+      "image_title": "Helyes alkartámasz (Plank / Hover): Egyenes testvonal és lapockastabilizáció"
     },
     {
       "id": 50,
@@ -749,8 +741,8 @@
       "correct_answer": "A homlokon fekszik a fej, a nyak a gerinc folytatásában van, a lábak ülőgumó széles terpeszben fekszenek",
       "explanation": "A 29. dia szerint a fej a homlokon támaszkodik, hogy a nyaki gerinc neutrális maradjon, a lábak pedig ülőgumó széles terpeszt vesznek fel.",
       "category": "Helyes tartás és gyakorlatok",
-      "image": "./images/spine_vertebrae.jpg",
-      "image_title": "Fiziológiás testtartás és gerinctorna"
+      "image": "./images/posture_ergonomics.jpg",
+      "image_title": "Helyes hasonfekvés: Neutrális nyaki gerinc homloktámasszal"
     }
   ]
 }

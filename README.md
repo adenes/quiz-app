@@ -44,9 +44,11 @@ Categories dynamically adapt based on the selected test:
   - `S`: Toggle Star / Bookmark
   - `M`: Toggle Sound Mute
 
-### 🖼️ 5. Anatomical Illustrations & Diagrams (Latin & Hungarian)
-- **High-Resolution Medical Diagrams**: Visual explanations featuring tailored, high-clarity medical anatomical illustrations across all 11 body categories.
-- **Bilingual Terminology**: All diagram structures are systematically labeled in both **Latin** (*Nomina Anatomica*) and **Hungarian** (e.g. *M. supraspinatus / Tövis feletti izom*, *Planum medianum sagittale / Nyílirányú középsík*, *Columna vertebralis / Gerincoszlop*).
+### 🖼️ 5. Anatomical & Biomechanical Illustrations (Latin & Hungarian)
+- **High-Resolution Medical Diagrams**: Visual explanations featuring tailored, high-clarity medical anatomical illustrations across both datasets:
+  - **Anatómia és Élettan**: 11 body categories including planes, joints, vertebral column, pelvis, rotator cuff, pectoral, abdominal wall, and limbs.
+  - **Gerinctréning**: 5 specialized biomechanics infographics covering the intervertebral disc cross-section (*Anulus fibrosus & Nucleus pulposus* with 2/5, 1/5, 1/3 height ratios and longitudinal ligaments), single vertebra parts (*Corpus, Arcus, Foramen vertebrale, Processus spinosus & transversus*), physiological spinal curves and movements (*Lordosis, Kyphosis, Flexio, Extensio spinous crowding, Lateroflexio rib restriction, C1-C2 Rotatio*), deep core stabilization inner unit (*Diaphragma, Transversus abdominis, Multifidus, Diaphragma pelvis, IAP*), and ergonomic posture/exercises (100–110° sitting, 10–20° thigh incline, quadruped, plank, prone).
+- **Bilingual Terminology**: All diagram structures are systematically labeled in both **Latin** (*Nomina Anatomica*) and **Hungarian** (e.g. *M. supraspinatus / Tövis feletti izom*, *Discus intervertebralis / Porckorong*, *Anulus fibrosus / Rostos gyűrű*, *Nucleus pulposus / Kocsonyás mag*, *Columna vertebralis / Gerincoszlop*).
 - **Interactive Full-Screen Lightbox**: Tap any diagram card in practice mode or during test review to open an edge-to-edge lightbox modal for detailed study and zooming.
 
 ---
