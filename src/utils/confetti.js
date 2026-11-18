@@ -21,9 +21,9 @@ export function triggerConfetti() {
   canvas.height = height * dpr;
   ctx.scale(dpr, dpr);
 
-  const colors = ['#00e5ff', '#3b82f6', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6'];
+  const colors = ['#145369', '#157f4b', '#b4690e', '#5ba4c2', '#3fb97a', '#c43444'];
   const particles = [];
-  const count = 90;
+  const count = 65;
 
   for (let i = 0; i < count; i++) {
     particles.push({

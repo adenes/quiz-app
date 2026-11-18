@@ -1,6 +1,6 @@
 import { sounds } from './audio.js';
 
-// Custom Mobile-First Confirmation and Alert Dialog Service
+// Confirmation and Alert Dialog Service
 
 class DialogManager {
   constructor() {
@@ -12,9 +12,7 @@ class DialogManager {
       this.overlayEl = document.createElement('div');
       this.overlayEl.id = 'custom-dialog-overlay';
       this.overlayEl.className = 'dialog-overlay';
-
-      const parent = document.getElementById('device-container') || document.body;
-      parent.appendChild(this.overlayEl);
+      document.body.appendChild(this.overlayEl);
     }
   }
 
@@ -30,22 +28,24 @@ class DialogManager {
       sounds.playTap();
 
       const iconSVG = type === 'danger' ? `
-        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
         </svg>
       ` : `
-        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="10" />
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01" />
         </svg>
       `;
 
       this.overlayEl.innerHTML = `
-        <div class="dialog-card">
-          <div class="dialog-icon-box ${type}">
-            ${iconSVG}
+        <div class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title-text">
+          <div class="dialog-header-row">
+            <div class="dialog-icon-box ${type}">
+              ${iconSVG}
+            </div>
+            <div class="dialog-title" id="dialog-title-text">${title}</div>
           </div>
-          <div class="dialog-title">${title}</div>
           <div class="dialog-message">${message}</div>
           <div class="dialog-actions">
             <button class="dialog-btn dialog-btn-cancel" id="dialog-btn-cancel">
@@ -58,7 +58,6 @@ class DialogManager {
         </div>
       `;
 
-      // Trigger animation
       requestAnimationFrame(() => {
         this.overlayEl.classList.add('open');
       });
@@ -70,13 +69,15 @@ class DialogManager {
         setTimeout(() => {
           this.overlayEl.innerHTML = '';
           resolve(result);
-        }, 220);
+        }, 180);
       };
 
       const handleKey = (e) => {
         if (e.key === 'Escape') {
+          e.preventDefault();
           cleanup(false);
         } else if (e.key === 'Enter') {
+          e.preventDefault();
           cleanup(true);
         }
       };
@@ -113,21 +114,23 @@ class DialogManager {
       sounds.playTap();
 
       const iconSVG = `
-        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="10" />
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-4m0-4h.01" />
         </svg>
       `;
 
       this.overlayEl.innerHTML = `
-        <div class="dialog-card">
-          <div class="dialog-icon-box ${type}">
-            ${iconSVG}
+        <div class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title-text">
+          <div class="dialog-header-row">
+            <div class="dialog-icon-box ${type}">
+              ${iconSVG}
+            </div>
+            <div class="dialog-title" id="dialog-title-text">${title}</div>
           </div>
-          <div class="dialog-title">${title}</div>
           <div class="dialog-message">${message}</div>
           <div class="dialog-actions">
-            <button class="dialog-btn dialog-btn-primary" id="dialog-btn-ok" style="width: 100%;">
+            <button class="dialog-btn dialog-btn-primary" id="dialog-btn-ok">
               ${confirmText}
             </button>
           </div>
@@ -145,11 +148,12 @@ class DialogManager {
         setTimeout(() => {
           this.overlayEl.innerHTML = '';
           resolve();
-        }, 220);
+        }, 180);
       };
 
       const handleKey = (e) => {
         if (e.key === 'Escape' || e.key === 'Enter') {
+          e.preventDefault();
           cleanup();
         }
       };

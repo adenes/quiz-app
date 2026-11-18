@@ -119,8 +119,7 @@ export const storage = {
   // Settings
   getSettings() {
     const defaults = {
-      theme: 'dark',
-      mobileFrameOnDesktop: true,
+      theme: 'light',
       shuffleQuestions: true,
       shuffleOptions: true,
       instantFeedback: true,

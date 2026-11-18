@@ -1,16 +1,43 @@
 import {
   AVAILABLE_TESTS,
-  TESTS,
   getTest,
   getCategoriesForTest,
   getQuestionsForTest,
-  prepareQuizQuestions,
-  shuffleArray
+  prepareQuizQuestions
 } from './data/questions.js';
 import { sounds } from './utils/audio.js';
 import { storage } from './utils/storage.js';
 import { triggerConfetti } from './utils/confetti.js';
 import { dialog } from './utils/dialog.js';
+
+// Clean Stroke SVG Icons
+const ICONS = {
+  brand: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M8 6h8M7 11h10M8 16h8"/></svg>`,
+  anatomia: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l1.5-2 2 4.5 1.5-2.5H20.8"/></svg>`,
+  gerinctrening: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><rect x="7" y="4" width="10" height="3" rx="1"/><rect x="6" y="10.5" width="12" height="3" rx="1"/><rect x="7" y="17" width="10" height="3" rx="1"/></svg>`,
+  practice: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+  mistakes: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>`,
+  bookmarks: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  sun: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`,
+  moon: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`,
+  soundOn: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`,
+  soundOff: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>`,
+  back: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>`,
+  forward: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>`,
+  grid: `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>`,
+  clock: `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  streak: `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  check: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+  x: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
+  note: `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>`,
+  zoom: `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>`,
+  retry: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>`,
+  home: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`
+};
+
+function starIcon(filled = false) {
+  return `<svg viewBox="0 0 24 24" width="18" height="18" fill="${filled ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+}
 
 // Global Application State
 const initialSettings = storage.getSettings();
@@ -20,7 +47,7 @@ const state = {
   currentScreen: 'home', // 'home' | 'quiz' | 'results'
   quizMode: 'practice', // 'practice' | 'mistakes' | 'bookmarks'
   selectedCategory: 'Összes témakör',
-  questionCount: 20, // 10, 20, 50, 100
+  questionCount: 20,
   shuffleQuestions: initialSettings.shuffleQuestions !== undefined ? initialSettings.shuffleQuestions : true,
   shuffleOptions: initialSettings.shuffleOptions !== undefined ? initialSettings.shuffleOptions : true,
 
@@ -70,6 +97,7 @@ function restoreActiveSessionIfExists() {
     state.quizMode = session.quizMode || 'practice';
     state.selectedCategory = session.selectedCategory || 'Összes témakör';
     state.questionCount = session.questionCount || session.activeQuestions.length;
+
     const testConfig = getTest(state.currentTestId);
     state.activeQuestions = session.activeQuestions.map(q => {
       const full = testConfig.questions.find(item => item.id === q.id);
@@ -78,6 +106,7 @@ function restoreActiveSessionIfExists() {
       }
       return q;
     });
+
     state.currentIndex = session.currentIndex || 0;
     state.userAnswers = session.userAnswers || {};
     state.currentStreak = session.currentStreak || 0;
@@ -91,15 +120,19 @@ function restoreActiveSessionIfExists() {
   }
 }
 
+function formatTimer(seconds) {
+  const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const secs = String(seconds % 60).padStart(2, '0');
+  return `${mins}:${secs}`;
+}
+
 function startTimer() {
   if (state.timerInterval) clearInterval(state.timerInterval);
   state.timerInterval = setInterval(() => {
     state.elapsedSeconds++;
     const timerDisplay = document.getElementById('quiz-timer-display');
     if (timerDisplay) {
-      const mins = String(Math.floor(state.elapsedSeconds / 60)).padStart(2, '0');
-      const secs = String(state.elapsedSeconds % 60).padStart(2, '0');
-      timerDisplay.textContent = `${mins}:${secs}`;
+      timerDisplay.textContent = formatTimer(state.elapsedSeconds);
     }
   }, 1000);
 }
@@ -111,12 +144,27 @@ function stopTimer() {
   }
 }
 
+// Theme Helpers
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) {
+    metaTheme.setAttribute('content', theme === 'dark' ? '#111418' : '#f5f4ef');
+  }
+}
+
+function toggleTheme() {
+  sounds.playTap();
+  const newTheme = state.settings.theme === 'dark' ? 'light' : 'dark';
+  state.settings = storage.updateSettings({ theme: newTheme });
+  applyTheme(newTheme);
+  renderHeaderQuickIcons();
+}
+
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
   restoreActiveSessionIfExists();
-  initThemeAndLayout();
-  initDesktopToolbar();
-  initClockSimulation();
+  applyTheme(state.settings.theme);
   renderApp();
   initKeyboardNav();
   window.addEventListener('beforeunload', () => {
@@ -124,74 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Setup Theme & Device Frame
-function initThemeAndLayout() {
-  document.documentElement.setAttribute('data-theme', state.settings.theme);
-  const container = document.getElementById('device-container');
-  if (container) {
-    if (state.settings.mobileFrameOnDesktop) {
-      container.classList.remove('mode-fullscreen');
-    } else {
-      container.classList.add('mode-fullscreen');
-    }
-  }
-}
-
-// Simulated Phone Clock (Update every minute)
-function initClockSimulation() {
-  const clockEl = document.getElementById('phone-clock');
-  const updateTime = () => {
-    if (!clockEl) return;
-    const now = new Date();
-    const hrs = String(now.getHours()).padStart(2, '0');
-    const mins = String(now.getMinutes()).padStart(2, '0');
-    clockEl.textContent = `${hrs}:${mins}`;
-  };
-  updateTime();
-  setInterval(updateTime, 10000);
-}
-
-// Desktop Toolbar Controls
-function initDesktopToolbar() {
-  const frameBtn = document.getElementById('btn-toggle-frame');
-  const themeBtn = document.getElementById('btn-toggle-theme');
-  const soundBtn = document.getElementById('btn-toggle-sound');
-
-  if (frameBtn) {
-    frameBtn.addEventListener('click', () => {
-      sounds.playTap();
-      const current = state.settings.mobileFrameOnDesktop;
-      state.settings = storage.updateSettings({ mobileFrameOnDesktop: !current });
-      const container = document.getElementById('device-container');
-      if (container) {
-        container.classList.toggle('mode-fullscreen', !state.settings.mobileFrameOnDesktop);
-      }
-      frameBtn.textContent = state.settings.mobileFrameOnDesktop ? '📱 Mobil Keret' : '🖥️ Teljes Nézet';
-    });
-  }
-
-  if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
-      sounds.playTap();
-      const newTheme = state.settings.theme === 'dark' ? 'light' : 'dark';
-      state.settings = storage.updateSettings({ theme: newTheme });
-      document.documentElement.setAttribute('data-theme', newTheme);
-      themeBtn.textContent = newTheme === 'dark' ? '🌙 Sötét Mód' : '☀️ Világos Mód';
-    });
-  }
-
-  if (soundBtn) {
-    soundBtn.addEventListener('click', () => {
-      const enabled = sounds.toggleSound();
-      soundBtn.textContent = enabled ? '🔊 Hang: Be' : '🔇 Hang: Ki';
-      renderHeaderQuickIcons();
-    });
-  }
-}
-
 // Master Render Router
 function renderApp() {
-  const root = document.getElementById('mobile-app-root');
+  const root = document.getElementById('app-root');
   if (!root) return;
 
   if (state.currentScreen === 'home') {
@@ -208,16 +191,26 @@ function renderApp() {
     bindResultsScreenEvents();
   }
 
-  // Render or update question grid drawer modal
+  bindTopbarUtilityEvents();
   renderQuestionGridModal();
 }
 
-// Update Header Icons (Sound, Bookmark)
 function renderHeaderQuickIcons() {
   const soundBtn = document.getElementById('hdr-sound-btn');
   if (soundBtn) {
-    soundBtn.classList.toggle('active', sounds.isSoundEnabled());
-    soundBtn.title = sounds.isSoundEnabled() ? 'Hang némítása' : 'Hang bekapcsolása';
+    const enabled = sounds.isSoundEnabled();
+    soundBtn.classList.toggle('active', enabled);
+    soundBtn.innerHTML = enabled ? ICONS.soundOn : ICONS.soundOff;
+    soundBtn.title = enabled ? 'Hang némítása (M)' : 'Hang bekapcsolása (M)';
+    soundBtn.setAttribute('aria-label', soundBtn.title);
+  }
+
+  const themeBtn = document.getElementById('hdr-theme-btn');
+  if (themeBtn) {
+    const isDark = state.settings.theme === 'dark';
+    themeBtn.innerHTML = isDark ? ICONS.sun : ICONS.moon;
+    themeBtn.title = isDark ? 'Váltás világos módra' : 'Váltás sötét módra';
+    themeBtn.setAttribute('aria-label', themeBtn.title);
   }
 
   const currentQ = state.activeQuestions[state.currentIndex];
@@ -225,182 +218,293 @@ function renderHeaderQuickIcons() {
   if (starBtn && currentQ) {
     const isBookmarked = storage.isBookmarked(currentQ.id, state.currentTestId);
     starBtn.classList.toggle('bookmarked', isBookmarked);
+    starBtn.innerHTML = starIcon(isBookmarked);
+  }
+}
+
+function getUtilityButtonsHTML() {
+  const soundEnabled = sounds.isSoundEnabled();
+  const isDark = state.settings.theme === 'dark';
+
+  return `
+    <button class="icon-btn ${soundEnabled ? 'active' : ''}" id="hdr-sound-btn" type="button" title="${soundEnabled ? 'Hang némítása (M)' : 'Hang bekapcsolása (M)'}" aria-label="${soundEnabled ? 'Hang némítása' : 'Hang bekapcsolása'}">
+      ${soundEnabled ? ICONS.soundOn : ICONS.soundOff}
+    </button>
+    <button class="icon-btn" id="hdr-theme-btn" type="button" title="${isDark ? 'Váltás világos módra' : 'Váltás sötét módra'}" aria-label="${isDark ? 'Világos mód' : 'Sötét mód'}">
+      ${isDark ? ICONS.sun : ICONS.moon}
+    </button>
+  `;
+}
+
+function bindTopbarUtilityEvents() {
+  const soundBtn = document.getElementById('hdr-sound-btn');
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      sounds.toggleSound();
+      renderHeaderQuickIcons();
+    });
+  }
+
+  const themeBtn = document.getElementById('hdr-theme-btn');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', toggleTheme);
   }
 }
 
 /* ==========================================================================
    1. HOME SCREEN
    ========================================================================== */
+function getEffectivePoolCount() {
+  if (state.quizMode === 'mistakes') {
+    return storage.getWrongQuestions(state.currentTestId).length;
+  }
+  if (state.quizMode === 'bookmarks') {
+    return storage.getBookmarks(state.currentTestId).length;
+  }
+  return getQuestionsForTest(state.currentTestId, state.selectedCategory).length;
+}
+
+function getEffectiveSessionLength() {
+  const poolSize = getEffectivePoolCount();
+  return Math.min(state.questionCount, poolSize);
+}
+
+function getCategoryCounts(testId) {
+  const categories = getCategoriesForTest(testId);
+  const allQuestions = getTest(testId).questions;
+  const counts = {};
+
+  categories.forEach(cat => {
+    if (cat === 'Összes témakör') {
+      counts[cat] = allQuestions.length;
+    } else {
+      counts[cat] = allQuestions.filter(q => q.category === cat).length;
+    }
+  });
+  return counts;
+}
+
 function getHomeScreenHTML() {
   const currentTest = getTest(state.currentTestId);
   const wrongCount = storage.getWrongQuestions(state.currentTestId).length;
   const bookmarksCount = storage.getBookmarks(state.currentTestId).length;
-  const history = storage.getHistory(state.currentTestId);
-  const lastScore = history.length > 0 ? `${history[0].percentage}%` : 'N/A';
   const testCategories = getCategoriesForTest(state.currentTestId);
+  const catCounts = getCategoryCounts(state.currentTestId);
   const countOptions = currentTest.defaultCounts;
+  const effectiveLen = getEffectiveSessionLength();
+
+  const modeLabels = {
+    practice: 'Gyakorló mód',
+    mistakes: 'Tévesztett kérdések',
+    bookmarks: 'Csillagozott kérdések'
+  };
 
   return `
-    <div class="home-screen">
-      <!-- Hero -->
-      <div class="home-hero">
-        <div class="hero-icon-box">
-          <span style="font-size: 32px;">${currentTest.icon}</span>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="topbar-left">
+          <div class="brand-mark">
+            <div class="brand-emblem">${ICONS.brand}</div>
+            <div>
+              <div class="brand-name">Anatómia Atlasz</div>
+            </div>
+            <span class="brand-sub">/ Vizsgafelkészítő</span>
+          </div>
         </div>
-        <h1>${currentTest.title}</h1>
-        <p>${currentTest.description}</p>
+        <div class="topbar-right">
+          ${getUtilityButtonsHTML()}
+        </div>
       </div>
+    </header>
 
-      <!-- Test Dataset Selector Cards -->
-      <div>
-        <div class="section-title">Válassz Tesztsort</div>
-        <div class="test-selector-grid">
+    <div class="home-container">
+      <section class="home-header">
+        <span class="home-eyebrow">Orvosi &amp; Biomechanikai Kérdésbank</span>
+        <h1 class="home-title">${currentTest.title}</h1>
+        <p class="home-subtitle">${currentTest.description}. Válassz tesztsort, gyakorlási módot és témakört a felkészüléshez.</p>
+      </section>
+
+      <!-- Test Dataset Selector -->
+      <section>
+        <div class="section-heading">
+          <h2 class="section-label">Tesztsor kiválasztása</h2>
+          <span class="section-meta">${AVAILABLE_TESTS.length} elérhető tananyag</span>
+        </div>
+
+        <div class="deck-grid">
           ${AVAILABLE_TESTS.map(t => {
             const isSelected = state.currentTestId === t.id;
+            const deckWrong = storage.getWrongQuestions(t.id).length;
+            const deckHistory = storage.getHistory(t.id);
+            const deckLast = deckHistory.length > 0 ? `${deckHistory[0].percentage}%` : '—';
+            const deckCatCount = getCategoriesForTest(t.id).length - 1;
+            const deckIcon = ICONS[t.id] || ICONS.practice;
+
             return `
-              <div class="test-card ${isSelected ? 'selected' : ''}" data-testid="${t.id}">
-                <div class="test-icon">${t.icon}</div>
-                <div class="test-info">
-                  <div class="test-title-row">
-                    <h3>${t.title}</h3>
-                    <span class="test-count-badge">${t.badge}</span>
+              <button type="button" class="deck-card ${isSelected ? 'selected' : ''}" data-testid="${t.id}">
+                <div>
+                  <div class="deck-card-top">
+                    <div class="deck-icon-wrap">${deckIcon}</div>
+                    <div class="deck-radio"><div class="deck-radio-dot"></div></div>
                   </div>
-                  <p>${t.description}</p>
+                  <div class="deck-body" style="margin-top: 14px;">
+                    <h2>${t.title}</h2>
+                    <p>${t.description}</p>
+                  </div>
                 </div>
-                <div class="test-radio">
-                  <div class="test-radio-inner"></div>
+
+                <div class="deck-stats-row">
+                  <span class="deck-stat"><strong>${t.totalQuestions}</strong> kérdés</span>
+                  <span class="deck-stat"><strong>${deckCatCount}</strong> témakör</span>
+                  <span class="deck-stat">Legutóbbi: <strong>${deckLast}</strong></span>
+                  ${deckWrong > 0 ? `<span class="deck-stat has-mistakes">Hibás: <strong>${deckWrong}</strong></span>` : ''}
                 </div>
-              </div>
+              </button>
             `;
           }).join('')}
         </div>
-      </div>
+      </section>
 
-      <!-- Quick Stats Banner -->
-      <div class="stats-banner">
-        <div class="stat-item">
-          <span class="stat-value">${currentTest.totalQuestions}</span>
-          <span class="stat-label">Összes kérdés</span>
+      <!-- Study Configuration Panel -->
+      <section>
+        <div class="section-heading">
+          <h2 class="section-label">Gyakorlás beállításai</h2>
+          <span class="section-meta">${currentTest.shortTitle}</span>
         </div>
-        <div class="stat-item">
-          <span class="stat-value">${lastScore}</span>
-          <span class="stat-label">Legutóbbi eredmény</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value" style="color: ${wrongCount > 0 ? '#f43f5e' : 'inherit'};">${wrongCount}</span>
-          <span class="stat-label">Gyenge pont</span>
-        </div>
-      </div>
 
-      <!-- Mode Selection -->
-      <div>
-        <div class="section-title">Válassz Üzemmódot</div>
-        <div class="mode-grid">
-          <!-- Practice Mode -->
-          <div class="mode-card ${state.quizMode === 'practice' ? 'selected' : ''}" data-mode="practice">
-            <div class="mode-icon" style="background: rgba(14, 165, 233, 0.15); color: #0284c7;">
-              🎓
+        <div class="config-panel">
+          <!-- Study Mode -->
+          <div class="config-section">
+            <div class="section-heading" style="margin-bottom: 10px;">
+              <span class="section-label">Üzemmód</span>
             </div>
-            <div class="mode-info">
-              <h3>Gyakorló Mód</h3>
-              <p>Azonnali magyarázatok és ábrák minden válasz után</p>
-            </div>
-            <div class="mode-badge">Ajánlott</div>
-          </div>
-
-          <!-- Mistakes / Weak Points -->
-          <div class="mode-card ${state.quizMode === 'mistakes' ? 'selected' : ''}" data-mode="mistakes">
-            <div class="mode-icon" style="background: rgba(244, 63, 94, 0.15); color: #f43f5e;">
-              🎯
-            </div>
-            <div class="mode-info">
-              <h3>Tévesztett Kérdések</h3>
-              <p>${wrongCount > 0 ? `${wrongCount} hibás kérdés vár javításra` : 'Nincs elmentett hiba, szép munka!'}</p>
-            </div>
-            <div class="mode-badge" style="color: #f43f5e;">${wrongCount} db</div>
-          </div>
-
-          <!-- Bookmarked Questions -->
-          <div class="mode-card ${state.quizMode === 'bookmarks' ? 'selected' : ''}" data-mode="bookmarks">
-            <div class="mode-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
-              ⭐
-            </div>
-            <div class="mode-info">
-              <h3>Csillagozott Kérdések</h3>
-              <p>A saját magad által elmentett nehéz kérdések</p>
-            </div>
-            <div class="mode-badge" style="color: #f59e0b;">${bookmarksCount} db</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Categories Selector (Visible when Practice mode) -->
-      ${state.quizMode === 'practice' ? `
-        <div>
-          <div class="section-title">Témakör / Fejezet</div>
-          <div class="category-chips-scroll">
-            ${testCategories.map(cat => `
-              <button class="category-chip-btn ${state.selectedCategory === cat ? 'active' : ''}" data-cat="${cat}">
-                ${cat}
+            <div class="mode-tabs">
+              <button type="button" class="mode-option ${state.quizMode === 'practice' ? 'selected' : ''}" data-mode="practice">
+                <div class="mode-option-head">
+                  ${ICONS.practice}
+                  <span class="mode-count-pill">${currentTest.totalQuestions} db</span>
+                </div>
+                <div class="mode-option-title">Gyakorló mód</div>
+                <div class="mode-option-desc">Azonnali magyarázat és anatómiai ábra minden válasz után</div>
               </button>
-            `).join('')}
-          </div>
-        </div>
-      ` : ''}
 
-      <!-- Settings & Question Count -->
-      <div class="settings-box">
-        <div class="setting-row">
-          <div>
-            <div class="setting-label">Kérdések száma</div>
-            <div class="setting-desc">Hány kérdést szeretnél megoldani?</div>
+              <button type="button" class="mode-option ${state.quizMode === 'mistakes' ? 'selected' : ''}" data-mode="mistakes">
+                <div class="mode-option-head">
+                  ${ICONS.mistakes}
+                  <span class="mode-count-pill ${wrongCount > 0 ? 'alert' : ''}">${wrongCount} db</span>
+                </div>
+                <div class="mode-option-title">Tévesztett kérdések</div>
+                <div class="mode-option-desc">${wrongCount > 0 ? `${wrongCount} hibás kérdés vár javításra` : 'Nincs elmentett hiba ebben a tesztsorban'}</div>
+              </button>
+
+              <button type="button" class="mode-option ${state.quizMode === 'bookmarks' ? 'selected' : ''}" data-mode="bookmarks">
+                <div class="mode-option-head">
+                  ${ICONS.bookmarks}
+                  <span class="mode-count-pill ${bookmarksCount > 0 ? 'warn' : ''}">${bookmarksCount} db</span>
+                </div>
+                <div class="mode-option-title">Csillagozottak</div>
+                <div class="mode-option-desc">${bookmarksCount > 0 ? `${bookmarksCount} megjelölt kérdés ismétlése` : 'A kvíz közben csillaggal menthetsz el kérdéseket'}</div>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="count-chips">
-          ${countOptions.map(cnt => `
-            <button class="count-chip ${state.questionCount === cnt ? 'active' : ''}" data-count="${cnt}">
-              ${cnt === currentTest.totalQuestions ? `Mind (${cnt})` : `${cnt} db`}
+
+          <!-- Topics (Visible in Practice Mode) -->
+          ${state.quizMode === 'practice' ? `
+            <div class="config-section">
+              <div class="section-heading" style="margin-bottom: 10px;">
+                <span class="section-label">Témakör / Fejezet</span>
+                <span class="section-meta">${testCategories.length - 1} fejezet</span>
+              </div>
+              <div class="topic-chips-wrap">
+                ${testCategories.map(cat => `
+                  <button type="button" class="topic-chip ${state.selectedCategory === cat ? 'active' : ''}" data-cat="${cat}">
+                    <span>${cat}</span>
+                    <span class="topic-chip-count">${catCounts[cat]}</span>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Question Count & Randomization -->
+          <div class="config-section">
+            <div class="settings-grid">
+              <div>
+                <div class="section-heading" style="margin-bottom: 8px;">
+                  <span class="section-label">Kérdések száma</span>
+                </div>
+                <div class="count-segmented">
+                  ${countOptions.map(cnt => `
+                    <button type="button" class="count-seg-btn ${state.questionCount === cnt ? 'active' : ''}" data-count="${cnt}">
+                      ${cnt === currentTest.totalQuestions ? `Mind` : `${cnt}`}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+
+              <div class="toggles-stack">
+                <label class="toggle-row" for="chk-shuffle-questions">
+                  <div>
+                    <div class="toggle-text-title">Kérdések keverése</div>
+                    <div class="toggle-text-desc">Véletlenszerű sorrend indításkor</div>
+                  </div>
+                  <span class="switch">
+                    <input type="checkbox" id="chk-shuffle-questions" ${state.shuffleQuestions ? 'checked' : ''}>
+                    <span class="slider"></span>
+                  </span>
+                </label>
+
+                <label class="toggle-row" for="chk-shuffle-options">
+                  <div>
+                    <div class="toggle-text-title">Válaszlehetőségek keverése</div>
+                    <div class="toggle-text-desc">A, B, C, D sorrend randomizálása</div>
+                  </div>
+                  <span class="switch">
+                    <input type="checkbox" id="chk-shuffle-options" ${state.shuffleOptions ? 'checked' : ''}>
+                    <span class="slider"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Launch Footer -->
+          <div class="config-launch-bar">
+            <div class="launch-summary" id="launch-summary-text">
+              <strong>${modeLabels[state.quizMode]}</strong>
+              ${state.quizMode === 'practice' ? ` · ${state.selectedCategory}` : ''}
+              · <span class="tabular">${effectiveLen} kérdés</span>
+            </div>
+            <button type="button" class="btn-primary" id="btn-start-quiz">
+              <span>Teszt indítása</span>
+              ${ICONS.forward}
             </button>
-          `).join('')}
-        </div>
-
-        <div class="setting-row" style="margin-top: 6px;">
-          <div>
-            <div class="setting-label">Kérdések keverése</div>
-            <div class="setting-desc">Véletlenszerű sorrend minden tesztben</div>
           </div>
-          <label class="switch">
-            <input type="checkbox" id="chk-shuffle-questions" ${state.shuffleQuestions ? 'checked' : ''}>
-            <span class="slider"></span>
-          </label>
         </div>
-
-        <div class="setting-row">
-          <div>
-            <div class="setting-label">Válaszlehetőségek keverése</div>
-            <div class="setting-desc">Ne tanulhasd be pozíció alapján</div>
-          </div>
-          <label class="switch">
-            <input type="checkbox" id="chk-shuffle-options" ${state.shuffleOptions ? 'checked' : ''}>
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
-
-      <!-- Start Quiz CTA Button -->
-      <button class="btn-primary" id="btn-start-quiz">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-          <path d="M8 5v14l11-7z"/>
-        </svg>
-        Teszt Indítása
-      </button>
+      </section>
     </div>
   `;
 }
 
+function updateLaunchSummaryText() {
+  const el = document.getElementById('launch-summary-text');
+  if (!el) return;
+  const modeLabels = {
+    practice: 'Gyakorló mód',
+    mistakes: 'Tévesztett kérdések',
+    bookmarks: 'Csillagozott kérdések'
+  };
+  const effectiveLen = getEffectiveSessionLength();
+  el.innerHTML = `
+    <strong>${modeLabels[state.quizMode]}</strong>
+    ${state.quizMode === 'practice' ? ` · ${state.selectedCategory}` : ''}
+    · <span class="tabular">${effectiveLen} kérdés</span>
+  `;
+}
+
 function bindHomeScreenEvents() {
-  // Test selection cards
-  document.querySelectorAll('.test-card').forEach(card => {
+  // Deck selection cards
+  document.querySelectorAll('.deck-card').forEach(card => {
     card.addEventListener('click', () => {
       const testId = card.getAttribute('data-testid');
       if (testId && testId !== state.currentTestId) {
@@ -417,33 +521,34 @@ function bindHomeScreenEvents() {
     });
   });
 
-  // Mode selection cards
-  document.querySelectorAll('.mode-card').forEach(card => {
+  // Mode options
+  document.querySelectorAll('.mode-option').forEach(card => {
     card.addEventListener('click', () => {
       sounds.playTap();
-      const mode = card.getAttribute('data-mode');
-      state.quizMode = mode;
+      state.quizMode = card.getAttribute('data-mode');
       renderApp();
     });
   });
 
-  // Category chip buttons
-  document.querySelectorAll('.category-chip-btn').forEach(btn => {
+  // Topic chips
+  document.querySelectorAll('.topic-chip').forEach(btn => {
     btn.addEventListener('click', () => {
       sounds.playTap();
       state.selectedCategory = btn.getAttribute('data-cat');
-      document.querySelectorAll('.category-chip-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.topic-chip').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      updateLaunchSummaryText();
     });
   });
 
-  // Count selector chips
-  document.querySelectorAll('.count-chip').forEach(btn => {
+  // Count selector
+  document.querySelectorAll('.count-seg-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       sounds.playTap();
       state.questionCount = parseInt(btn.getAttribute('data-count'), 10);
-      document.querySelectorAll('.count-chip').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.count-seg-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      updateLaunchSummaryText();
     });
   });
 
@@ -485,7 +590,7 @@ function startQuizSession() {
     if (pool.length === 0) {
       dialog.alert({
         title: 'Nincsenek hibás kérdések',
-        message: 'Ebben a tesztsorban jelenleg nincs rögzített hibás kérdésed! Gyakorolj a témakörökkel.',
+        message: 'Ebben a tesztsorban jelenleg nincs rögzített hibás kérdésed. Gyakorolj a témakörökkel!',
         confirmText: 'Rendben',
         type: 'info'
       });
@@ -497,7 +602,7 @@ function startQuizSession() {
     if (pool.length === 0) {
       dialog.alert({
         title: 'Nincsenek csillagozott kérdések',
-        message: 'Ebben a tesztsorban még nem jelöltél meg kérdést! A kvíz során a jobb felső csillag ikonnal menthetsz el nehéz kérdéseket.',
+        message: 'Ebben a tesztsorban még nem jelöltél meg kérdést. A kvíz során a felső csillag ikonnal menthetsz el nehéz kérdéseket.',
         confirmText: 'Rendben',
         type: 'warning'
       });
@@ -507,11 +612,9 @@ function startQuizSession() {
     pool = getQuestionsForTest(state.currentTestId, state.selectedCategory);
   }
 
-  // Prepare with shuffling
-  let questions = prepareQuizQuestions(pool, state.shuffleQuestions, state.shuffleOptions);
-
-  // Limit count
+  const questions = prepareQuizQuestions(pool, state.shuffleQuestions, state.shuffleOptions);
   const limit = Math.min(state.questionCount, questions.length);
+
   state.activeQuestions = questions.slice(0, limit);
   state.currentIndex = 0;
   state.userAnswers = {};
@@ -520,7 +623,6 @@ function startQuizSession() {
   state.elapsedSeconds = 0;
   state.startTime = Date.now();
 
-  // Start timer & persist
   startTimer();
   state.currentScreen = 'quiz';
   persistActiveSession();
@@ -532,8 +634,9 @@ function startQuizSession() {
    ========================================================================== */
 function getQuizScreenHTML() {
   const q = state.activeQuestions[state.currentIndex];
-  if (!q) return '<div class="quiz-screen-content">Nincs kérdés</div>';
+  if (!q) return '<div class="quiz-column">Nincs kérdés</div>';
 
+  const currentTest = getTest(state.currentTestId);
   const total = state.activeQuestions.length;
   const currentNum = state.currentIndex + 1;
   const progressPercent = Math.round((currentNum / total) * 100);
@@ -542,171 +645,157 @@ function getQuizScreenHTML() {
   const isAnswered = !!answeredInfo;
   const isBookmarked = storage.isBookmarked(q.id, state.currentTestId);
 
-  // Sound active class
-  const soundActive = sounds.isSoundEnabled();
-
-  const mins = String(Math.floor(state.elapsedSeconds / 60)).padStart(2, '0');
-  const secs = String(state.elapsedSeconds % 60).padStart(2, '0');
-
   return `
-    <div class="quiz-view-wrapper">
-      <!-- Top Sticky Header -->
-      <header class="app-header">
-      <div class="header-left">
-        <button class="icon-btn" id="hdr-back-btn" title="Vissza a főmenübe">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-          </svg>
-        </button>
-        <button class="icon-btn" id="hdr-grid-btn" title="Kérdésválasztó táblázat">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
-            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
-            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
-            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
-          </svg>
-        </button>
-      </div>
-
-      <div class="header-title">
-        ${getTest(state.currentTestId).shortTitle} • ${currentNum} / ${total}
-      </div>
-
-      <div class="header-right">
-        <button class="icon-btn ${isBookmarked ? 'bookmarked' : ''}" id="hdr-star-btn" title="Csillagozás">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="${isBookmarked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-          </svg>
-        </button>
-
-        <button class="icon-btn ${soundActive ? 'active' : ''}" id="hdr-sound-btn" title="Hang">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-          </svg>
-        </button>
-      </div>
-    </header>
-
-    <!-- Progress & Streak Bar -->
-    <div class="progress-container">
-      <div class="progress-header">
-        <span>${currentNum}. kérdés a(z) ${total}-ból</span>
-        ${state.currentStreak >= 2 ? `
-          <div class="streak-badge">
-            🔥 ${state.currentStreak}x Sorozat
-          </div>
-        ` : `<span>${progressPercent}%</span>`}
-      </div>
-      <div class="progress-bar-track">
-        <div class="progress-bar-fill" style="width: ${progressPercent}%;"></div>
-      </div>
-    </div>
-
-    <!-- Question & Options Area -->
-    <div class="quiz-screen-content">
-      <div class="question-meta">
-        <span class="category-chip">
-          <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-          </svg>
-          ${q.category || getTest(state.currentTestId).shortTitle}
-        </span>
-        <span style="font-size: 12px; color: var(--text-dim); font-weight: 600;">ID #${q.id}</span>
-      </div>
-
-      <!-- Question Card -->
-      <div class="question-card">
-        <div class="question-text">${q.question}</div>
-      </div>
-
-      <!-- Options List -->
-      <div class="options-list">
-        ${q.answers.map((answerText, idx) => {
-          const letter = String.fromCharCode(65 + idx); // A, B, C, D
-          let stateClass = '';
-
-          if (isAnswered) {
-            const isUserSelected = answeredInfo.answer === answerText;
-            const isCorrectAnswer = answerText === q.correct_answer;
-
-            if (isCorrectAnswer) {
-              stateClass = 'correct';
-            } else if (isUserSelected && !answeredInfo.isCorrect) {
-              stateClass = 'wrong';
-            } else {
-              stateClass = 'dimmed';
-            }
-          }
-
-          return `
-            <button class="option-btn ${stateClass}" data-answer="${encodeURIComponent(answerText)}" data-idx="${idx}">
-              <div class="option-letter">${letter}</div>
-              <div class="option-text">${answerText}</div>
-              <svg class="option-status-icon" viewBox="0 0 24 24" fill="currentColor">
-                ${answerText === q.correct_answer ? `
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                ` : `
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                `}
-              </svg>
+    <div class="quiz-shell">
+      <header class="topbar topbar-quiz">
+        <div class="topbar-inner">
+          <div class="topbar-left">
+            <button type="button" class="nav-pill-btn" id="hdr-back-btn" title="Vissza a főmenübe" aria-label="Vissza a főmenübe">
+              ${ICONS.back}
+              <span>Főmenü</span>
             </button>
-          `;
-        }).join('')}
-      </div>
 
-      <!-- Explanation Panel (Visible once answered) -->
-      ${isAnswered ? `
-        <div class="explanation-card">
-          <div class="explanation-header">
-            <svg class="explanation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
-            <div class="explanation-content">
-              <h4>Anatómiai Magyarázat</h4>
-              <p>${q.explanation}</p>
-            </div>
+            <button type="button" class="nav-pill-btn tabular" id="hdr-grid-btn" title="Kérdésválasztó táblázat">
+              ${ICONS.grid}
+              <span>${currentNum} / ${total}</span>
+            </button>
           </div>
-          ${q.image ? `
-            <div class="explanation-image-box" id="explanation-image-trigger" data-img="${q.image}" data-title="${encodeURIComponent(q.image_title || 'Anatómiai ábra')}">
-              <div class="image-wrapper">
-                <img src="${q.image}" alt="${q.image_title || 'Anatómiai ábra'}" class="explanation-thumb" loading="lazy" />
-                <div class="image-zoom-badge">
-                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
-                  </svg>
-                  <span>Nagyítás</span>
-                </div>
+
+          <div class="topbar-right">
+            ${state.currentStreak >= 2 ? `
+              <span class="streak-chip" title="Helyes válasz sorozat">
+                ${ICONS.streak}
+                <span>${state.currentStreak}x</span>
+              </span>
+            ` : ''}
+
+            <span class="quiz-timer-chip tabular" title="Eltelt idő">
+              ${ICONS.clock}
+              <span id="quiz-timer-display">${formatTimer(state.elapsedSeconds)}</span>
+            </span>
+
+            <button type="button" class="icon-btn ${isBookmarked ? 'bookmarked' : ''}" id="hdr-star-btn" title="Csillagozás (S)" aria-label="Csillagozás">
+              ${starIcon(isBookmarked)}
+            </button>
+
+            ${getUtilityButtonsHTML()}
+          </div>
+        </div>
+        <div class="progress-line-track" aria-hidden="true">
+          <div class="progress-line-fill" style="width: ${progressPercent}%;"></div>
+        </div>
+      </header>
+
+      <div class="quiz-scroll-area" id="quiz-scroll-area">
+        <div class="quiz-column">
+          <div class="question-header-meta">
+            <span class="category-tag">${q.category || currentTest.shortTitle}</span>
+            <span class="question-id-tag">#${String(q.id).padStart(3, '0')}</span>
+          </div>
+
+          <h2 class="question-prompt">${q.question}</h2>
+
+          <div class="options-stack">
+            ${q.answers.map((answerText, idx) => {
+              const letter = String.fromCharCode(65 + idx);
+              let stateClass = '';
+              let statusSVG = '';
+
+              if (isAnswered) {
+                const isUserSelected = answeredInfo.answer === answerText;
+                const isCorrectAnswer = answerText === q.correct_answer;
+
+                if (isCorrectAnswer) {
+                  stateClass = 'correct';
+                  statusSVG = ICONS.check;
+                } else if (isUserSelected && !answeredInfo.isCorrect) {
+                  stateClass = 'wrong';
+                  statusSVG = ICONS.x;
+                } else {
+                  stateClass = 'dimmed';
+                }
+              }
+
+              return `
+                <button
+                  type="button"
+                  class="option-btn ${stateClass}"
+                  data-answer="${encodeURIComponent(answerText)}"
+                  data-idx="${idx}"
+                  ${isAnswered ? 'disabled' : ''}
+                >
+                  <span class="option-key">${letter}</span>
+                  <span class="option-text">${answerText}</span>
+                  ${statusSVG ? `<span class="option-status-icon">${statusSVG}</span>` : ''}
+                </button>
+              `;
+            }).join('')}
+          </div>
+
+          ${isAnswered ? `
+            <div class="explanation-box">
+              <div class="explanation-head">
+                ${ICONS.note}
+                <span>Magyarázat</span>
               </div>
-              ${q.image_title ? `<div class="explanation-img-caption">${q.image_title}</div>` : ''}
+              <p class="explanation-prose">${q.explanation}</p>
+
+              ${q.image ? `
+                <button
+                  type="button"
+                  class="plate-card"
+                  id="explanation-image-trigger"
+                  data-img="${q.image}"
+                  data-title="${encodeURIComponent(q.image_title || 'Anatómiai ábra')}"
+                >
+                  <div class="plate-image-wrap">
+                    <img src="${q.image}" alt="${q.image_title || 'Anatómiai ábra'}" class="plate-thumb" loading="lazy" />
+                  </div>
+                  <div class="plate-footer">
+                    <span>${q.image_title || 'Anatómiai illusztráció'}</span>
+                    <span class="plate-zoom-action">
+                      ${ICONS.zoom}
+                      <span>Nagyítás</span>
+                    </span>
+                  </div>
+                </button>
+              ` : ''}
             </div>
           ` : ''}
         </div>
-      ` : ''}
-    </div>
-
-      <!-- Sticky Bottom Action Bar -->
-      <div class="bottom-action-bar">
-        ${state.currentIndex > 0 ? `
-          <button class="btn-secondary" id="btn-prev-question" title="Előző kérdés">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-            </svg>
-          </button>
-        ` : ''}
-
-        ${isAnswered ? `
-          <button class="btn-primary" id="btn-next-question">
-            <span>${currentNum === total ? 'Kvíz Befejezése' : 'Következő Kérdés'}</span>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-          </button>
-        ` : `
-          <button class="btn-primary" disabled style="opacity: 0.6;">
-            <span>Válassz egy választ</span>
-          </button>
-        `}
       </div>
+
+      <footer class="quiz-bottom-bar">
+        <div class="quiz-bottom-inner">
+          <div class="quiz-actions-row">
+            ${state.currentIndex > 0 ? `
+              <button type="button" class="btn-secondary" id="btn-prev-question" title="Előző kérdés (←)">
+                ${ICONS.back}
+                <span>Előző</span>
+              </button>
+            ` : ''}
+
+            ${isAnswered ? `
+              <button type="button" class="btn-primary" id="btn-next-question">
+                <span>${currentNum === total ? 'Teszt befejezése' : 'Következő kérdés'}</span>
+                ${ICONS.forward}
+              </button>
+            ` : `
+              <button type="button" class="btn-primary" disabled>
+                <span>Válassz egy választ</span>
+              </button>
+            `}
+          </div>
+
+          <div class="keyboard-hints" aria-hidden="true">
+            <span><kbd>1</kbd>–<kbd>4</kbd> vagy <kbd>A</kbd>–<kbd>D</kbd> Válasz</span>
+            <span><kbd>Enter</kbd> Következő</span>
+            <span><kbd>←</kbd> Előző</span>
+            <span><kbd>S</kbd> Csillag</span>
+            <span><kbd>M</kbd> Némítás</span>
+          </div>
+        </div>
+      </footer>
     </div>
   `;
 }
@@ -715,14 +804,13 @@ function bindQuizScreenEvents() {
   const q = state.activeQuestions[state.currentIndex];
   if (!q) return;
 
-  // Header Back Button
   const backBtn = document.getElementById('hdr-back-btn');
   if (backBtn) {
     backBtn.addEventListener('click', async () => {
       const confirmed = await dialog.confirm({
         title: 'Teszt megszakítása',
-        message: 'Biztosan vissza szeretnél térni a főmenübe? A teszt jelenlegi haladása elvész.',
-        confirmText: 'Igen, kilépek',
+        message: 'Biztosan visszatérsz a főmenübe? A jelenlegi teszt haladása elvész.',
+        confirmText: 'Kilépés a főmenübe',
         cancelText: 'Folytatás',
         type: 'danger'
       });
@@ -736,7 +824,6 @@ function bindQuizScreenEvents() {
     });
   }
 
-  // Header Grid Navigator Button
   const gridBtn = document.getElementById('hdr-grid-btn');
   if (gridBtn) {
     gridBtn.addEventListener('click', () => {
@@ -746,42 +833,28 @@ function bindQuizScreenEvents() {
     });
   }
 
-  // Header Star/Bookmark Button
   const starBtn = document.getElementById('hdr-star-btn');
   if (starBtn) {
     starBtn.addEventListener('click', () => {
       sounds.playTap();
       const isNowStarred = storage.toggleBookmark(q.id, state.currentTestId);
       starBtn.classList.toggle('bookmarked', isNowStarred);
+      starBtn.innerHTML = starIcon(isNowStarred);
       if (isNowStarred) {
         sounds.playStreak();
       }
     });
   }
 
-  // Header Sound Button
-  const soundBtn = document.getElementById('hdr-sound-btn');
-  if (soundBtn) {
-    soundBtn.addEventListener('click', () => {
-      const enabled = sounds.toggleSound();
-      soundBtn.classList.toggle('active', enabled);
-    });
-  }
-
-  // Option buttons
   const isAnswered = !!state.userAnswers[q.id];
   document.querySelectorAll('.option-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      // If already answered, ignore clicks
       if (isAnswered) return;
-
-      const rawAnswer = btn.getAttribute('data-answer');
-      const selectedAnswer = decodeURIComponent(rawAnswer);
+      const selectedAnswer = decodeURIComponent(btn.getAttribute('data-answer'));
       selectOption(q, selectedAnswer);
     });
   });
 
-  // Next Question Button
   const nextBtn = document.getElementById('btn-next-question');
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
@@ -790,7 +863,6 @@ function bindQuizScreenEvents() {
     });
   }
 
-  // Prev Question Button
   const prevBtn = document.getElementById('btn-prev-question');
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
@@ -803,7 +875,6 @@ function bindQuizScreenEvents() {
     });
   }
 
-  // Diagram Image Click to Lightbox
   const imgTrigger = document.getElementById('explanation-image-trigger');
   if (imgTrigger) {
     imgTrigger.addEventListener('click', () => {
@@ -815,20 +886,16 @@ function bindQuizScreenEvents() {
   }
 }
 
-// Option selection handler
 function selectOption(question, answerText) {
   const isCorrect = answerText === question.correct_answer;
 
-  // Record Answer
   state.userAnswers[question.id] = {
     answer: answerText,
     isCorrect: isCorrect
   };
 
-  // Update Mistake Tracker in Storage
   storage.recordAnswerResult(question.id, isCorrect, state.currentTestId);
 
-  // Audio & Streak feedback
   if (isCorrect) {
     state.currentStreak++;
     if (state.currentStreak > state.maxStreak) {
@@ -839,7 +906,6 @@ function selectOption(question, answerText) {
     } else {
       sounds.playCorrect();
     }
-    // Gentle vibration on supported mobile devices
     if ('vibrate' in navigator) navigator.vibrate([25]);
   } else {
     state.currentStreak = 0;
@@ -847,17 +913,15 @@ function selectOption(question, answerText) {
     if ('vibrate' in navigator) navigator.vibrate([60, 40, 60]);
   }
 
-  // Re-render and persist
   persistActiveSession();
   renderApp();
 
-  // Smoothly scroll the explanation into view so it is fully visible immediately
   setTimeout(() => {
-    const expl = document.querySelector('.explanation-card');
+    const expl = document.querySelector('.explanation-box');
     if (expl) {
       expl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-  }, 60);
+  }, 50);
 }
 
 function goToNextQuestion() {
@@ -870,7 +934,6 @@ function goToNextQuestion() {
   }
 }
 
-// Finish & Evaluate Quiz
 function finishQuizSession() {
   stopTimer();
 
@@ -890,24 +953,22 @@ function finishQuizSession() {
   const percentage = Math.round((correctCount / total) * 100);
   const currentTest = getTest(state.currentTestId);
 
-  // Save to history
   storage.saveQuizResult({
     testId: state.currentTestId,
     testTitle: currentTest.title,
     mode: state.quizMode,
     category: state.selectedCategory,
-    total: total,
+    total,
     correct: correctCount,
     wrong: wrongCount,
-    percentage: percentage,
+    percentage,
     durationSeconds: state.elapsedSeconds,
     maxStreak: state.maxStreak
   });
 
-  // Confetti & Celebration Sound on high scores
   if (percentage >= 70) {
     sounds.playFanfare();
-    setTimeout(triggerConfetti, 250);
+    setTimeout(triggerConfetti, 200);
   } else {
     sounds.playCorrect();
   }
@@ -937,33 +998,31 @@ function getResultsScreenHTML() {
   const percentage = Math.round((correctCount / total) * 100);
   const currentTest = getTest(state.currentTestId);
 
-  // Verdict text
   let verdictTitle = '';
   let verdictDesc = '';
   if (percentage >= 90) {
-    verdictTitle = '🏆 Kiváló Eredmény!';
-    verdictDesc = `Fantasztikus tudás! Készen állsz a legnehezebb ${currentTest.shortTitle.toLowerCase()} vizsgára is!`;
+    verdictTitle = 'Kiváló eredmény';
+    verdictDesc = `Magabiztos tudás. A(z) ${currentTest.shortTitle.toLowerCase()} anyagát magas szinten uralod.`;
   } else if (percentage >= 75) {
-    verdictTitle = '🎉 Sikeres Vizsga!';
-    verdictDesc = 'Nagyszerű felkészültség! Néhány apró részletet még csiszolj.';
+    verdictTitle = 'Sikeres felkészülés';
+    verdictDesc = 'Stabil alapok; néhány részletet még érdemes finomítani az ismétléssel.';
   } else if (percentage >= 50) {
-    verdictTitle = '👍 Jó Próbálkozás!';
-    verdictDesc = 'Az alapok megvannak, de érdemes átismételned a tévesztett kérdéseket.';
+    verdictTitle = 'Jó kezdés';
+    verdictDesc = 'Az alapfogalmak megvannak, de érdemes külön átnézni a tévesztett kérdéseket.';
   } else {
-    verdictTitle = '💪 Gyakorolj Még!';
-    verdictDesc = `A(z) ${currentTest.shortTitle} komoly precizitást igényel. Ismételd át a fejezeteket!`;
+    verdictTitle = 'További gyakorlás javasolt';
+    verdictDesc = `A(z) ${currentTest.shortTitle.toLowerCase()} pontos terminológiát igényel. Ismételd át a hibás pontokat.`;
   }
 
   const mins = Math.floor(state.elapsedSeconds / 60);
   const secs = state.elapsedSeconds % 60;
-  const timeFormatted = mins > 0 ? `${mins} perc ${secs} mp` : `${secs} másodperc`;
+  const timeFormatted = mins > 0 ? `${mins}p ${String(secs).padStart(2, '0')}mp` : `${secs} mp`;
 
-  // SVG Circle calculation
-  const radius = 65;
+  const radius = 52;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (circumference * percentage) / 100;
+  const ringColor = percentage >= 75 ? 'var(--correct)' : percentage >= 50 ? 'var(--warning)' : 'var(--wrong)';
 
-  // Filtered review questions
   const filteredQuestions = state.activeQuestions.filter(q => {
     const ans = state.userAnswers[q.id];
     const isCorr = ans && ans.isCorrect;
@@ -973,136 +1032,160 @@ function getResultsScreenHTML() {
   });
 
   return `
-    <div class="results-screen">
-      <!-- Test Badge Chip -->
-      <div style="text-align: center; margin-bottom: 6px;">
-        <span class="category-chip" style="font-size: 12px; padding: 5px 14px; background: rgba(56, 189, 248, 0.12); color: var(--primary-light); border: 1px solid rgba(56, 189, 248, 0.25);">
-          ${currentTest.icon} ${currentTest.title}
-        </span>
-      </div>
-
-      <!-- Animated Circular Score -->
-      <div class="score-circle-wrapper">
-        <svg class="score-circle-svg" viewBox="0 0 160 160">
-          <circle class="score-circle-bg" cx="80" cy="80" r="${radius}" />
-          <circle class="score-circle-progress" cx="80" cy="80" r="${radius}"
-                  style="stroke-dasharray: ${circumference}; stroke-dashoffset: ${strokeDashoffset};
-                         stroke: ${percentage >= 75 ? 'var(--correct)' : percentage >= 50 ? 'var(--warning)' : 'var(--wrong)'};" />
-        </svg>
-        <div class="score-circle-text">
-          <div class="score-percent">${percentage}%</div>
-          <div class="score-ratio">${correctCount} / ${total} helyes</div>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="topbar-left">
+          <div class="brand-mark">
+            <div class="brand-emblem">${ICONS.brand}</div>
+            <div>
+              <div class="brand-name">Anatómia Atlasz</div>
+            </div>
+            <span class="brand-sub">/ Eredmények</span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          ${getUtilityButtonsHTML()}
         </div>
       </div>
+    </header>
 
-      <!-- Verdict Banner -->
-      <div class="results-verdict">
-        <h2>${verdictTitle}</h2>
-        <p>${verdictDesc}</p>
-      </div>
-
-      <!-- Stats Tiles -->
-      <div class="results-stats-grid">
-        <div class="results-stat-card">
-          <div class="stat-icon-title">
-            <span style="color: var(--correct);">✓</span> Helyes válaszok
-          </div>
-          <div class="val" style="color: var(--correct);">${correctCount} db</div>
-        </div>
-
-        <div class="results-stat-card">
-          <div class="stat-icon-title">
-            <span style="color: var(--wrong);">✗</span> Hibás válaszok
-          </div>
-          <div class="val" style="color: var(--wrong);">${wrongCount} db</div>
-        </div>
-
-        <div class="results-stat-card">
-          <div class="stat-icon-title">
-            ⏱️ Eltelt idő
-          </div>
-          <div class="val" style="font-size: 16px;">${timeFormatted}</div>
-        </div>
-
-        <div class="results-stat-card">
-          <div class="stat-icon-title">
-            🔥 Max Sorozat
-          </div>
-          <div class="val" style="color: #f59e0b;">${state.maxStreak} db</div>
-        </div>
-      </div>
-
-      <!-- Action Buttons -->
-      <div style="width: 100%; display: flex; flex-direction: column; gap: 10px;">
-        ${wrongCount > 0 ? `
-          <button class="btn-primary" id="btn-retry-mistakes" style="background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+    <div class="results-container">
+      <section class="results-summary-card">
+        <div class="results-hero-row">
+          <div class="score-ring-wrap">
+            <svg class="score-ring-svg" viewBox="0 0 124 124">
+              <circle class="score-ring-bg" cx="62" cy="62" r="${radius}" />
+              <circle
+                class="score-ring-fg"
+                cx="62"
+                cy="62"
+                r="${radius}"
+                style="stroke-dasharray: ${circumference}; stroke-dashoffset: ${strokeDashoffset}; stroke: ${ringColor};"
+              />
             </svg>
-            Csak a hibásak újrázása (${wrongCount} db)
-          </button>
-        ` : ''}
+            <div class="score-ring-label">
+              <span class="score-ring-pct">${percentage}%</span>
+              <span class="score-ring-sub">${correctCount}/${total}</span>
+            </div>
+          </div>
 
-        <button class="btn-secondary" id="btn-results-home" style="width: 100%; height: 50px;">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-          </svg>
-          Vissza a Főmenübe
-        </button>
-      </div>
-
-      <!-- Detailed Review List -->
-      <div style="width: 100%; margin-top: 14px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-          <div class="section-title" style="margin: 0;">Részletes Áttekintés</div>
-          <div style="display: flex; gap: 6px;">
-            <button class="count-chip ${state.resultsFilter === 'all' ? 'active' : ''}" data-filter="all" style="padding: 4px 10px;">Mind</button>
-            <button class="count-chip ${state.resultsFilter === 'wrong' ? 'active' : ''}" data-filter="wrong" style="padding: 4px 10px;">Csak hibás</button>
-            <button class="count-chip ${state.resultsFilter === 'correct' ? 'active' : ''}" data-filter="correct" style="padding: 4px 10px;">Csak helyes</button>
+          <div class="results-verdict">
+            <span class="results-deck-tag">${currentTest.title}</span>
+            <h1>${verdictTitle}</h1>
+            <p>${verdictDesc}</p>
           </div>
         </div>
 
-        <div class="review-list-container">
-          ${filteredQuestions.map((q, idx) => {
+        <div class="results-metrics-strip">
+          <div class="metric-cell">
+            <span class="metric-label">Helyes</span>
+            <span class="metric-val is-correct">${correctCount} db</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-label">Hibás</span>
+            <span class="metric-val is-wrong">${wrongCount} db</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-label">Eltelt idő</span>
+            <span class="metric-val">${timeFormatted}</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-label">Max sorozat</span>
+            <span class="metric-val">${state.maxStreak}x</span>
+          </div>
+        </div>
+
+        <div class="results-actions">
+          ${wrongCount > 0 ? `
+            <button type="button" class="btn-primary btn-danger-solid" id="btn-retry-mistakes">
+              ${ICONS.retry}
+              <span>Hibásak újrázása (${wrongCount} db)</span>
+            </button>
+          ` : ''}
+
+          <button type="button" class="btn-secondary" id="btn-results-home">
+            ${ICONS.home}
+            <span>Vissza a főmenübe</span>
+          </button>
+        </div>
+      </section>
+
+      <section>
+        <div class="review-header">
+          <h2 class="section-label">Részletes áttekintés</h2>
+          <div class="filter-segmented">
+            <button type="button" class="filter-btn ${state.resultsFilter === 'all' ? 'active' : ''}" data-filter="all">
+              Mind (${total})
+            </button>
+            <button type="button" class="filter-btn ${state.resultsFilter === 'wrong' ? 'active' : ''}" data-filter="wrong">
+              Hibás (${wrongCount})
+            </button>
+            <button type="button" class="filter-btn ${state.resultsFilter === 'correct' ? 'active' : ''}" data-filter="correct">
+              Helyes (${correctCount})
+            </button>
+          </div>
+        </div>
+
+        <div class="review-list">
+          ${filteredQuestions.length === 0 ? `
+            <div class="review-item">
+              <p style="color: var(--text-muted); font-size: 14px;">Nincs a szűrőnek megfelelő kérdés ebben a tesztben.</p>
+            </div>
+          ` : filteredQuestions.map(q => {
             const ans = state.userAnswers[q.id];
             const isCorrect = ans && ans.isCorrect;
             const userChoice = ans ? ans.answer : 'Nem válaszoltál';
 
             return `
-              <div class="review-card ${isCorrect ? 'correct-review' : 'wrong-review'}">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span style="font-size: 11px; font-weight: 700; color: ${isCorrect ? 'var(--correct)' : 'var(--wrong)'};">
-                    ${isCorrect ? '✓ Helyes' : '✗ Hibás'}
+              <article class="review-item ${isCorrect ? 'is-correct' : 'is-wrong'}">
+                <div class="review-item-top">
+                  <span class="review-status-pill ${isCorrect ? 'correct' : 'wrong'}">
+                    ${isCorrect ? ICONS.check : ICONS.x}
+                    <span>${isCorrect ? 'Helyes' : 'Hibás'}</span>
                   </span>
-                  <span style="font-size: 11px; color: var(--text-dim);">${q.category}</span>
+                  <span class="review-cat">${q.category} · <span class="tabular">#${q.id}</span></span>
                 </div>
-                <div class="review-question">${q.id}. ${q.question}</div>
-                <div class="review-answer-row">
-                  <div><strong>Válaszod:</strong> <span style="color: ${isCorrect ? 'var(--correct)' : 'var(--wrong)'};">${userChoice}</span></div>
-                  ${!isCorrect ? `<div><strong>Helyes válasz:</strong> <span style="color: var(--correct); font-weight: 600;">${q.correct_answer}</span></div>` : ''}
-                </div>
-                <div class="review-explanation">
-                  💡 <strong>Magyarázat:</strong> ${q.explanation}
-                  ${q.image ? `
-                    <div style="margin-top: 6px;">
-                      <div class="review-image-row" data-img="${q.image}" data-title="${encodeURIComponent(q.image_title || 'Anatómiai ábra')}">
-                        <img src="${q.image}" alt="${q.image_title || 'Anatómiai ábra'}" class="review-thumb" loading="lazy" />
-                        <span>Ábra megtekintése (nagyítás) 🔍</span>
-                      </div>
+
+                <h3 class="review-q-text">${q.question}</h3>
+
+                <div class="review-answers">
+                  <div>
+                    <span style="color: var(--text-muted);">Válaszod:</span>
+                    <span style="font-weight: 600; color: ${isCorrect ? 'var(--correct-text)' : 'var(--wrong-text)'};">${userChoice}</span>
+                  </div>
+                  ${!isCorrect ? `
+                    <div>
+                      <span style="color: var(--text-muted);">Helyes válasz:</span>
+                      <span style="font-weight: 600; color: var(--correct-text);">${q.correct_answer}</span>
                     </div>
                   ` : ''}
                 </div>
-              </div>
+
+                <div class="review-expl">
+                  <div><strong>Magyarázat:</strong> ${q.explanation}</div>
+                  ${q.image ? `
+                    <button
+                      type="button"
+                      class="review-plate-btn"
+                      data-img="${q.image}"
+                      data-title="${encodeURIComponent(q.image_title || 'Anatómiai ábra')}"
+                    >
+                      <img src="${q.image}" alt="${q.image_title || 'Anatómiai ábra'}" class="review-plate-thumb" loading="lazy" />
+                      <span>${q.image_title || 'Ábra megtekintése'}</span>
+                      ${ICONS.zoom}
+                    </button>
+                  ` : ''}
+                </div>
+              </article>
             `;
           }).join('')}
         </div>
-      </div>
+      </section>
     </div>
   `;
 }
 
 function bindResultsScreenEvents() {
-  // Retry only mistakes
   const retryMistakesBtn = document.getElementById('btn-retry-mistakes');
   if (retryMistakesBtn) {
     retryMistakesBtn.addEventListener('click', () => {
@@ -1126,7 +1209,6 @@ function bindResultsScreenEvents() {
     });
   }
 
-  // Home Button
   const homeBtn = document.getElementById('btn-results-home');
   if (homeBtn) {
     homeBtn.addEventListener('click', () => {
@@ -1138,7 +1220,6 @@ function bindResultsScreenEvents() {
     });
   }
 
-  // Review Filter Chips
   document.querySelectorAll('[data-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
       sounds.playTap();
@@ -1148,8 +1229,7 @@ function bindResultsScreenEvents() {
     });
   });
 
-  // Review Diagram Clicks
-  document.querySelectorAll('.review-image-row').forEach(row => {
+  document.querySelectorAll('.review-plate-btn').forEach(row => {
     row.addEventListener('click', () => {
       sounds.playTap();
       const src = row.getAttribute('data-img');
@@ -1160,7 +1240,7 @@ function bindResultsScreenEvents() {
 }
 
 /* ==========================================================================
-   4. QUESTION GRID MODAL (1-100 Question Navigator)
+   4. QUESTION NAVIGATOR MODAL
    ========================================================================== */
 function renderQuestionGridModal() {
   let modal = document.getElementById('question-grid-modal');
@@ -1168,7 +1248,7 @@ function renderQuestionGridModal() {
     modal = document.createElement('div');
     modal.id = 'question-grid-modal';
     modal.className = 'modal-overlay';
-    document.getElementById('device-container').appendChild(modal);
+    document.body.appendChild(modal);
   }
 
   if (!state.isGridOpen) {
@@ -1182,18 +1262,20 @@ function renderQuestionGridModal() {
   const questions = state.activeQuestions.length > 0 ? state.activeQuestions : testObj.questions;
 
   modal.innerHTML = `
-    <div class="bottom-sheet" id="sheet-content">
+    <div class="nav-sheet" id="sheet-content" role="dialog" aria-modal="true" aria-label="Kérdésválasztó">
       <div class="sheet-header">
         <div class="sheet-handle"></div>
         <div class="sheet-title-row">
-          <div class="sheet-title">${testObj.shortTitle} Rács (${questions.length} db)</div>
-          <button class="icon-btn" id="btn-close-grid" style="width: 32px; height: 32px;">✕</button>
+          <div class="sheet-title">${testObj.shortTitle} · Kérdések (<span class="tabular">${questions.length}</span>)</div>
+          <button type="button" class="icon-btn" id="btn-close-grid" aria-label="Bezárás">
+            ${ICONS.x}
+          </button>
         </div>
         <div class="sheet-legend">
-          <span><span class="legend-dot" style="background: var(--correct);"></span>Helyes</span>
-          <span><span class="legend-dot" style="background: var(--wrong);"></span>Hibás</span>
-          <span><span class="legend-dot" style="background: var(--primary-light);"></span>Jelenlegi</span>
-          <span><span class="legend-dot" style="background: var(--border-card);"></span>Megválaszolatlan</span>
+          <span class="legend-item"><span class="legend-dot" style="background: var(--correct);"></span>Helyes</span>
+          <span class="legend-item"><span class="legend-dot" style="background: var(--wrong);"></span>Hibás</span>
+          <span class="legend-item"><span class="legend-dot" style="background: var(--accent);"></span>Jelenlegi</span>
+          <span class="legend-item"><span class="legend-dot" style="background: var(--border-strong);"></span>Megválaszolatlan</span>
         </div>
       </div>
 
@@ -1213,7 +1295,7 @@ function renderQuestionGridModal() {
             const starClass = isBookmarked ? 'has-star' : '';
 
             return `
-              <button class="grid-cell-btn ${statusClass} ${starClass}" data-jump="${idx}">
+              <button type="button" class="grid-cell-btn ${statusClass} ${starClass}" data-jump="${idx}">
                 ${idx + 1}
               </button>
             `;
@@ -1223,16 +1305,14 @@ function renderQuestionGridModal() {
     </div>
   `;
 
-  // Bind close
   modal.onclick = (e) => {
-    if (e.target === modal || e.target.id === 'btn-close-grid') {
+    if (e.target === modal || e.target.closest('#btn-close-grid')) {
       sounds.playTap();
       state.isGridOpen = false;
       modal.classList.remove('open');
     }
   };
 
-  // Bind cell jumps
   modal.querySelectorAll('[data-jump]').forEach(btn => {
     btn.addEventListener('click', () => {
       sounds.playTap();
@@ -1249,13 +1329,27 @@ function renderQuestionGridModal() {
 /* ==========================================================================
    Keyboard Accessibility & Navigation
    ========================================================================== */
+function isAnyModalOpen() {
+  const gridOpen = document.getElementById('question-grid-modal')?.classList.contains('open');
+  const lightboxOpen = document.getElementById('diagram-lightbox-modal')?.classList.contains('open');
+  const dialogOpen = document.getElementById('custom-dialog-overlay')?.classList.contains('open');
+  return Boolean(gridOpen || lightboxOpen || dialogOpen);
+}
+
 function initKeyboardNav() {
   window.addEventListener('keydown', (e) => {
-    if (state.currentScreen !== 'quiz') return;
+    if (e.key === 'Escape' && state.isGridOpen) {
+      state.isGridOpen = false;
+      renderQuestionGridModal();
+      return;
+    }
+
+    if (state.currentScreen !== 'quiz' || isAnyModalOpen()) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+
     const q = state.activeQuestions[state.currentIndex];
     if (!q) return;
 
-    // Keys 1, 2, 3, 4 or A, B, C, D
     const key = e.key.toUpperCase();
     let optionIdx = -1;
     if (key === '1' || key === 'A') optionIdx = 0;
@@ -1268,18 +1362,18 @@ function initKeyboardNav() {
       if (!isAnswered) {
         selectOption(q, q.answers[optionIdx]);
       }
+      return;
     }
 
-    // Space / Enter or Right Arrow for Next
     if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight') {
       const isAnswered = !!state.userAnswers[q.id];
       if (isAnswered) {
         e.preventDefault();
         goToNextQuestion();
       }
+      return;
     }
 
-    // Left Arrow for Prev
     if (e.key === 'ArrowLeft') {
       if (state.currentIndex > 0) {
         e.preventDefault();
@@ -1287,15 +1381,15 @@ function initKeyboardNav() {
         persistActiveSession();
         renderApp();
       }
+      return;
     }
 
-    // Key 'S' for Star / Bookmark
     if (key === 'S') {
       storage.toggleBookmark(q.id, state.currentTestId);
-      renderApp();
+      renderHeaderQuickIcons();
+      return;
     }
 
-    // Key 'M' for Mute
     if (key === 'M') {
       sounds.toggleSound();
       renderHeaderQuickIcons();
@@ -1304,7 +1398,7 @@ function initKeyboardNav() {
 }
 
 /* ==========================================================================
-   5. ANATOMICAL DIAGRAM LIGHTBOX MODAL
+   5. ANATOMICAL PLATE LIGHTBOX MODAL
    ========================================================================== */
 function openDiagramLightbox(imageSrc, title) {
   let lightbox = document.getElementById('diagram-lightbox-modal');
@@ -1312,28 +1406,25 @@ function openDiagramLightbox(imageSrc, title) {
     lightbox = document.createElement('div');
     lightbox.id = 'diagram-lightbox-modal';
     lightbox.className = 'lightbox-overlay';
-    const parent = document.getElementById('device-container') || document.body;
-    parent.appendChild(lightbox);
+    document.body.appendChild(lightbox);
   }
 
   lightbox.innerHTML = `
     <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="${title}">
       <header class="lightbox-header">
         <div class="lightbox-title-box">
-          <span class="lightbox-badge">Anatómiai Illusztráció</span>
+          <span class="lightbox-badge">Anatómiai Tábla</span>
           <h3 class="lightbox-title">${title}</h3>
         </div>
-        <button class="lightbox-close-btn" id="lightbox-close-btn" title="Bezárás">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+        <button type="button" class="lightbox-close-btn" id="lightbox-close-btn" aria-label="Bezárás">
+          ${ICONS.x}
         </button>
       </header>
       <div class="lightbox-body">
         <img src="${imageSrc}" alt="${title}" class="lightbox-img" />
       </div>
       <footer class="lightbox-footer">
-        <span>Koppints a háttérre vagy a bezárás gombra a kilépéshez (ESC)</span>
+        <span>Kattints a háttérre vagy nyomd meg az ESC gombot a bezáráshoz</span>
       </footer>
     </div>
   `;
@@ -1349,7 +1440,10 @@ function openDiagramLightbox(imageSrc, title) {
   };
 
   const handleKey = (e) => {
-    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeLightbox();
+    }
   };
 
   window.addEventListener('keydown', handleKey);
