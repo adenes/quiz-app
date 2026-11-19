@@ -305,10 +305,7 @@ function getHomeScreenHTML() {
         <div class="topbar-left">
           <div class="brand-mark">
             <div class="brand-emblem">${ICONS.brand}</div>
-            <div>
-              <div class="brand-name">Anatómia Atlasz</div>
-            </div>
-            <span class="brand-sub">/ Vizsgafelkészítő</span>
+            <div class="brand-name">Vizsgafelkészítő</div>
           </div>
         </div>
         <div class="topbar-right">
@@ -1037,10 +1034,7 @@ function getResultsScreenHTML() {
         <div class="topbar-left">
           <div class="brand-mark">
             <div class="brand-emblem">${ICONS.brand}</div>
-            <div>
-              <div class="brand-name">Anatómia Atlasz</div>
-            </div>
-            <span class="brand-sub">/ Eredmények</span>
+            <div class="brand-name">Eredmények</div>
           </div>
         </div>
         <div class="topbar-right">
